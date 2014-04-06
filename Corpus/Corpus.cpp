@@ -16,11 +16,10 @@ const bool compareIntMap(const std::map<int, int>::value_type &i1, const std::ma
 }
 
 void Corpus::loadCorpusFromFile(string filename){
-	numberOfWords = 0;
 	numOfSymbols =0;
 
 	symbols.clear();
-	invertSymbols.clear();
+
 	allWords.clear();
 
 	//Read File line by line
@@ -48,11 +47,11 @@ void Corpus::loadCorpusFromFile(string filename){
 		}
 		allWords.push_back(currentWord);
 	}
-	numberOfWords = allWords.size();
 	symbolFile.close();
 	
 	std::sort(allWords.begin(), allWords.end(), compareVectorSize);
 	reduceToUniqueWords();
+	allWords.clear();
 }
 
 void Corpus::reduceToUniqueWords(){
@@ -80,9 +79,6 @@ void Corpus::reduceToUniqueWords(){
 			wordCount.push_back(1);
 			uniqueWords.push_back(allWords[iter]);
 		}
-	}
-	for(vector<double>::iterator iter = wordCount.begin(); iter!=wordCount.end(); iter++){
-		*iter = *iter/numberOfWords;
 	}
 }
 
@@ -161,36 +157,36 @@ void Corpus::calculateBiwordsCount(){
 }
 
 void Corpus::initReduceForPCFG(PCFG *pcfg){
-	for(unsigned int i=0; i<allWords.size(); i++){
-		for(unsigned int j=0; j<allWords[i].size(); j++){
-			allWords[i][j] = pcfg->rulesForTermSymbol[allWords[i][j]]->id;
+	for(unsigned int i=0; i<uniqueWords.size(); i++){
+		for(unsigned int j=0; j<uniqueWords[i].size(); j++){
+			uniqueWords[i][j] = pcfg->rulesForTermSymbol[uniqueWords[i][j]];
 		}
 	}
-	reduceToUniqueWords();
 }
 
-void Corpus::reduceCorpusForRule(Rule *rule){
-	for(unsigned int i=0; i<allWords.size(); i++){
+void Corpus::reduceCorpusForRule(Rule rule){
+	for(unsigned int i=0; i<uniqueWords.size(); i++){
 		singleWord newWord;
 		bool reduce = true;
 		int prevSymbol;
 		int currSymbol = -1;
-		for(unsigned int j=0; j<allWords[i].size(); j++){
+		for(unsigned int j=0; j<uniqueWords[i].size(); j++){
 			prevSymbol = currSymbol;
-			currSymbol = allWords[i][j];
+			currSymbol = uniqueWords[i][j];
 			if(reduce){
 				reduce = false;
 				continue;
 			}
-			for(unsigned int i=0; i<rule->numberOfNTProductions(); i++){
-				if(rule->getLeftNTProduction(i)->id == prevSymbol && rule->getRightNTProduction(i)->id == currSymbol){
+			for(unsigned int i=0; i<rule.totalNumberOfProductions(); i++){
+				Rule::productions prod = rule.getProduction(i);
+				if(!prod.terminal && prod.leftID == prevSymbol && prod.rightID == currSymbol){
 					reduce = true;
 					break;
 				}
 			}
 
 			if(reduce){
-				newWord.push_back(rule->id);
+				newWord.push_back(rule.id);
 				prevSymbol = -1;
 				currSymbol = -1;
 			}else{
@@ -200,24 +196,21 @@ void Corpus::reduceCorpusForRule(Rule *rule){
 		if(currSymbol != -1){
 			newWord.push_back(currSymbol);
 		}
-		allWords[i] = newWord;
+		uniqueWords[i] = newWord;
 	}
-	reduceToUniqueWords();
 }
 
-void Corpus::replaceRules(Rule *newRule, Rule *oldRule){
-	for(words::iterator outIter = allWords.begin(); outIter != allWords.end(); outIter++){
+void Corpus::replaceRules(int newRuleID, int oldRuleID){
+	for(words::iterator outIter = uniqueWords.begin(); outIter != uniqueWords.end(); outIter++){
 		for(singleWord::iterator inerIter = outIter->begin(); inerIter != outIter->end(); inerIter++){
-			if(*inerIter == oldRule->id){
-				*inerIter = newRule->id;
+			if(*inerIter == oldRuleID){
+				*inerIter = newRuleID;
 			}
 		}
 	}
-	//Merge same rules
-	reduceToUniqueWords();
 }
 
-void Corpus::printCorpus(bool unique){
+void Corpus::printCorpus(){
 	int count = 1;
 	cout << endl;
 	cout << "-----Symbols and the number associated to them-----" << endl;
@@ -226,34 +219,19 @@ void Corpus::printCorpus(bool unique){
 		count++;
 	}
 	cout << endl;
-
-	if(!unique){
-		count = 1;
-		cout << endl;
-		cout << "-----Words in Corpus-----" << endl;
-		for(vector<vector<int> >::iterator it1 = allWords.begin(); it1 != allWords.end(); it1++){
-			cout << count << ") ";
-			for(vector<int>::iterator it2 = it1->begin(); it2 != it1->end(); it2++){
-				cout << *it2 << " ";
-			}
-			cout << endl;
-			count++;
+	
+	count = 1;
+	cout << endl;
+	cout << "-----Unique Words in Corpus-----" << endl;
+	for(vector<vector<int> >::iterator it1 = uniqueWords.begin(); it1 != uniqueWords.end(); it1++){
+		cout << count << ") ";
+		for(vector<int>::iterator it2 = it1->begin(); it2 != it1->end(); it2++){
+			cout << *it2 << " ";
 		}
+		cout << " count = " << wordCount[count-1];
 		cout << endl;
-	}else{
-		count = 1;
-		cout << endl;
-		cout << "-----Unique Words in Corpus-----" << endl;
-		for(vector<vector<int> >::iterator it1 = uniqueWords.begin(); it1 != uniqueWords.end(); it1++){
-			cout << count << ") ";
-			for(vector<int>::iterator it2 = it1->begin(); it2 != it1->end(); it2++){
-				cout << *it2 << " ";
-			}
-			cout << " count = " << wordCount[count-1];
-			cout << endl;
-			count++;
-		}
-		cout << endl;
+		count++;
 	}
+	cout << endl;
 }
 

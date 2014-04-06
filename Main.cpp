@@ -23,26 +23,23 @@ int main( int argc, const char* argv[] )
 		return -1;
 	}
  	string filename(argv[1]);
- 	
+ 	 	
  	//Create parser
  	CYKparser cyk;
  	
 	//Create corpus
 	Corpus currCorp, buCorp;
 	currCorp.loadCorpusFromFile(filename);
+	currCorp.printCorpus();
 	buCorp = currCorp;
-	//currCorp.printCorpus();
-	//currCorp.calculateBiwordsCount();
 	
 	//Initialize PCFG
 	PCFG dammyPCFG;
 	dammyPCFG.initFirstNT(currCorp.numberOfSymbolsInCorpus());
+	dammyPCFG.prettyPrint();
 	currCorp.initReduceForPCFG(&dammyPCFG);
 	
-	//currCorp.reduceCorpusForRule(dammyPCFG.allRules[3]);
-	//currCorp.reduceCorpusForRule(dammyPCFG.allRules[4]);
-	//currCorp.calculateBiwordsCount();
-	currCorp.printCorpus(true);
+	currCorp.printCorpus();
 	cout << "First try to reduce" << endl;
 	bool continueChunk = true;
 	double totalGain = 1.0;
@@ -57,6 +54,7 @@ int main( int argc, const char* argv[] )
 		totalGain = doMerge(&dammyPCFG, &currCorp, totalGain);
 	}while(totalGain > 1.0);
 	forceChunk(&dammyPCFG, &currCorp);
+	
 	Corpus::words allUniq = currCorp.getUniqueWords();
 	
 	for(Corpus::words::iterator iter = allUniq.begin(); iter!=allUniq.end(); iter++){
@@ -69,19 +67,19 @@ int main( int argc, const char* argv[] )
 	}
 	
 	dammyPCFG.normalizeGrammar();
-	dammyPCFG.printPCFG();
+	dammyPCFG.prettyPrint();
 	
-	currCorp.printCorpus(true);
+	currCorp.printCorpus();
 	
 	Corpus::words allInitWords = buCorp.getUniqueWords();
-	vector<int> lala;
+	/*vector<int> lala;
 	lala.push_back(0);
 	lala.push_back(0);
 	lala.push_back(0);
 	lala.push_back(1);
 	lala.push_back(2);
 	lala.push_back(2);
-	allInitWords.push_back(lala);
+	allInitWords.push_back(lala);*/
 	for(unsigned int w = 0; w<allInitWords.size(); w++){
 		double parseProb = cyk.parseWord(&dammyPCFG, allInitWords[w]);
 		cout << " Words: ";
@@ -90,12 +88,6 @@ int main( int argc, const char* argv[] )
 		}
 		cout << " | prob = " << parseProb << endl;
 	}
-	//doMerge(&dammyPCFG, &currCorp);
-	//doMerge(&dammyPCFG, &currCorp);
-	
-	//doMerge(&dammyPCFG, &currCorp);
-	//doMerge(&dammyPCFG, &currCorp);
-	
 	
 	//double returnV = cyk.parseWord(&dammyPCFG, test);
 	return 0;
@@ -105,8 +97,7 @@ bool doChunk(PCFG *pcfg, Corpus *corpus){
 	bestChunk maxBiword = corpus->findMaxChunk();
 	if(maxBiword.count > 1){
 		int newRule = pcfg->createNewNT(maxBiword.leftSymbol, maxBiword.rightSymbol, maxBiword.prob);
-		corpus->reduceCorpusForRule(pcfg->idToRule[newRule]);
-		corpus->printCorpus(true);
+		corpus->reduceCorpusForRule(pcfg->allRules[pcfg->locationOfRule(newRule)]);
 		return true;
 	}else{
 		return false;
@@ -118,7 +109,7 @@ void forceChunk(PCFG *pcfg, Corpus *corpus){
 	maxBiword = corpus->findMaxChunk();
 	while(maxBiword.count > 0){
 		int newRule = pcfg->createNewNT(maxBiword.leftSymbol, maxBiword.rightSymbol, maxBiword.prob);
-		corpus->reduceCorpusForRule(pcfg->idToRule[newRule]);
+		corpus->reduceCorpusForRule(pcfg->allRules[pcfg->locationOfRule(newRule)]);
 		maxBiword = corpus->findMaxChunk();
 	}
 }
@@ -132,43 +123,43 @@ double doMerge(PCFG *pcfg, Corpus *corpus, double currGain){
 
 	for(unsigned int i=0; i<pcfg->allRules.size()-1; i++){
 		//Calculate the total count for the first rule (sum all probabilities)
-		double totalOfFirstRule = getTotalCount(i,pcfg);
-		if(pcfg->allRules[i]->numberOfNTProductions() == 0)
+		double totalOfFirstRule = getTotalCount(pcfg->allRules[i].id,pcfg);
+		if(pcfg->allRules[i].numberOfNTProductions() == 0)
 			continue;
 		for(unsigned int j=i+1; j<pcfg->allRules.size(); j++){
-			if(pcfg->allRules[j]->numberOfNTProductions() == 0)
+			if(pcfg->allRules[j].numberOfNTProductions() == 0)
 				continue;
 			//Calculate the total count for the second rule (sum all probabilities)
-			double totalOfSecondRule = getTotalCount(j,pcfg);
+			double totalOfSecondRule = getTotalCount(pcfg->allRules[j].id,pcfg);
 			
 			float totalSum = totalOfFirstRule + totalOfSecondRule;
 			double pOgivenG = 1.0;
 			
-			corpus->doBackup();
-			int initGain = corpus->numberOfUniqueWords();
-			corpus->replaceRules(pcfg->allRules[i],pcfg->allRules[j]);
-			initGain -= corpus->numberOfUniqueWords();
-			corpus->restoreBackup();
+			Corpus tempCorp = *corpus;
+			int initGain = tempCorp.numberOfUniqueWords();
+			tempCorp.replaceRules(pcfg->allRules[i].id,pcfg->allRules[j].id);
+			initGain -= tempCorp.numberOfUniqueWords();
 			initGain*=4;
+			initGain = initGain == 0 ? 1.0 : initGain;
 			
 			//This will be the value for p(G)
-			double pG = pcfg->calculateDuplicates(pcfg->allRules[i]->id,pcfg->allRules[j]->id) * 2;
+			double pG = pcfg->calculateDuplicates(pcfg->allRules[i].id,pcfg->allRules[j].id) * 2;
 			//TODO what we do when the rule is the same?
-			for(unsigned int iter = 0; iter<pcfg->allRules[i]->numberOfNTProductions(); iter++){
-				double up = pcfg->allRules[i]->getNTProductionProbability(iter)/totalSum;
-				double down = pcfg->allRules[i]->getNTProductionProbability(iter)/totalOfFirstRule;
+			for(unsigned int iter = 0; iter<pcfg->allRules[i].totalNumberOfProductions(); iter++){
+				double up = pcfg->allRules[i].getProduction(iter).probability/totalSum;
+				double down = pcfg->allRules[i].getProduction(iter).probability/totalOfFirstRule;
 				//pOgivenG *= pow(up/down, pcfg->allRules[i]->getNTProductionProbability(iter));
 				pOgivenG *= up/down;
 			}
 			
-			for(unsigned int iter = 0; iter<pcfg->allRules[j]->numberOfNTProductions(); iter++){
-				double up = pcfg->allRules[j]->getNTProductionProbability(iter)/totalSum;
-				double down = pcfg->allRules[j]->getNTProductionProbability(iter)/totalOfSecondRule;
+			for(unsigned int iter = 0; iter<pcfg->allRules[j].totalNumberOfProductions(); iter++){
+				double up = pcfg->allRules[j].getProduction(iter).probability/totalSum;
+				double down = pcfg->allRules[j].getProduction(iter).probability/totalOfFirstRule;
 				//pOgivenG *= pow(up/down, pcfg->allRules[j]->getNTProductionProbability(iter));
 				pOgivenG *= up/down;
 			}
 			
-			//cout << "i = " << i << " j = " << j << " P = " << pG*pOgivenG << " gain = " << pG*initGain << endl;
+			cout << "i = " << i << " j = " << j << " P = " << pG*pOgivenG << " gain = " << pG*initGain << endl;
 			//double max2 = totalOfFirstRule>totalOfSecondRule ? totalOfSecondRule : totalOfFirstRule;
 			if(pG*initGain*pOgivenG > max){
 				max = pG*initGain*pOgivenG;
@@ -180,21 +171,19 @@ double doMerge(PCFG *pcfg, Corpus *corpus, double currGain){
 	max *= currGain;
 	if(max > 1.0){
 		cout << max << " i = " << maxI << " j = " << maxJ << endl;
-		corpus->replaceRules(pcfg->allRules[maxI], pcfg->allRules[maxJ]);
-		pcfg->mergeTwoNT(pcfg->allRules[maxI]->id,pcfg->allRules[maxJ]->id);
-		pcfg->printPCFG();
-		corpus->printCorpus(true);
+		corpus->replaceRules(pcfg->allRules[maxI].id, pcfg->allRules[maxJ].id);
+		pcfg->mergeTwoNT(pcfg->allRules[maxI].id,pcfg->allRules[maxJ].id);
+		pcfg->prettyPrint();
+		corpus->printCorpus();
 	}
 	return max;
 }
 
-double getTotalCount(int rule, PCFG *pcfg){
+double getTotalCount(int ruleID, PCFG *pcfg){
 	double result = 0.0;
-	for(unsigned int iter = 0; iter<pcfg->allRules[rule]->numberOfNTProductions(); iter++){
-		result += pcfg->allRules[rule]->getNTProductionProbability(iter);
-	}
-	for(unsigned int iter = 0; iter<pcfg->allRules[rule]->numberOfTermProductions(); iter++){
-		result += pcfg->allRules[rule]->getTProductionProbability(iter);
+	int ruleLoc = pcfg->locationOfRule(ruleID);
+	for(unsigned int iter = 0; iter<pcfg->allRules[ruleLoc].totalNumberOfProductions(); iter++){
+		result += pcfg->allRules[ruleLoc].getProduction(iter).probability;
 	}
 	return result;
 }

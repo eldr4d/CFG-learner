@@ -18,14 +18,16 @@ public:
 		//return 0.0;
 		
 		for(unsigned int i=0; i<word.size(); i++){
-			std::map<int, Rule*>::iterator iter = pcfg->rulesForTermSymbol.find(word[i]);
+			std::map<int, int>::iterator iter = pcfg->rulesForTermSymbol.find(word[i]);
 			if(iter == pcfg->rulesForTermSymbol.end()){
 				//Term symbol does not belong to the grammar
 				return 0.0;
 			}
-			for(unsigned int j=0; j<iter->second->numberOfTermProductions(); j++){
-				if(iter->second->getTerminalProduction(j) == word[i]){
-					productionTable[i][0][iter->second->id] = iter->second->getTProductionProbability(j);
+			int rule = pcfg->locationOfRule(iter->second);
+			for(unsigned int j=0; j<pcfg->allRules[rule].totalNumberOfProductions(); j++){
+				Rule::productions prod = pcfg->allRules[rule].getProduction(j);
+				if(prod.terminal == true && prod.termSymbol == word[i]){
+					productionTable[i][0][iter->second] = prod.probability;
 					break;
 				}
 			}
@@ -39,16 +41,21 @@ public:
 					if(productionTable[i][k].size()==0 || productionTable[i+k+1][j-k-1].size()==0){
 						continue;
 					}
-					for(std::vector<Rule*>::iterator iter = pcfg->allRules.begin(); iter != pcfg->allRules.end(); iter++){
-						for(unsigned int iter2 = 0; iter2<(*iter)->numberOfNTProductions(); iter2++){
-							std::map<int, double>::iterator leftMatched =  productionTable[i][k].find((*iter)->getLeftNTProduction(iter2)->id);
-							std::map<int, double>::iterator rightMatched = productionTable[i+k+1][j-k-1].find((*iter)->getRightNTProduction(iter2)->id);
+					for(unsigned iter = 0; iter < pcfg->allRules.size(); iter++){
+						for(unsigned int iter2 = 0; iter2<pcfg->allRules[iter].totalNumberOfProductions(); iter2++){
+							Rule::productions prod = pcfg->allRules[iter].getProduction(iter2);
+							if(prod.terminal == true){
+								continue;
+							}
+							std::map<int, double>::iterator leftMatched =  productionTable[i][k].find(prod.leftID);
+							std::map<int, double>::iterator rightMatched = productionTable[i+k+1][j-k-1].find(prod.rightID);
+
 							if(leftMatched != productionTable[i][k].end() && rightMatched != productionTable[i+k+1][j-k-1].end()){
-								std::map<int, double>::iterator max = productionTable[i][j].find((*iter)->id);
+								std::map<int, double>::iterator max = productionTable[i][j].find(pcfg->allRules[iter].id);
 								if(max == productionTable[i][j].end()){
-									productionTable[i][j][(*iter)->id] = (*iter)->getNTProductionProbability(iter2)*leftMatched->second*rightMatched->second;
+									productionTable[i][j][pcfg->allRules[iter].id] = prod.probability*leftMatched->second*rightMatched->second;
 								}else{
-									double temp = (*iter)->getNTProductionProbability(iter2)*leftMatched->second*rightMatched->second;
+									double temp = prod.probability*leftMatched->second*rightMatched->second;
 									max->second = max->second > temp ? max->second : temp;
 								}
 							}
@@ -60,8 +67,8 @@ public:
 		
 		double finalValue = 0.0;
 		for(std::map<int, double>::iterator iter = productionTable[0][word.size()-1].begin(); iter != productionTable[0][word.size()-1].end(); iter++){
-			for(std::vector<Rule*>::iterator found = pcfg->startRules.begin(); found != pcfg->startRules.end(); found++){
-				if((*found)->id == iter->first){
+			for(std::vector<int>::iterator found = pcfg->startRules.begin(); found != pcfg->startRules.end(); found++){
+				if(*found == iter->first){
 					finalValue = iter->second;
 				}
 			}
