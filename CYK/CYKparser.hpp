@@ -14,9 +14,7 @@ public:
 		productionTable = new std::map<int,double>*[word.size()];
 		for(unsigned int i=0; i<word.size(); i++){
 			productionTable[i] = new std::map<int,double>[word.size()];
-			std::cout << word[i] << " ";
 		}
-		std::cout << std::endl;
 		//return 0.0;
 		
 		for(unsigned int i=0; i<word.size(); i++){

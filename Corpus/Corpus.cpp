@@ -7,7 +7,7 @@
 #define keyAdjust 10000
 
 using namespace std;
-const bool compareVectorSize(const std::vector<int> &i, const std::vector<int> &j){
+const bool compareVectorSize(const Corpus::singleWord &i, const Corpus::singleWord &j){
 	return i.size() < j.size();
 }
 
@@ -17,14 +17,11 @@ const bool compareIntMap(const std::map<int, int>::value_type &i1, const std::ma
 
 void Corpus::loadCorpusFromFile(string filename){
 	numberOfWords = 0;
-	numberOfUniqueWords = 0;
 	numOfSymbols =0;
 
 	symbols.clear();
 	invertSymbols.clear();
 	allWords.clear();
-	uniqueWords.clear();
-	wordCount.clear();
 
 	//Read File line by line
 	ifstream symbolFile;
@@ -59,6 +56,8 @@ void Corpus::loadCorpusFromFile(string filename){
 }
 
 void Corpus::reduceToUniqueWords(){
+	uniqueWords.clear();
+	wordCount.clear();
 	for(unsigned int iter = 0; iter < allWords.size(); iter++){
 		bool found = false;
 		for(unsigned int iter2 = 0; iter2 < uniqueWords.size(); iter2++){
@@ -85,14 +84,17 @@ void Corpus::reduceToUniqueWords(){
 	for(vector<double>::iterator iter = wordCount.begin(); iter!=wordCount.end(); iter++){
 		*iter = *iter/numberOfWords;
 	}
-	numberOfUniqueWords = uniqueWords.size();
 }
 
 
 bestChunk Corpus::findMaxChunk(){
 	calculateBiwordsCount();
-	map<int,int>::iterator max = std::max_element(biwordsCount.begin(), biwordsCount.end(), compareIntMap);
 	bestChunk maxchunk;
+	if(biwordsCount.size() == 0){
+		maxchunk.count = 0;
+		return maxchunk;
+	}
+	map<int,int>::iterator max = std::max_element(biwordsCount.begin(), biwordsCount.end(), compareIntMap);
 	maxchunk.leftSymbol = max->first/10000;
 	maxchunk.rightSymbol = max->first%10000;
 	maxchunk.conflict = biwordsConflict[max->first];
@@ -126,6 +128,10 @@ void Corpus::calculateBiwordsCount(){
 	int previusKey;
 	for(unsigned int i=0; i<uniqueWords.size(); i++){
 		previusKey = -1;
+		//Ignore all words of size two or less
+		if(uniqueWords[i].size() <= 2){
+			continue;
+		}
 		for(unsigned int j=0; j<uniqueWords[i].size(); j++){
 			prevSymbol = currSymbol;
 			currSymbol = uniqueWords[i][j];
@@ -155,22 +161,23 @@ void Corpus::calculateBiwordsCount(){
 }
 
 void Corpus::initReduceForPCFG(PCFG *pcfg){
-	for(unsigned int i=0; i<uniqueWords.size(); i++){
-		for(unsigned int j=0; j<uniqueWords[i].size(); j++){
-			uniqueWords[i][j] = pcfg->rulesForTermSymbol[uniqueWords[i][j]]->id;
+	for(unsigned int i=0; i<allWords.size(); i++){
+		for(unsigned int j=0; j<allWords[i].size(); j++){
+			allWords[i][j] = pcfg->rulesForTermSymbol[allWords[i][j]]->id;
 		}
 	}
+	reduceToUniqueWords();
 }
 
 void Corpus::reduceCorpusForRule(Rule *rule){
-	for(unsigned int i=0; i<uniqueWords.size(); i++){
-		std::vector<int> newWord;
+	for(unsigned int i=0; i<allWords.size(); i++){
+		singleWord newWord;
 		bool reduce = true;
 		int prevSymbol;
 		int currSymbol = -1;
-		for(unsigned int j=0; j<uniqueWords[i].size(); j++){
+		for(unsigned int j=0; j<allWords[i].size(); j++){
 			prevSymbol = currSymbol;
-			currSymbol = uniqueWords[i][j];
+			currSymbol = allWords[i][j];
 			if(reduce){
 				reduce = false;
 				continue;
@@ -193,8 +200,21 @@ void Corpus::reduceCorpusForRule(Rule *rule){
 		if(currSymbol != -1){
 			newWord.push_back(currSymbol);
 		}
-		uniqueWords[i] = newWord;
+		allWords[i] = newWord;
 	}
+	reduceToUniqueWords();
+}
+
+void Corpus::replaceRules(Rule *newRule, Rule *oldRule){
+	for(words::iterator outIter = allWords.begin(); outIter != allWords.end(); outIter++){
+		for(singleWord::iterator inerIter = outIter->begin(); inerIter != outIter->end(); inerIter++){
+			if(*inerIter == oldRule->id){
+				*inerIter = newRule->id;
+			}
+		}
+	}
+	//Merge same rules
+	reduceToUniqueWords();
 }
 
 void Corpus::printCorpus(bool unique){

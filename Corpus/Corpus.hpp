@@ -17,37 +17,57 @@ typedef struct{
 
 class Corpus {
 public:
-	int numberOfWords, numberOfUniqueWords;
+	typedef std::vector<int> singleWord;
+	typedef std::vector<singleWord > words;
+	int numberOfWords;
 private:
 	int numOfSymbols;
 	std::map<char,int> symbols;
 	std::map<int,char> invertSymbols;
-	std::vector<std::vector<int> > allWords;
-	std::vector<std::vector<int> > uniqueWords;
+	words allWords;
+	words uniqueWords;
 	std::vector<double> wordCount;
+	
+	
+	words uniWordsBackup;
+	words allWordsBackup;
+	std::vector<double> wordCountBackup;
 	
 	std::map<int, int> biwordsCount;
 	std::map<int, double> biwordsProb;
 	std::map<int, bool> biwordsConflict;
 //Getters
 public:
-	std::vector<std::vector<int> > getAllWords(){
+	words getAllWords(){
 		return allWords;
 	}
-	std::vector<std::vector<int> > getUniqueWords(){
+	words getUniqueWords(){
 		return uniqueWords;
 	}
 	int numberOfSymbolsInCorpus(){
 		return numOfSymbols;
 	}
-	std::vector<int> countOfSymbols(){
-		std::vector<int> symCount(numOfSymbols);
+	int numberOfUniqueWords(){
+		return uniqueWords.size();
+	}
+	singleWord countOfSymbols(){
+		singleWord symCount(numOfSymbols);
 		for(unsigned int i=0; i<uniqueWords.size(); i++){
 			for(unsigned int j=0; j<uniqueWords[i].size(); j++){
 				symCount[uniqueWords[i][j]] += wordCount[i];
 			}
 		}
 		return symCount;
+	}
+	void doBackup(){
+		uniWordsBackup = uniqueWords;
+		allWordsBackup = allWords;
+		wordCountBackup = wordCount;
+	}
+	void restoreBackup(){
+		uniqueWords = uniWordsBackup;
+		allWords = allWordsBackup;
+		wordCount = wordCountBackup;
 	}
 private:
 	void reduceToUniqueWords();
@@ -58,6 +78,7 @@ public:
 	void initReduceForPCFG(PCFG *pcfg);
 	void reduceCorpusForRule(Rule *rule);
 	void expandCorpusForRule(Rule *rule);
+	void replaceRules(Rule *newRule, Rule *oldRule);
 	bestChunk findMaxChunk();
 };
 
