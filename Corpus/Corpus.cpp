@@ -4,7 +4,7 @@
 #include <iostream>
 #include <algorithm>
 
-#define keyAdjust 10000
+
 
 using namespace std;
 const bool compareVectorSize(const Corpus::singleWord &i, const Corpus::singleWord &j){
@@ -82,50 +82,15 @@ void Corpus::reduceToUniqueWords(){
 	}
 }
 
-
-bestChunk Corpus::findMaxChunk(){
-	calculateBiwordsCount();
-	bestChunk maxchunk;
-	if(biwordsCount.size() == 0){
-		maxchunk.count = 0;
-		return maxchunk;
-	}
-	map<int,int>::iterator max = std::max_element(biwordsCount.begin(), biwordsCount.end(), compareIntMap);
-	maxchunk.leftSymbol = max->first/10000;
-	maxchunk.rightSymbol = max->first%10000;
-	maxchunk.conflict = biwordsConflict[max->first];
-	maxchunk.prob = biwordsProb[max->first];
-	maxchunk.count = max->second;
-	if(maxchunk.conflict == true){
-		bestChunk temp = maxchunk;
-		do{
-			biwordsCount.erase(max->first);
-			max = std::max_element(biwordsCount.begin(), biwordsCount.end(), compareIntMap);
-			maxchunk.leftSymbol = max->first/10000;
-			maxchunk.rightSymbol = max->first%10000;
-			maxchunk.conflict = biwordsConflict[max->first];
-			maxchunk.prob = biwordsProb[max->first];
-			maxchunk.count = max->second;
-			
-		}while(maxchunk.conflict==true && biwordsCount.size()!=0);
-		if(maxchunk.conflict==true){
-			maxchunk = temp;
-		}
-	}
-	return maxchunk;
-}
-
-void Corpus::calculateBiwordsCount(){
-	biwordsCount.clear();
-	biwordsProb.clear();
-	biwordsConflict.clear();
+Corpus::allChunks Corpus::calculateBiwordsCount(){
+	allChunks findAllChunks;
 	int currSymbol;
 	int prevSymbol;
 	int previusKey;
 	for(unsigned int i=0; i<uniqueWords.size(); i++){
 		previusKey = -1;
 		//Ignore all words of size two or less
-		if(uniqueWords[i].size() <= 2){
+		if(uniqueWords[i].size() <2){
 			continue;
 		}
 		for(unsigned int j=0; j<uniqueWords[i].size(); j++){
@@ -135,22 +100,22 @@ void Corpus::calculateBiwordsCount(){
 				continue;
 			}
 			int key = prevSymbol*keyAdjust + currSymbol;
-			map<int,int>::iterator iter = biwordsCount.find(key);
-			if(iter == biwordsCount.end()){
-				biwordsCount[key] = 1;//*wordCount[i];
-				biwordsProb[key] = wordCount[i];
-				biwordsConflict[key] = false;
+			map<int,int>::iterator iter = findAllChunks.biwordsCount.find(key);
+			if(iter == findAllChunks.biwordsCount.end()){
+				findAllChunks.biwordsCount[key] = 1;//*wordCount[i];
+				findAllChunks.biwordsProb[key] = wordCount[i];
+				findAllChunks.biwordsConflict[key] = false;
 			}else{
-				if(biwordsConflict[key] == true || key == previusKey){
-					biwordsConflict[key] = true;
+				if(findAllChunks.biwordsConflict[key] == true || key == previusKey){
+					findAllChunks.biwordsConflict[key] = true;
 				}
-				biwordsCount[key]++; //+= wordCount[i];
-				biwordsProb[key]+= wordCount[i];
+				findAllChunks.biwordsCount[key]++; //+= wordCount[i];
+				findAllChunks.biwordsProb[key]+= wordCount[i];
 			}
 			previusKey = key;
 		}
 	}
-
+	return findAllChunks;
 	//for(map<int,double>::iterator iter = biwordsCount.begin(); iter != biwordsCount.end(); iter++){
 	//	cout << iter->first << " " << iter->second << " " << biwordsConflict[iter->first] << endl;
 	//}
@@ -164,7 +129,8 @@ void Corpus::initReduceForPCFG(PCFG *pcfg){
 	}
 }
 
-void Corpus::reduceCorpusForRule(Rule rule){
+int Corpus::reduceCorpusForRule(Rule rule){
+	int timesFound = 0;
 	for(unsigned int i=0; i<uniqueWords.size(); i++){
 		singleWord newWord;
 		bool reduce = true;
@@ -181,6 +147,7 @@ void Corpus::reduceCorpusForRule(Rule rule){
 				Rule::productions prod = rule.getProduction(i);
 				if(!prod.terminal && prod.leftID == prevSymbol && prod.rightID == currSymbol){
 					reduce = true;
+					timesFound++;
 					break;
 				}
 			}
@@ -198,6 +165,44 @@ void Corpus::reduceCorpusForRule(Rule rule){
 		}
 		uniqueWords[i] = newWord;
 	}
+	recalculateUniqueWords();
+	return timesFound;
+}
+
+int Corpus::recursivelyReduce(PCFG *pcfg){
+	int timesFound = 0;
+	for(int i=0; i<pcfg->allRules.size(); i++){
+		int found = reduceCorpusForRule(pcfg->allRules[i]);
+		//restart the loop!!!!
+		timesFound += found;
+		if(found > 0){
+			i=0;
+		}
+	}
+	recalculateUniqueWords();
+	return timesFound;
+}
+
+void Corpus::recalculateUniqueWords(){
+	for(unsigned int i=0; i<uniqueWords.size()-1; i++){
+		for(unsigned int j=i+1; j<uniqueWords.size(); j++){
+			if(uniqueWords[i].size() == uniqueWords[j].size()){
+				bool found = true;
+				for(unsigned int k=0; k<uniqueWords[i].size(); k++){
+					if(uniqueWords[i][k] != uniqueWords[j][k]){
+						found = false;
+						break;
+					}
+				}
+				if(found){
+					wordCount[i]+=wordCount[j];
+					uniqueWords.erase(uniqueWords.begin()+j);
+					wordCount.erase(wordCount.begin()+j);
+					break;
+				}
+			}
+		}
+	}
 }
 
 void Corpus::replaceRules(int newRuleID, int oldRuleID){
@@ -208,6 +213,7 @@ void Corpus::replaceRules(int newRuleID, int oldRuleID){
 			}
 		}
 	}
+	recalculateUniqueWords();
 }
 
 void Corpus::printCorpus(){

@@ -105,6 +105,25 @@ public:
 		allProductions.erase(allProductions.begin()+index);
 	}
 	
+	/*
+	** Find if a given rule is in my productions
+	*/
+	bool ruleInAnyProduction(int ruleID){
+		bool found = false;
+		for(unsigned int i=0; i<allProductions.size(); i++){
+			if(allProductions[i].terminal == false){
+				if(allProductions[i].leftID == ruleID){
+					found = true;
+					break;
+				}
+				if(allProductions[i].rightID == ruleID){
+					found = true;
+					break;
+				}
+			}
+		}
+		return found;
+	}
 	
 };
 #endif //RULE_HPP

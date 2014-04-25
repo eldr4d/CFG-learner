@@ -68,10 +68,12 @@ public:
 				}
 			}
 		}
-		totalGain *= mergeDuplicatesProductionsInSameRule(hostID);
+		allRules.erase(allRules.begin()+target);
+		for(unsigned int iter=0; iter<allRules.size(); iter++){
+			totalGain *= mergeDuplicatesProductionsInSameRule(allRules[iter].id);
+		}
 		//Delete target
 
-		allRules.erase(allRules.begin()+target);
 		return totalGain;
 	}
 	
@@ -136,7 +138,7 @@ public:
 	void prettyPrint(){
 		std::cout << "Start Rules: " << std::endl;
 		for(unsigned int i=0; i<startRules.size(); i++){
-			std::cout << "\tS" << i << " = " << "N" << startRules[i] << std::endl;
+			std::cout << "N" << startRules[i] << std::endl;
 		}
 		std::cout << "All Rules: " << std::endl;
 		for(unsigned int i=0; i<allRules.size(); i++){
@@ -208,6 +210,32 @@ public:
 		currFreeId = 0;
 	}
 	
+	/*
+	** Find and delete rules that are no longer accesible
+	*/
+	double deleteUselessRules(){
+		std::vector<bool> toDelete(allRules.size());
+		int totalDeletions = 0;
+		for(unsigned int i = 0; i<allRules.size(); i++){
+			int idToCheck = allRules[i].id;
+			toDelete[i] = true;
+			for(unsigned int j=0; j<allRules.size(); j++){
+				if(allRules[j].ruleInAnyProduction(idToCheck)){
+					toDelete[i] = false;
+					totalDeletions += 2 + allRules[i].numberOfNTProductions()*4 + allRules[i].numberOfTermProductions()*2;
+					break;
+				}
+			}
+		}
+		for(int i=toDelete.size()-1; i>=0; i--){
+			if(toDelete[i]){
+				allRules.erase(allRules.begin()+i);
+			}
+		}
+		return totalDeletions;
+	}
+	
+	
 private:
 	/*
 	** Find if the same production exists more than one time in a given Rule
@@ -262,6 +290,7 @@ private:
 		}
 		return totalGain;
 	}
+	
 };
 #endif //PCFG_HPP
 

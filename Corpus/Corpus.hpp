@@ -7,18 +7,18 @@
 
 #include "../PCFG/PCFG.hpp"
 
-typedef struct{
-	int leftSymbol;
-	int rightSymbol;
-	double prob;
-	int count;
-	bool conflict;
-}bestChunk;
+
 
 class Corpus {
 public:
+	static const int keyAdjust = 10000;
 	typedef std::vector<int> singleWord;
 	typedef std::vector<singleWord > words;
+	typedef struct{
+		std::map<int, int> biwordsCount;
+		std::map<int, double> biwordsProb;
+		std::map<int, bool> biwordsConflict;
+	}allChunks;
 private:
 	int numOfSymbols;
 	std::map<char,int> symbols;
@@ -28,9 +28,6 @@ private:
 	
 	std::vector<double> wordCountBackup;
 	
-	std::map<int, int> biwordsCount;
-	std::map<int, double> biwordsProb;
-	std::map<int, bool> biwordsConflict;
 //Getters
 public:
 	words getUniqueWords(){
@@ -53,15 +50,16 @@ public:
 	}
 private:
 	void reduceToUniqueWords();
+	void recalculateUniqueWords();
 public:
 	void loadCorpusFromFile(std::string filename);
-	void calculateBiwordsCount();
+	allChunks calculateBiwordsCount();
 	void printCorpus();
 	void initReduceForPCFG(PCFG *pcfg);
-	void reduceCorpusForRule(Rule rule);
+	int reduceCorpusForRule(Rule rule);
+	int recursivelyReduce(PCFG *pcfg);
 	void expandCorpusForRule(Rule rule);
 	void replaceRules(int newRuleID, int oldRuleID);
-	bestChunk findMaxChunk();
 };
 
 
