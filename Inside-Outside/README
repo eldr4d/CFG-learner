@@ -1,0 +1,120 @@
+
+README for inside-outside/
+
+For fastest performance, set the environment variable GCCFLAGS
+to the particular architecture you will be running on.  For example,
+if you are using tcsh on a pentium 4, set the following (say, in
+your .login file)
+
+setenv GCCFLAGS -march=pentium4
+
+-------------------------------------------------------------------
+
+This version adds a Dirchlet prior (in the form of pseudo-counts)
+to the rule counts.
+
+The main change is that the grammar file should consist of lines of
+the form
+
+[Weight [Pseudocount]] Parent --> Child1 ... Childn
+
+If Weight and Prior are absent, Weight defaults to 1 and Pseudocount
+defaults to zero.  
+
+If either Weight or Pseudocount are not present, then Parent should not
+be anything that scanf might confuse with a number (i.e., scanf 
+attempts to read two numbers from the start of each line).
+
+
+-------------------------------------------------------------------
+
+This is an implementation of the inside-outside algorithm for
+estimating the probabilities of PCFG productions.  While there are
+several places where better indexing might improve performance, I have
+paid attention to ensuring that the algorithm runs in n^3 time and in
+time linear in grammar size.  I have used this program with grammars
+with tens of thousands of productions, trained using tens of thousands
+of sentences (it may take a week).
+
+This program may be freely used for research purposes; however,
+I do request acknowledgement in any publications containing results
+that were produced with this program or code derived from this
+program.
+
+This implementation assumes that all terminals are introduced
+by non-recursive unary rules.  This lets me optimize these
+rules (so it is possible to have a lot of them; in the tens of
+thousands).
+
+Usage: see the main .c file, or run the program with the -h flag.
+You can also get a good idea of how to run this by looking at the
+Makefile examples (testvb and testio were the examples when I last
+updated this file).
+
+
+Compilation:
+-----------
+
+The program is written in ANSI C, and should compile just by
+saying ``make'', to produce an executable ``io''.
+
+Setting optimization flags makes a big difference, as the program
+spends a lot of its time in tight loops.  I find I get a big speed
+up by turning on as much optimization as possible.
+
+
+
+Toy Examples:
+------------
+
+The file testengger.lt contains a sample initial grammar for
+a tiny subset which generates both English and German verb phrase
+word orders.  In addition, every preterminal (i.e., part of speech)
+rewrites to every terminal (word) that appears in the training
+data.
+
+The file testeng.yld contains 5 very simple English sentences, and
+the file testger.yld contains 5 very simple sentences with English
+words but in German word order (e.g., ``a man the dog a bone gives'').
+
+
+If you run 
+
+	make testio
+
+you get the following output:
+
+ make testio
+ io -d 1000 -g testengger.lt testeng.yld 
+ # rule_bias_default (-a) = 0, stoptol (-s) = 1e-07, minruleprob (-p) = 1e-20, maxlen (-l) = 0, minits (-m) = 0, maxits = (-n) = 0, annealstart (-b) = 1, annealstop (-B) = 1, nanneal (-N) = 0, jitter0 (-j) = 0, jitter (-J) = 0, VariationalBayes (-V) = 0, wordscale (-W) = 1, randseed (-S) = 97,debuglevel (-d) = 1000, nruns (-R) = 1
+ # Run 0
+ # Iteration	temperature	nrules	-logP	bits/token
+ 0	1	29	61.0128	3.03527
+ 1	1	23	42.6594	2.12222
+ 2	1	23	30.227	1.50374
+ 3	1	23	27.8137	1.38368
+ 4	1	18	27.8111	1.38355
+ 5	1	12	27.8111	1.38355
+ 6	1	12	27.8111	1.38355
+ # run 0, entropy 1.38355, 12 rules
+ 1	S1 --> S
+ 1	S --> NP VP
+ 1	NP --> Det N
+ 0.6	VP --> V NP
+ 0.4	VP --> V NP NP
+ 0.416667	Det --> the
+ 0.583333	Det --> a
+ 0.416667	N --> dog
+ 0.333333	N --> man
+ 0.25	N --> bone
+ 0.6	V --> bites
+ 0.4	V --> gives
+
+
+ Compilation finished at Sun Sep  2 13:05:28
+
+Rules with probability less than 10^-7 are silently ignored.
+You can see that the algorithm has identified the phrase structure
+rules for English syntax, and has also correctly identified the
+parts of speech for the words.
+

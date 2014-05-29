@@ -19,7 +19,7 @@ void Corpus::loadCorpusFromFile(string filename){
 	numOfSymbols =0;
 
 	symbols.clear();
-
+	intToSymbols.clear();
 	allWords.clear();
 
 	//Read File line by line
@@ -32,7 +32,14 @@ void Corpus::loadCorpusFromFile(string filename){
 	while(getline(symbolFile, line)){
 
 		currentWord.clear();
-		for(string::iterator it = line.begin(); it != line.end(); it++){
+		string::iterator it = line.begin();
+		if(*it == '1'){
+			positive.push_back(1);
+		}else{
+			positive.push_back(0);
+		}
+		it++;
+		for(; it != line.end(); it++){
 			if(*it == ' '){
 				continue;
 			}
@@ -40,7 +47,10 @@ void Corpus::loadCorpusFromFile(string filename){
 			itSymbols = symbols.find(*it);
 			if(itSymbols == symbols.end()){
 				symbols[*it] = numOfSymbols;
+				intToSymbols[numOfSymbols] = *it;
+				
 				numOfSymbols++;
+
 				itSymbols = symbols.find(*it);
 			}
 			currentWord.push_back(itSymbols->second);
@@ -51,12 +61,15 @@ void Corpus::loadCorpusFromFile(string filename){
 	
 	std::sort(allWords.begin(), allWords.end(), compareVectorSize);
 	reduceToUniqueWords();
+	totalStartWords = allWords.size();
 	allWords.clear();
 }
 
 void Corpus::reduceToUniqueWords(){
 	uniqueWords.clear();
 	wordCount.clear();
+	std::vector<char> newPositive; 
+	
 	for(unsigned int iter = 0; iter < allWords.size(); iter++){
 		bool found = false;
 		for(unsigned int iter2 = 0; iter2 < uniqueWords.size(); iter2++){
@@ -72,53 +85,63 @@ void Corpus::reduceToUniqueWords(){
 			}	
 			if(found==true){
 				wordCount[iter2]++;
+				if((bool)newPositive[iter2] == false && (bool)positive[iter] == true){
+					newPositive[iter2] = (char)false;
+				}
 				break;
 			}
 		}
 		if(found == false){
 			wordCount.push_back(1);
+			newPositive.push_back(positive[iter]);
 			uniqueWords.push_back(allWords[iter]);
 		}
 	}
+	positive = newPositive;
 }
 
-Corpus::allChunks Corpus::calculateBiwordsCount(){
-	allChunks findAllChunks;
-	int currSymbol;
-	int prevSymbol;
-	int previusKey;
-	for(unsigned int i=0; i<uniqueWords.size(); i++){
-		previusKey = -1;
-		//Ignore all words of size two or less
-		if(uniqueWords[i].size() <2){
-			continue;
-		}
-		for(unsigned int j=0; j<uniqueWords[i].size(); j++){
-			prevSymbol = currSymbol;
-			currSymbol = uniqueWords[i][j];
-			if(j==0){
-				continue;
+void Corpus::normalizeCorpus(){
+	for(unsigned int iter = 0; iter < wordCount.size(); iter++){
+		wordCount[iter] = wordCount[iter] / (double)totalStartWords;
+	}
+
+}
+void Corpus::unnormalizeCorpus(){
+	for(unsigned int iter = 0; iter < wordCount.size(); iter++){
+		wordCount[iter] = wordCount[iter]*(double)totalStartWords;
+	}
+}
+
+void Corpus::resample(int howManySamples){	
+	words newUniqueWords;
+	std::vector<double> newWordCount; 
+	std::vector<char> newPositive; 
+	vector<bool> toDelete(uniqueWords.size(),false);
+	
+	double step = (double)totalStartWords/(double)howManySamples;
+	int j=-1;
+	double cumSum = 0.0;
+	for(double i=0.0; i<(double)totalStartWords; i+=step){
+		if(cumSum <= i){
+			while(cumSum <= i && j < (int)wordCount.size()){
+				j++;
+				cumSum+=wordCount[j];
 			}
-			int key = prevSymbol*keyAdjust + currSymbol;
-			map<int,int>::iterator iter = findAllChunks.biwordsCount.find(key);
-			if(iter == findAllChunks.biwordsCount.end()){
-				findAllChunks.biwordsCount[key] = 1;//*wordCount[i];
-				findAllChunks.biwordsProb[key] = wordCount[i];
-				findAllChunks.biwordsConflict[key] = false;
-			}else{
-				if(findAllChunks.biwordsConflict[key] == true || key == previusKey){
-					findAllChunks.biwordsConflict[key] = true;
-				}
-				findAllChunks.biwordsCount[key]++; //+= wordCount[i];
-				findAllChunks.biwordsProb[key]+= wordCount[i];
+			if(j == wordCount.size()){
+				break;
 			}
-			previusKey = key;
+
+			newUniqueWords.push_back(uniqueWords[j]);
+			newWordCount.push_back(1);
+			newPositive.push_back(positive[j]);
+			
+		}else{
+			newWordCount.back()++;
 		}
 	}
-	return findAllChunks;
-	//for(map<int,double>::iterator iter = biwordsCount.begin(); iter != biwordsCount.end(); iter++){
-	//	cout << iter->first << " " << iter->second << " " << biwordsConflict[iter->first] << endl;
-	//}
+	
+	uniqueWords = newUniqueWords;
+	wordCount = newWordCount;
 }
 
 void Corpus::initReduceForPCFG(PCFG *pcfg){
@@ -127,93 +150,6 @@ void Corpus::initReduceForPCFG(PCFG *pcfg){
 			uniqueWords[i][j] = pcfg->rulesForTermSymbol[uniqueWords[i][j]];
 		}
 	}
-}
-
-int Corpus::reduceCorpusForRule(Rule rule){
-	int timesFound = 0;
-	for(unsigned int i=0; i<uniqueWords.size(); i++){
-		singleWord newWord;
-		bool reduce = true;
-		int prevSymbol;
-		int currSymbol = -1;
-		for(unsigned int j=0; j<uniqueWords[i].size(); j++){
-			prevSymbol = currSymbol;
-			currSymbol = uniqueWords[i][j];
-			if(reduce){
-				reduce = false;
-				continue;
-			}
-			for(unsigned int i=0; i<rule.totalNumberOfProductions(); i++){
-				Rule::productions prod = rule.getProduction(i);
-				if(!prod.terminal && prod.leftID == prevSymbol && prod.rightID == currSymbol){
-					reduce = true;
-					timesFound++;
-					break;
-				}
-			}
-
-			if(reduce){
-				newWord.push_back(rule.id);
-				prevSymbol = -1;
-				currSymbol = -1;
-			}else{
-				newWord.push_back(prevSymbol);
-			}
-		}
-		if(currSymbol != -1){
-			newWord.push_back(currSymbol);
-		}
-		uniqueWords[i] = newWord;
-	}
-	recalculateUniqueWords();
-	return timesFound;
-}
-
-int Corpus::recursivelyReduce(PCFG *pcfg){
-	int timesFound = 0;
-	for(int i=0; i<pcfg->allRules.size(); i++){
-		int found = reduceCorpusForRule(pcfg->allRules[i]);
-		//restart the loop!!!!
-		timesFound += found;
-		if(found > 0){
-			i=0;
-		}
-	}
-	recalculateUniqueWords();
-	return timesFound;
-}
-
-void Corpus::recalculateUniqueWords(){
-	for(unsigned int i=0; i<uniqueWords.size()-1; i++){
-		for(unsigned int j=i+1; j<uniqueWords.size(); j++){
-			if(uniqueWords[i].size() == uniqueWords[j].size()){
-				bool found = true;
-				for(unsigned int k=0; k<uniqueWords[i].size(); k++){
-					if(uniqueWords[i][k] != uniqueWords[j][k]){
-						found = false;
-						break;
-					}
-				}
-				if(found){
-					wordCount[i]+=wordCount[j];
-					uniqueWords.erase(uniqueWords.begin()+j);
-					wordCount.erase(wordCount.begin()+j);
-					break;
-				}
-			}
-		}
-	}
-}
-
-void Corpus::replaceRules(int newRuleID, int oldRuleID){
-	for(words::iterator outIter = uniqueWords.begin(); outIter != uniqueWords.end(); outIter++){
-		for(singleWord::iterator inerIter = outIter->begin(); inerIter != outIter->end(); inerIter++){
-			if(*inerIter == oldRuleID){
-				*inerIter = newRuleID;
-			}
-		}
-	}
-	recalculateUniqueWords();
 }
 
 void Corpus::printCorpus(){
@@ -235,9 +171,36 @@ void Corpus::printCorpus(){
 			cout << *it2 << " ";
 		}
 		cout << " count = " << wordCount[count-1];
+		cout << " positive = " << (bool)positive[count-1];
 		cout << endl;
 		count++;
 	}
 	cout << endl;
 }
 
+/*
+**	Dumb corpus tou a file. If withCharSymbols is true it will dumb the char representations of the corpus.
+**  if false it will dumb the integer representation
+*/
+void Corpus::dumbCorpusToFile(std::string filename, bool withCharSymbols){
+	ofstream symbolFile;
+	symbolFile.open(filename.c_str());
+	for(unsigned int i=0; i<uniqueWords.size(); i++){
+		if(wordCount[i] < 1){
+			std::cerr << "Corpus is at normalized form and cannot be dumbed" << std::endl;
+			symbolFile.close();
+			return;
+		}
+		for(unsigned int j=0; j<wordCount[i]; j++){
+			for(unsigned int k=0; k<uniqueWords[i].size(); k++){
+				if(withCharSymbols){
+					symbolFile << intToSymbols[uniqueWords[i][k]] << " ";
+				}else{
+					symbolFile << uniqueWords[i][k] << " ";
+				}
+			}
+			symbolFile << endl;
+		}
+	}
+	symbolFile.close();
+}

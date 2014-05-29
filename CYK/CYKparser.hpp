@@ -21,12 +21,12 @@ public:
 			std::map<int, int>::iterator iter = pcfg->rulesForTermSymbol.find(word[i]);
 			if(iter == pcfg->rulesForTermSymbol.end()){
 				//Term symbol does not belong to the grammar
-				return 0.0;
+				return -1.0;
 			}
 			int rule = pcfg->locationOfRule(iter->second);
 			for(unsigned int j=0; j<pcfg->allRules[rule].totalNumberOfProductions(); j++){
 				Rule::productions prod = pcfg->allRules[rule].getProduction(j);
-				if(prod.terminal == true && prod.termSymbol == word[i]){
+				if(prod.terminal == true && prod.rightRules[0] == word[i]){
 					productionTable[i][0][iter->second] = prod.probability;
 					break;
 				}
@@ -46,9 +46,12 @@ public:
 							Rule::productions prod = pcfg->allRules[iter].getProduction(iter2);
 							if(prod.terminal == true){
 								continue;
+							}else if(prod.rightRules.size() != 2){
+								//Not in Chomsky Normal Form
+								return -2;
 							}
-							std::map<int, double>::iterator leftMatched =  productionTable[i][k].find(prod.leftID);
-							std::map<int, double>::iterator rightMatched = productionTable[i+k+1][j-k-1].find(prod.rightID);
+							std::map<int, double>::iterator leftMatched =  productionTable[i][k].find(prod.rightRules[0]);
+							std::map<int, double>::iterator rightMatched = productionTable[i+k+1][j-k-1].find(prod.rightRules[1]);
 
 							if(leftMatched != productionTable[i][k].end() && rightMatched != productionTable[i+k+1][j-k-1].end()){
 								std::map<int, double>::iterator max = productionTable[i][j].find(pcfg->allRules[iter].id);
@@ -72,7 +75,7 @@ public:
 					finalValue = iter->second;
 				}
 			}
-		}
+		}		
 		
 		for(unsigned int i=0; i<word.size(); i++){
 			delete [] productionTable[i];

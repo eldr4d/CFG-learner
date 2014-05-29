@@ -8,32 +8,37 @@
 class Rule{
 public:
 typedef struct conections{
-	bool terminal;
-	int termSymbol;
-	int leftID;
-	int rightID;
+	std::vector<int> rightRules;
 	float probability;
+	bool terminal;
 }productions;
 public:
 	int id;
+	bool hasNTproduction;
 private:
 	std::vector<productions> allProductions;
-	int terminalProductions;
-	int nonTerminalProductions;
 public:
-	Rule(int id):id(id),terminalProductions(0),nonTerminalProductions(0){}
+	Rule(int id):id(id),hasNTproduction(false){}
 	
 	/*
 	** Add NT production to the rule
 	*/
-	void addNonTerminalProduction(int leftID, int rightID, float probability){
+	void addProduction(std::vector<int> rightPart, float probability, bool terminal){
 		productions newProd;
-		newProd.terminal = false;
-		newProd.leftID = leftID;
-		newProd.rightID = rightID;
+		newProd.rightRules = rightPart;
 		newProd.probability = probability;
+		newProd.terminal = terminal;
 		allProductions.push_back(newProd);
-		nonTerminalProductions++;
+		if(!terminal){
+			hasNTproduction = true;
+		}
+	}
+	
+	/*
+	** Append production to the rule
+	*/
+	void appendProduction(productions prod){
+		allProductions.push_back(prod);
 	}
 	
 	/*
@@ -44,46 +49,17 @@ public:
 	}
 	
 	/*
-	** Add terminal production
-	*/
-	void addTerminalProduction(int symbol, float probability){
-		productions newProd;
-		newProd.terminal = true;
-		newProd.termSymbol = symbol;
-		newProd.probability = probability;
-		allProductions.push_back(newProd);
-	}
-	
-	/*
-	** Replace a rule of a given NT production
-	*/
-	void replaceNTInProduction(int index, int newRuleID, bool left){
-		if(left){
-			allProductions[index].leftID = newRuleID;
-		}else{
-			allProductions[index].rightID = newRuleID;
-		}
-	}
-	
-	/*
-	** Get left NT of given production
-	*/
+	 ** Get left NT of given production
+	 */
 	productions getProduction(int index){
 		return allProductions[index];
 	}
 	
 	/*
-	** Number of NT productions
-	*/
-	int numberOfNTProductions(){
-		return nonTerminalProductions;
-	}
-	
-	/*
-	** Number of terminal productions
-	*/
-	int numberOfTermProductions(){
-		return terminalProductions;
+	 ** Get left NT of given production
+	 */
+	void updateProductions(productions prod,int index){
+		allProductions[index] = prod;
 	}
 	
 	/*
@@ -94,14 +70,24 @@ public:
 	}
 	
 	/*
+	**
+	*/
+	std::vector<int> randomProduction(float randomNumber){
+		float cumSum = 0;
+		unsigned int i;
+		for(i=0; i<allProductions.size(); i++){
+			cumSum += allProductions[i].probability;
+			if(cumSum >= randomNumber){
+				break;
+			}
+		}
+		return allProductions[i].rightRules;
+	}
+	
+	/*
 	** Remove production
 	*/
 	void removeProduction(int index){
-		if(allProductions[index].terminal){
-			terminalProductions--;
-		}else{
-			nonTerminalProductions--;
-		}
 		allProductions.erase(allProductions.begin()+index);
 	}
 	
@@ -111,15 +97,14 @@ public:
 	bool ruleInAnyProduction(int ruleID){
 		bool found = false;
 		for(unsigned int i=0; i<allProductions.size(); i++){
-			if(allProductions[i].terminal == false){
-				if(allProductions[i].leftID == ruleID){
+			for(unsigned int j; j<allProductions[i].rightRules.size(); j++){
+				if(allProductions[i].rightRules[j] == ruleID){
 					found = true;
 					break;
 				}
-				if(allProductions[i].rightID == ruleID){
-					found = true;
-					break;
-				}
+			}
+			if(found){
+				break;
 			}
 		}
 		return found;

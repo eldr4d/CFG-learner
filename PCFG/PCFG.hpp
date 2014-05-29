@@ -1,23 +1,38 @@
 #ifndef PCFG_HPP
 #define PCFG_HPP
 #include <iostream>
+#include <fstream>
 #include <stdlib.h>
 #include <vector>
 #include <map>
+#include <math.h>
+#include <time.h>
+#include <algorithm>
 
 #include "Rule.hpp"
 
 class PCFG{
 public:
+	typedef struct{
+		std::map<std::vector<int>, int> timesFound;
+		std::map<std::vector<int>, double> totalProb;
+		std::map<std::vector<int>, bool> conflict;
+		bool atLeastOneRuleWithoutConflict;
+	}allChunks;
 	//Keep the id of the Start Rules
 	std::vector<int> startRules;
 	//Keep all the rules
 	std::vector<Rule> allRules;
 	//Map term symbol to rule for fast access
 	std::map<int,int> rulesForTermSymbol;
+	std::map<int,char> intToCharTerminalValue;
 private:
 	int currFreeId;
 public:
+	PCFG(){
+		srand (time(NULL));
+	};
+	
 	/*
 	** Create NT symbols that point to the terminal symbols
 	*/
@@ -26,11 +41,35 @@ public:
 		currFreeId = symbols;
 		for(int i=0; i<symbols; i++){
 			Rule rule(currFreeId);
-			rule.addTerminalProduction(i,1.0);
+			std::vector<int> v;
+			v.push_back(i);
+			rule.addProduction(v,1.0,true);
 			allRules.push_back(rule);
 			rulesForTermSymbol[i] = rule.id;
 			currFreeId++;
 		}
+	}
+	
+	int createStartRule(std::vector<std::vector<int> > allUniqueWords, std::vector<double> wordCount){
+		Rule rule(currFreeId);
+		currFreeId++;
+		for(unsigned int i=0; i<allUniqueWords.size(); i++){
+			rule.addProduction(allUniqueWords[i], wordCount[i], false);
+		}
+		allRules.push_back(rule);
+		startRules.push_back(rule.id);
+		return rule.id;
+	}
+	
+	/*
+	** Create new NT
+	*/
+	int createNewNT(std::vector<int> rightPart, double prob){
+		Rule rule(currFreeId);
+		currFreeId++;
+		rule.addProduction(rightPart, prob, false);
+		allRules.push_back(rule);
+		return rule.id;
 	}
 	
 	/*
@@ -39,20 +78,20 @@ public:
 	** in both NT's we will increase its likelihood. The second NT will be deleted!
 	** Every occurance of the second NT in the grammar will be replaced with the first one!
 	*/
-	double mergeTwoNT(int hostID, int targetID){
+	double mergeTwoNT(int hostID, int targetID, double *pOgivenG){
 		int host = locationOfRule(hostID);
 		int target = locationOfRule(targetID);
-		double totalGain = 1.0;
+		double totalGain = 0.0;
 		//Remove duplicate rules
-		totalGain *= mergeSameProductions(hostID,targetID);
+		totalGain += mergeSameProductions(hostID,targetID);
 		//Merge the target with the host rule
 		for(unsigned int iter = 0; iter<allRules[target].totalNumberOfProductions(); iter++){
 			Rule::productions toTransfer = allRules[target].getProduction(iter);
 			if(toTransfer.terminal){
-				allRules[host].addTerminalProduction(toTransfer.termSymbol, toTransfer.probability);
-				rulesForTermSymbol[toTransfer.termSymbol] = hostID;
+				allRules[host].addProduction(toTransfer.rightRules, toTransfer.probability, true);
+				rulesForTermSymbol[toTransfer.rightRules[0]] = hostID;
 			}else{
-				allRules[host].addNonTerminalProduction(toTransfer.leftID, toTransfer.rightID, toTransfer.probability);
+				allRules[host].addProduction(toTransfer.rightRules, toTransfer.probability, false);
 			}
 		}
 		
@@ -60,24 +99,34 @@ public:
 		for(unsigned int iter1 = 0; iter1<allRules.size(); iter1++){
 			for(unsigned int iter2 = 0; iter2<allRules[iter1].totalNumberOfProductions(); iter2++){
 				Rule::productions currProd = allRules[iter1].getProduction(iter2);
-				if(currProd.leftID == allRules[target].id){
-					allRules[iter1].replaceNTInProduction(iter2, allRules[host].id, true);
+				bool changed = false;
+				for(unsigned int i = 0; i<currProd.rightRules.size(); i++){
+					if(currProd.rightRules[i] == targetID){
+						currProd.rightRules[i] = hostID;
+						changed = true;
+					}
 				}
-				if(currProd.rightID == allRules[target].id){
-					allRules[iter1].replaceNTInProduction(iter2, allRules[host].id, false);
+				if(changed){
+					allRules[iter1].updateProductions(currProd, iter2);
 				}
 			}
 		}
-		allRules.erase(allRules.begin()+target);
-		for(unsigned int iter=0; iter<allRules.size(); iter++){
-			totalGain *= mergeDuplicatesProductionsInSameRule(allRules[iter].id);
-		}
+		
 		//Delete target
-
+		allRules.erase(allRules.begin()+target);
+		
+		
+		
+		
+		for(unsigned int iter=0; iter<allRules.size(); iter++){
+			double temp = mergeDuplicatesProductionsInSameRule(allRules[iter].id,pOgivenG);
+			totalGain += temp;			
+		}
+		
+		totalGain += deleteUselessProductions(hostID, pOgivenG);
+		
 		return totalGain;
 	}
-	
-	
 	
 	/*
 	** Find if two rules that will be merged have the same rule, if true update the host NT.
@@ -90,9 +139,18 @@ public:
 			Rule::productions hostProd = allRules[host].getProduction(iter1);
 			for(unsigned int iter2 = 0; iter2<allRules[target].totalNumberOfProductions(); iter2++){
 				Rule::productions targetProd = allRules[host].getProduction(iter2);
-				if(hostProd.leftID == targetProd.leftID && hostProd.rightID == targetProd.rightID){
-					totalGain *= 4;
-					break;
+				if(hostProd.rightRules.size() == targetProd.rightRules.size()){
+					bool same = true;
+					for(unsigned int i = 0; i<hostProd.rightRules.size(); i++){
+						if(hostProd.rightRules[i] != targetProd.rightRules[i]){
+							same = false;
+							break;
+						}
+					}
+					if(same){
+						totalGain *= pow(2,hostProd.rightRules.size());
+						break;
+					}
 				}
 			}
 		}
@@ -100,15 +158,79 @@ public:
 	}
 
 	/*
-	** Create new Chomsky NT
+	** Calculate all possible Chunks
 	*/
-	int createNewNT(int leftID, int rightID, float prob){
-		Rule rule(currFreeId);
-		currFreeId++;
-		
-		rule.addNonTerminalProduction(leftID,rightID,prob);
-		allRules.push_back(rule);
-		return rule.id;
+	allChunks calculateAllChunks(int maxChunkSize){
+		std::vector<int> key;
+		allChunks chunks;
+		for(unsigned int iterRules=0; iterRules<allRules.size(); iterRules++){
+			for(unsigned int iterProd=0; iterProd<allRules[iterRules].totalNumberOfProductions(); iterProd++){
+				Rule::productions prod = allRules[iterRules].getProduction(iterProd);
+				for(unsigned int iterProdRule=0; iterProdRule<prod.rightRules.size(); iterProdRule++){
+					key.clear();
+					for(int iter=0; iter<maxChunkSize; iter++){
+						if(iter+iterProdRule >= prod.rightRules.size()){
+							break ;
+						}
+						key.push_back(prod.rightRules[iterProdRule+iter]);
+						//Chunks bigger than 1 in size
+						if(iter >= 1){
+							chunks.timesFound[key]++;
+							chunks.totalProb[key] += prod.probability;
+							if(chunks.conflict[key] == false){
+								if((int)prod.rightRules.size() - (int)iterProdRule-1 > iter){
+									int end = iterProdRule+iter+iter > prod.rightRules.size()-1 ? prod.rightRules.size() : iterProdRule+iter+iter+1;
+									std::vector<int>::iterator found;
+									found = std::search(prod.rightRules.begin() + iterProdRule + 1, prod.rightRules.begin()+ end, key.begin(), key.end());
+									if(found != prod.rightRules.begin() + end){
+										chunks.conflict[key] = true;
+									}	
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		chunks.atLeastOneRuleWithoutConflict = false;
+		for(std::map<std::vector<int>,int>::iterator iter = chunks.timesFound.begin(); iter != chunks.timesFound.end(); iter++){
+			if(iter->second > 1 && chunks.conflict[iter->first] == false){
+				chunks.atLeastOneRuleWithoutConflict = true;
+				break;
+			}
+		}
+		return chunks;
+	}
+	
+	/*
+	** Replace all occurences of a sequence with a single rule
+	*/
+	std::pair<int, double> replaceSubsequence(int ruleID){
+		unsigned int ruleLoc = locationOfRule(ruleID);
+		std::pair<int,double> rt;
+		rt.first = 0;
+		rt.second = 0.0;
+		for(unsigned int i=0; i<allRules[ruleLoc].totalNumberOfProductions(); i++){
+			Rule::productions prod = allRules[ruleLoc].getProduction(i);
+			for(unsigned int j=0; j<allRules.size(); j++){
+				if(j==ruleLoc){
+					continue;
+				}
+				for(unsigned int k=0; k<allRules[j].totalNumberOfProductions(); k++){
+					Rule::productions tmp = allRules[j].getProduction(k);
+					std::vector<int>::iterator found = std::search(tmp.rightRules.begin(),tmp.rightRules.end(), prod.rightRules.begin(), prod.rightRules.end());
+					while(found != tmp.rightRules.end()){
+						tmp.rightRules.erase(found, found+prod.rightRules.size());
+						tmp.rightRules.insert(found, ruleID);
+						allRules[j].updateProductions(tmp, k);
+						rt.first++;
+						rt.second += tmp.probability;
+						found = std::search(tmp.rightRules.begin(),tmp.rightRules.end(), prod.rightRules.begin(), prod.rightRules.end());
+					}
+				}
+			}
+		}
+		return rt;		
 	}
 	
 	/*
@@ -133,35 +255,11 @@ public:
 	}
 	
 	/*
-	** Pretty print the PCFG
-	*/
-	void prettyPrint(){
-		std::cout << "Start Rules: " << std::endl;
-		for(unsigned int i=0; i<startRules.size(); i++){
-			std::cout << "N" << startRules[i] << std::endl;
-		}
-		std::cout << "All Rules: " << std::endl;
-		for(unsigned int i=0; i<allRules.size(); i++){
-			std::cout << "\tN" << allRules[i].id;
-			for(unsigned int j=0; j<allRules[i].totalNumberOfProductions(); j++){
-				Rule::productions tmp = allRules[i].getProduction(j);
-				if(tmp.terminal == false){
-					std::cout << "\t-> " << "N" << tmp.leftID << " N" << tmp.rightID << " (" << tmp.probability << ")" << std::endl;
-				}else{
-					std::cout << "\t-> " << tmp.termSymbol << " (" << tmp.probability << ")" << std::endl;
-				}
-				std::cout << "\t";
-			}
-			std::cout << std::endl;
-		}
-	}
-	
-	/*
 	** Normalize the probabiltiies of each production
 	*/
 	void normalizeGrammar(){
 		for(std::vector<Rule>::iterator iter = allRules.begin(); iter != allRules.end(); iter++){
-			float sumOfAllProb = 0.0;
+			double sumOfAllProb = 0.0;
 			//Find total sum
 			for(unsigned int i=0; i<iter->totalNumberOfProductions(); i++){
 				sumOfAllProb += iter->getProduction(i).probability;
@@ -171,6 +269,61 @@ public:
 				iter->updateProbability(i, iter->getProduction(i).probability/sumOfAllProb);
 			}			
 		}
+	}
+	
+	/*
+	** Transform PCFG to chomsky normal form
+	*/
+	void toCnf(){
+		double trash;
+		for(unsigned int i=0; i<allRules.size(); i++){
+			deleteUselessProductions(allRules[i].id,&trash);
+		}
+		breakLargeRules();
+		eliminateSingletons();
+	}
+	
+	/*
+	**	Pretty print to cout
+	*/
+	void prettyPrint(){
+		prettyPrint(std::cout.rdbuf());
+	}
+	
+	/*
+	**	Pretty print to file
+	*/
+	void prettyPrint(std::string filename){
+		std::ofstream myfile(filename.c_str());
+		prettyPrint(myfile.rdbuf());
+		myfile.close();
+	}
+
+	/*
+	** Write the grammar in a format to be read from the inside outside implementation
+	*/
+	void writeForInsideOutside(std::string filename){
+
+		std::ofstream myfile(filename.c_str());
+		std::ostream out(myfile.rdbuf());
+		out << "1 " << "S --> " << "N" << startRules[0] << std::endl;
+		for(unsigned int i=0; i<allRules.size(); i++){
+			for(unsigned int j=0; j<allRules[i].totalNumberOfProductions(); j++){
+				Rule::productions tmp = allRules[i].getProduction(j);
+				out << tmp.probability << " ";
+				out << "N" << allRules[i].id;
+				out << " --> ";
+				if(tmp.terminal == false){
+					for(unsigned int k = 0; k<tmp.rightRules.size();k++){
+						out << "N" << tmp.rightRules[k] << " ";
+					}
+				}else{
+					out << intToCharTerminalValue[tmp.rightRules[0]] << " ";
+				}
+				out << std::endl;
+			}
+		}
+		myfile.close();
 	}
 	
 	//Create a^n c b^n where n > 0
@@ -185,12 +338,27 @@ public:
 		rulesForTermSymbol[1] = C.id;
 		rulesForTermSymbol[2] = B.id;
 		
-		S.addNonTerminalProduction(A.id,T.id,1.0);
-		T.addNonTerminalProduction(C.id,B.id,0.1);
-		T.addNonTerminalProduction(S.id,B.id,0.9);
-		A.addTerminalProduction(0,1.0);
-		C.addTerminalProduction(1,1.0);
-		B.addTerminalProduction(2,1.0);
+		std::vector<int> tmp;
+		tmp.push_back(T.id);
+		tmp.push_back(B.id);
+		S.addProduction(tmp,1.0,false);
+		tmp.clear();
+		tmp.push_back(A.id);
+		tmp.push_back(C.id);
+		T.addProduction(tmp,0.1,false);
+		tmp.clear();
+		tmp.push_back(A.id);
+		tmp.push_back(S.id);
+		T.addProduction(tmp,0.9,false);
+		tmp.clear();
+		tmp.push_back('a');
+		A.addProduction(tmp,1.0,true);
+		tmp.clear();
+		tmp.push_back('b');
+		C.addProduction(tmp,1.0,true);
+		tmp.clear();
+		tmp.push_back('c');
+		B.addProduction(tmp,1.0,true);
 		allRules.push_back(S);
 		startRules.push_back(S.id);
 		allRules.push_back(A);
@@ -213,7 +381,7 @@ public:
 	/*
 	** Find and delete rules that are no longer accesible
 	*/
-	double deleteUselessRules(){
+	/*double deleteUselessRules(){
 		std::vector<bool> toDelete(allRules.size());
 		int totalDeletions = 0;
 		for(unsigned int i = 0; i<allRules.size(); i++){
@@ -233,16 +401,169 @@ public:
 			}
 		}
 		return totalDeletions;
+	}*/
+	
+	double getTotalCount(int ruleID){
+		double result = 0.0;
+		int ruleLoc = locationOfRule(ruleID);
+		for(unsigned int iter = 0; iter<allRules[ruleLoc].totalNumberOfProductions(); iter++){
+			result += allRules[ruleLoc].getProduction(iter).probability;
+		}
+		return result;
 	}
 	
+	void generateWord(int numOfSymbols){
+		std::vector<int> randomWord;
+		randomWord.push_back(startRules[0]);
+		do{
+			unsigned int i=0;
+			while(i<randomWord.size() && randomWord[i] < numOfSymbols){
+				i++;
+			}
+			if(i == randomWord.size()){
+				break;
+			}
+			int ruleLoc = locationOfRule(randomWord[i]);
+			float randomNumber = ((float) rand() / (RAND_MAX));
+			std::vector<int> newV = allRules[ruleLoc].randomProduction(randomNumber);
+			randomWord.erase(randomWord.begin() + i);
+			randomWord.insert(randomWord.begin() + i, newV.begin(), newV.end());
+		}while(true);
+		for(unsigned int i=0; i<randomWord.size(); i++){
+			std::cout << intToCharTerminalValue[randomWord[i]] << " ";
+		}
+		std::cout << std::endl;
+	}
+	
+	void dumpPCFGtoFile(std::string filename){
+		std::ofstream myfile;
+		myfile.open (filename.c_str());
+		myfile << startRules[0] << std::endl;
+		myfile << rulesForTermSymbol.size() << std::endl;
+		for(std::map<int, int>::iterator iter=rulesForTermSymbol.begin(); iter!=rulesForTermSymbol.end(); iter++){
+			myfile << iter->first << " " << iter->second << std::endl;
+		}
+		for(unsigned int i=0; i<allRules.size(); i++){
+			myfile << allRules[i].id << " " << allRules[i].totalNumberOfProductions() << std::endl;
+			for(unsigned int j=0; j<allRules[i].totalNumberOfProductions(); j++){
+				Rule::productions prod = allRules[i].getProduction(j);
+				myfile << prod.rightRules.size() << " ";
+				for(unsigned int k=0; k<prod.rightRules.size(); k++){
+					myfile << prod.rightRules[k] << " ";
+				}
+				myfile << prod.probability << " ";
+				myfile << prod.terminal << std::endl;
+			}
+		}
+		myfile.close();
+	
+	}
+	
+	void readPCFGfromFile(std::string filename){
+		cleanUp();
+		std::ifstream myfile(filename.c_str());
+		int startRule;
+		myfile >> startRule;
+		startRules.push_back(startRule);
+		int num;
+		myfile >> num;
+		for(int i=0; i<num; i++){
+			int r,l;
+			myfile >> r;
+			myfile >> l;
+			rulesForTermSymbol[r] = l;
+		}
+		while(true){
+			int ruleID;
+			myfile >> ruleID;
+			if(myfile.eof()){
+				break;
+			}
+			myfile >> num;
+			int ruleLoc = createNewEmptyNTwithID(ruleID);
+			for(int i=0; i<num; i++){
+				int num2;
+				myfile >> num2;
+				Rule::productions prod;
+				for(int j=0; j<num2; j++){
+					int symbol;
+					myfile >> symbol;
+					prod.rightRules.push_back(symbol);
+				}
+				float prob;
+				myfile >> prob;
+				prod.probability = prob;
+				bool term;
+				myfile >> term;
+				prod.terminal=term;
+				allRules[ruleLoc].appendProduction(prod);
+			}
+		}
+		myfile.close();
+		
+	}
 	
 private:
 	/*
+	** Create empty NT with forcedID
+	*/
+	int createNewEmptyNTwithID(int ruleID){
+		if(ruleID > currFreeId){
+			currFreeId = ruleID + 1;
+		}
+		Rule rule(ruleID);
+		allRules.push_back(rule);
+		//location of rule;
+		return allRules.size()-1;
+	}
+	/*
+	** Find and delete useless productions a merged node
+	*/
+	double deleteUselessProductions(int ruleID, double *pOgivenG){
+		unsigned int ruleLoc = locationOfRule(ruleID);
+		std::vector<bool> toDelete(allRules[ruleLoc].totalNumberOfProductions());
+		double totalGain = 0.0;
+		bool somethingToDelete = false;
+		double inCaseOfDelete = 0.0;
+		double totalCount = getTotalCount(ruleID);
+		for(unsigned int i = 0; i<allRules[ruleLoc].totalNumberOfProductions(); i++){
+			Rule::productions prod = allRules[ruleLoc].getProduction(i);
+			inCaseOfDelete += prod.probability*log10(prod.probability/totalCount);
+			if(prod.rightRules.size()==1 && prod.rightRules[0] == ruleID){
+				toDelete[i] = true;
+				totalGain += log10(2);
+				somethingToDelete = true;
+			}
+		}
+		if(somethingToDelete){
+			
+			for(int i=toDelete.size()-1; i>=0; i--){
+				if(toDelete[i]){
+					allRules[ruleLoc].removeProduction(i);
+				}
+			}
+
+
+			*pOgivenG -= inCaseOfDelete;
+			totalCount = getTotalCount(ruleID);
+			double temp = 0.0;
+			for(unsigned int i = 0; i<allRules[ruleLoc].totalNumberOfProductions(); i++){
+				temp += allRules[ruleLoc].getProduction(i).probability*log10(allRules[ruleLoc].getProduction(i).probability/totalCount);
+			}
+			*pOgivenG += temp;
+
+		}
+		
+		return totalGain;
+	}
+	
+	/*
 	** Find if the same production exists more than one time in a given Rule
 	*/
-	double mergeDuplicatesProductionsInSameRule(int hostID){
+	double mergeDuplicatesProductionsInSameRule(int hostID,double *pOgivenG){
 		int host = locationOfRule(hostID);
-		double totalGain = 1.0;
+		double totalCount = -1.0;
+		double totalGain = 0.0;
 		std::vector<bool> toDelete(allRules[host].totalNumberOfProductions(),false);
 		for(unsigned int iter1 = 0; iter1<allRules[host].totalNumberOfProductions(); iter1++){
 			if(toDelete[iter1]){
@@ -251,12 +572,28 @@ private:
 			Rule::productions firstProd = allRules[host].getProduction(iter1);
 			for(unsigned int iter2 = iter1+1; iter2<allRules[host].totalNumberOfProductions(); iter2++){
 				Rule::productions secProd = allRules[host].getProduction(iter2);
-				if(!toDelete[iter2] && firstProd.leftID == secProd.leftID && firstProd.rightID == secProd.rightID){
-					toDelete[iter2] = true;
-					float newProbability = firstProd.probability + secProd.probability;
-					allRules[host].updateProbability(iter1, newProbability);
-					totalGain *= 4;
-					break;
+				if(!toDelete[iter2] && firstProd.rightRules.size() == secProd.rightRules.size()){
+					bool same = true;
+					for(unsigned int i = 0; i< firstProd.rightRules.size(); i++){
+						if(firstProd.rightRules[i] != secProd.rightRules[i]){
+							same = false;
+							break;
+						}
+					}
+					if(same == true){
+						if(totalCount < 0){
+							totalCount = getTotalCount(hostID);
+						}
+						toDelete[iter2] = true;
+						double newProbability = firstProd.probability + secProd.probability;
+						//gain from replacement of rule
+						totalGain += firstProd.rightRules.size()*log10(2);
+						//recalculate priori
+						*pOgivenG += newProbability*log10(newProbability/totalCount) -firstProd.probability*log10(firstProd.probability/totalCount) - secProd.probability*log10(secProd.probability/totalCount);
+						allRules[host].updateProbability(iter1, newProbability);
+						firstProd.probability = newProbability;
+						//break;
+					}
 				}
 			}
 		}
@@ -265,6 +602,7 @@ private:
 				allRules[host].removeProduction(i);
 			}
 		}
+		
 		return totalGain;
 	}
 	
@@ -274,21 +612,137 @@ private:
 	double mergeSameProductions(int hostID, int targetID){
 		int host = locationOfRule(hostID);
 		int target = locationOfRule(targetID);
-		double totalGain = 1.0;
+		double totalGain = 0.0;
 		for(unsigned int iter1 = 0; iter1<allRules[host].totalNumberOfProductions(); iter1++){
 			Rule::productions hostProd = allRules[host].getProduction(iter1);
 			for(unsigned int iter2 = 0; iter2<allRules[target].totalNumberOfProductions(); iter2++){
 				Rule::productions targetProd = allRules[target].getProduction(iter2);
-				if(hostProd.leftID == targetProd.leftID && hostProd.rightID == targetProd.rightID){
-					float newProbability = hostProd.probability + targetProd.probability;
-					allRules[host].updateProbability(iter1, newProbability);
-					allRules[target].removeProduction(iter2);
-					totalGain *= 4;
-					break;
+				if(hostProd.rightRules.size() == targetProd.rightRules.size()){
+					
+					bool same = true;
+					for(unsigned int i = 0; i< hostProd.rightRules.size(); i++){
+						if(hostProd.rightRules[i] != targetProd.rightRules[i]){
+							same = false;
+							break;
+						}
+					}
+					if(same){
+						double newProbability = hostProd.probability + targetProd.probability;
+						allRules[host].updateProbability(iter1, newProbability);
+						allRules[target].removeProduction(iter2);
+						totalGain += hostProd.rightRules.size()*log10(2);
+						break;
+					}
 				}
 			}
 		}
 		return totalGain;
+	}
+	
+	/*
+	**	Break big rules to create rules of size two
+	*/
+	void breakLargeRules(){
+		//This will change thrue the loop
+		int currAllRulesSize = allRules.size();
+
+		for(int i=0; i<currAllRulesSize; i++){
+			for(unsigned int j=0; j<allRules[i].totalNumberOfProductions(); j++){
+				Rule::productions prod = allRules[i].getProduction(j);
+				if(prod.rightRules.size() > 2){
+					int k = prod.rightRules.size()-1;
+					std::vector<int> newRight;
+					newRight.insert(newRight.begin(),prod.rightRules[k]);
+					k--;
+					newRight.insert(newRight.begin(),prod.rightRules[k]);
+					k--;
+					int newRule = createNewNT(newRight, 1.0);
+					while(k>=1){
+						newRight.clear();
+						newRight.push_back(prod.rightRules[k]);
+						newRight.push_back(newRule);
+						k--;
+						newRule = createNewNT(newRight, 1.0);
+					}
+					newRight.clear();
+					newRight.push_back(prod.rightRules[0]);
+					newRight.push_back(newRule);
+					prod.rightRules = newRight;
+					allRules[i].updateProductions(prod,j);
+				}
+			}
+		}
+	}
+	
+	/*
+	**	Eliminate Singleton productions
+	*/
+	void eliminateSingletons(){
+		//This will change thrue the loop
+		for(unsigned int i=0; i<allRules.size(); i++){
+			for(unsigned int k=0; k<allRules.size(); k++){
+				if(i==k){
+					continue;
+				}
+				for(int j=0; j<(int)allRules[k].totalNumberOfProductions(); j++){
+					Rule::productions prod = allRules[k].getProduction(j);
+				
+					if(prod.rightRules.size() == 1 && prod.rightRules[0] == allRules[i].id){
+				
+						std::cout << "Merging = " << allRules[k].id << " " << prod.rightRules[0] << std::endl;
+					
+						bool toDelete = true;
+						for(unsigned int l=0; l<allRules[i].totalNumberOfProductions(); l++){
+							Rule::productions newProd = allRules[i].getProduction(l);
+							if(newProd.terminal == false){
+								newProd.probability *= prod.probability;
+								allRules[k].appendProduction(newProd);
+							}else{
+								toDelete = false;
+								break;
+							}
+						}
+						if(toDelete){
+							allRules[k].removeProduction(j);
+							double temp;
+							deleteUselessProductions(allRules[k].id, &temp);
+							mergeDuplicatesProductionsInSameRule(allRules[k].id, &temp);
+							//prettyPrint();
+							//char ch;
+							//std::cin >> ch;
+						}
+					}
+				}
+			}	
+		}
+	}
+	
+	/*
+	** Pretty print the PCFG
+	*/
+	void prettyPrint(std::streambuf * buf){
+		std::ostream out(buf);
+		out << "Start Rules: " << std::endl;
+		for(unsigned int i=0; i<startRules.size(); i++){
+			out << "N" << startRules[i] << std::endl;
+		}
+		out << "All Rules: " << std::endl;
+		for(unsigned int i=0; i<allRules.size(); i++){
+			out << "\tN" << allRules[i].id;
+			for(unsigned int j=0; j<allRules[i].totalNumberOfProductions(); j++){
+				Rule::productions tmp = allRules[i].getProduction(j);
+				out << "\t-> ";
+				if(tmp.terminal == false){
+					for(unsigned int k = 0; k<tmp.rightRules.size();k++){
+						out << "N" << tmp.rightRules[k] << " ";
+					}
+				}else{
+					out << tmp.rightRules[0] << " ";
+				}
+				out << "(" << tmp.probability << ")" << std::endl << "\t";
+			}
+			out << std::endl;
+		}
 	}
 	
 };

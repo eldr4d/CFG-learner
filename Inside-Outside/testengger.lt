@@ -1,0 +1,29 @@
+1.0	S1 --> S
+1.0	S --> NP VP
+1.0	NP --> Det N
+1.0	VP --> V
+1.0	VP --> V NP
+1.0	VP --> NP V
+1.0     VP --> V NP NP
+1.0     VP --> NP NP V
+1.0	Det --> the
+1.0	N --> the
+1.0	V --> the
+1.0     Det --> a
+1.0     N --> a
+1.0     V --> a
+1.0	Det --> dog
+1.0	N --> dog
+1.0	V --> dog
+1.0	Det --> man
+1.0	N --> man
+1.0	V --> man
+1.0     Det --> bone
+1.0     N --> bone
+1.0     V --> bone
+1.0	Det --> bites
+1.0	N --> bites
+1.0	V --> bites
+1.0     Det --> gives
+1.0     N --> gives
+1.0     V --> gives

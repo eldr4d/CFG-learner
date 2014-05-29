@@ -1,0 +1,1000 @@
+1  a b a a a b a a c a a b a a a b a
+1  a b b b b c b b b b a
+1  b b c b b
+1  b a a c a a b
+1  a a b a b b c b b a b a a
+1  a b b b b b b c b b b b b b a
+1  a c a
+1  a b b c b b a
+1  a b b a a a c a a a b b a
+1  b a a a b b b a b c b a b b b a a a b
+1  a b a a a b b b c b b b a a a b a
+1  a b c b a
+1  a b b b b a a a b b b a b a b b a b b b a a b a b a b b a a a a a a b a c a b a a a a a a b b a b a b a a b b b a b b a b a b b b a a a b b b b a
+1  a a b b a a a a a b a b a b a a a b b a a b b a a a c a a a b b a a b b a a a b a b a b a a a a a b b a a
+1  a c a
+1  b a c a b
+1  a b a c a b a
+1  b a b b a c a b b a b
+1  a b b a b b a a a a a b a b b c b b a b a a a a a b b a b b a
+1  a a b a a c a a b a a
+1  a b a c a b a
+1  a b a a b a a c a a b a a b a
+1  b a b c b a b
+1  a b b c b b a
+1  b a a b c b a a b
+1  b a a a c a a a b
+1  a b a a b a b c b a b a a b a
+1  b b c b b
+1  a b c b a
+1  a a a a a a b b a a b b b b c b b b b a a b b a a a a a a
+1  a b a b a b c b a b a b a
+1  a c a
+1  a b a c a b a
+1  b c b
+1  b b a b a b c b a b a b b
+1  b a b b a a a b a a b b b a c a b b b a a b a a a b b a b
+1  b a a b c b a a b
+1  a b a a c a a b a
+1  a a a b a b a a a c a a a b a b a a a
+1  b a a c a a b
+1  b a a b b c b b a a b
+1  a a c a a
+1  b b a a a b b b a b b a b b b b b b a b b b a c a b b b a b b b b b b a b b a b b b a a a b b
+1  b a a b b b a c a b b b a a b
+1  b c b
+1  a b b a b a a a c a a a b a b b a
+1  a b a a a b b a b a b a c a b a b a b b a a a b a
+1  a a b a c a b a a
+1  a a b a b b a c a b b a b a a
+1  a b b c b b a
+1  b a a b c b a a b
+1  b b b a a b a a a a a c a a a a a b a a b b b
+1  b a a b c b a a b
+1  b c b
+1  a a b a a b a b a a b c b a a b a b a a b a a
+1  b a c a b
+1  b b b b b b b b c b b b b b b b b
+1  b c b
+1  a c a
+1  a b c b a
+1  a b b b c b b b a
+1  a b b a b a c a b a b b a
+1  b a c a b
+1  a a a a b b a c a b b a a a a
+1  b a b b b a b b b a a c a a b b b a b b b a b
+1  b b a a a c a a a b b
+1  a a b b a a a a a c a a a a a b b a a
+1  b b c b b
+1  a b b c b b a
+1  a c a
+1  b b a a a c a a a b b
+1  a b c b a
+1  b a c a b
+1  b a a b a b b b a b c b a b b b a b a a b
+1  b a c a b
+1  b b a c a b b
+1  a b b c b b a
+1  a b c b a
+1  b b a b b a a a b c b a a a b b a b b
+1  a a b b b c b b b a a
+1  b b b a c a b b b
+1  b b a a a c a a a b b
+1  a a c a a
+1  b b a b b b b a b b b b b b b a a b a c a b a a b b b b b b b a b b b b a b b
+1  b a b b b b b a a b b c b b a a b b b b b a b
+1  a a a a b b a c a b b a a a a
+1  a a b c b a a
+1  b a a c a a b
+1  a c a
+1  b b b a a c a a b b b
+1  a c a
+1  b c b
+1  b b a a b b a b b b a a c a a b b b a b b a a b b
+1  a a a b c b a a a
+1  a b b a b c b a b b a
+1  a a a c a a a
+1  b b a b c b a b b
+1  b c b
+1  a a a b a a a b a a a a a b b b b b b a a a a a a a a b a a a b b a c a b b a a a b a a a a a a a a b b b b b b a a a a a b a a a b a a a
+1  b a b a b c b a b a b
+1  a c a
+1  a b b a c a b b a
+1  a a c a a
+1  b b b b c b b b b
+1  a c a
+1  a a a c a a a
+1  b b a a b c b a a b b
+1  a c a
+1  a b a b a a c a a b a b a
+1  b a a b a b a a c a a b a b a a b
+1  a c a
+1  b a b c b a b
+1  a a a a a b a b b b c b b b a b a a a a a
+1  b a c a b
+1  a a a c a a a
+1  b b c b b
+1  b b c b b
+1  b c b
+1  b a a b b b a b b b b b b b b a a b c b a a b b b b b b b b a b b b a a b
+1  b b a c a b b
+1  b b b c b b b
+1  b a c a b
+1  a b b a c a b b a
+1  b c b
+1  a a b b a a b a a a b b b b a a b a b b a c a b b a b a a b b b b a a a b a a b b a a
+1  a a b b a b b a c a b b a b b a a
+1  b b a c a b b
+1  a b a a a b a a b c b a a b a a a b a
+1  a a a a c a a a a
+1  b c b
+1  a c a
+1  a c a
+1  b b a b b b b a a a b a a a a c a a a a b a a a b b b b a b b
+1  a b c b a
+1  a c a
+1  b a c a b
+1  a a c a a
+1  a a b a b b a c a b b a b a a
+1  a b b c b b a
+1  b a a b a c a b a a b
+1  a c a
+1  a a a b a c a b a a a
+1  b a c a b
+1  a b b c b b a
+1  b a a c a a b
+1  a a b c b a a
+1  b a a a c a a a b
+1  a c a
+1  b a c a b
+1  b b b c b b b
+1  a c a
+1  a c a
+1  a a a b a b b b c b b b a b a a a
+1  b c b
+1  a b c b a
+1  a a a b a a a b b a c a b b a a a b a a a
+1  a a b a a b b b a c a b b b a a b a a
+1  a a c a a
+1  a c a
+1  a a a a a a c a a a a a a
+1  b c b
+1  b a b a b b c b b a b a b
+1  a b a a b b a b c b a b b a a b a
+1  b a b b a b a a a b b a b a a b a b c b a b a a b a b b a a a b a b b a b
+1  b b a b b b a a b b a b b b a c a b b b a b b a a b b b a b b
+1  b c b
+1  a b b c b b a
+1  b b b b b b b b b b c b b b b b b b b b b
+1  b a a a c a a a b
+1  b b c b b
+1  b b a a c a a b b
+1  a a a c a a a
+1  b c b
+1  a b b b c b b b a
+1  b a b a b a c a b a b a b
+1  a b b b a a b a c a b a a b b b a
+1  a a b a b a a b b a a b a b a a a c a a a b a b a a b b a a b a b a a
+1  a c a
+1  b c b
+1  a b b c b b a
+1  a a a c a a a
+1  a b a a a a b b b b c b b b b a a a a b a
+1  a a a c a a a
+1  b b b b b b b a a a b b a c a b b a a a b b b b b b b
+1  b a a a b b a b c b a b b a a a b
+1  b b c b b
+1  a a a a a a c a a a a a a
+1  a b a b b a a a a c a a a a b b a b a
+1  b b c b b
+1  b a a a a a c a a a a a b
+1  a c a
+1  a a b a b b a a b b a a a b a b b b b c b b b b a b a a a b b a a b b a b a a
+1  b b a a a a a c a a a a a b b
+1  a c a
+1  b c b
+1  b a a b b c b b a a b
+1  a a b a b b a a a c a a a b b a b a a
+1  b c b
+1  a b c b a
+1  b a a b a a b c b a a b a a b
+1  a a b a b a a a b b c b b a a a b a b a a
+1  a a b a b b b b b a a b a a b b a a b b a a a b b a a b b a a a c a a a b b a a b b a a a b b a a b b a a b a a b b b b b a b a a
+1  b a b c b a b
+1  a c a
+1  b b a a b a a b a a a b a a b c b a a b a a a b a a b a a b b
+1  a b b b b c b b b b a
+1  a c a
+1  a b c b a
+1  b a a b c b a a b
+1  b a a b b b a a a a b c b a a a a b b b a a b
+1  b b c b b
+1  a a a a b c b a a a a
+1  a a a c a a a
+1  b a b b a b a c a b a b b a b
+1  a a a a b b a a c a a b b a a a a
+1  b c b
+1  a b b a c a b b a
+1  a b a b c b a b a
+1  a b c b a
+1  a a a c a a a
+1  b b c b b
+1  a a a a b b b b b b a b c b a b b b b b b a a a a
+1  b a b a b c b a b a b
+1  a b c b a
+1  a c a
+1  b c b
+1  a b c b a
+1  b b b b a c a b b b b
+1  a b b b a a b c b a a b b b a
+1  a b a c a b a
+1  b a a c a a b
+1  a a b b c b b a a
+1  b a a c a a b
+1  b a c a b
+1  b c b
+1  b c b
+1  a a c a a
+1  a b b b a a b a b a b c b a b a b a a b b b a
+1  b a a c a a b
+1  a a c a a
+1  b a a a a c a a a a b
+1  b c b
+1  a b b a b b a c a b b a b b a
+1  a b a b b a b c b a b b a b a
+1  b a b b a b b b c b b b a b b a b
+1  b b b b b b a b a a b c b a a b a b b b b b b
+1  a a c a a
+1  a b b c b b a
+1  a a c a a
+1  b b a a a b a a c a a b a a a b b
+1  b a b a a a c a a a b a b
+1  b a a c a a b
+1  b b c b b
+1  a b b c b b a
+1  a b c b a
+1  a b c b a
+1  a a c a a
+1  a b a b b b b b b a a a b a b a c a b a b a a a b b b b b b a b a
+1  a a c a a
+1  b b b b a b b b a c a b b b a b b b b
+1  a c a
+1  b a a a a a b a b b b b b b a a b a a a a c a a a a b a a b b b b b b a b a a a a a b
+1  a b b a c a b b a
+1  b a b b c b b a b
+1  a b b c b b a
+1  a c a
+1  b b a b b a a a b c b a a a b b a b b
+1  a a b a a b c b a a b a a
+1  a b a b a c a b a b a
+1  a b a a b a c a b a a b a
+1  a b b b b b c b b b b b a
+1  a a b b b b c b b b b a a
+1  a c a
+1  b b a a c a a b b
+1  b a b a c a b a b
+1  b a b b a b b c b b a b b a b
+1  a b b a b b a a b b a c a b b a a b b a b b a
+1  a a a a a a b b c b b a a a a a a
+1  b a b c b a b
+1  b b b a a b b c b b a a b b b
+1  b a a a b a b c b a b a a a b
+1  b a a b b c b b a a b
+1  b a a b b c b b a a b
+1  b b b a b c b a b b b
+1  b c b
+1  a a c a a
+1  a b b a c a b b a
+1  a c a
+1  a a b a a a c a a a b a a
+1  a a a b b b b b b b c b b b b b b b a a a
+1  b a c a b
+1  b a a c a a b
+1  a b b b a b a b a a a b b b a a b b b a a b c b a a b b b a a b b b a a a b a b a b b b a
+1  a a a a a a b b a b b b b a c a b b b b a b b a a a a a a
+1  a b b c b b a
+1  a a c a a
+1  b a b b a b a a c a a b a b b a b
+1  b b a a a c a a a b b
+1  a a a a a c a a a a a
+1  a a c a a
+1  b b a b b a b a b a c a b a b a b b a b b
+1  a a a c a a a
+1  a a a b b a b a b b c b b a b a b b a a a
+1  b b a b b a a b a b b a c a b b a b a a b b a b b
+1  a b b a b a c a b a b b a
+1  b c b
+1  a b a a b b b b b b b a a a b b a c a b b a a a b b b b b b b a a b a
+1  b b a b b c b b a b b
+1  b c b
+1  a c a
+1  a b b c b b a
+1  b c b
+1  a a a b a a a b b c b b a a a b a a a
+1  a c a
+1  b a a a a a c a a a a a b
+1  a a b a c a b a a
+1  b b b b c b b b b
+1  a c a
+1  b b b a b b b b c b b b b a b b b
+1  a c a
+1  a b c b a
+1  a b c b a
+1  b b b b b b a a a b b a a b b b a c a b b b a a b b a a a b b b b b b
+1  b c b
+1  a b b a a a b b a a c a a b b a a a b b a
+1  a c a
+1  b a a b a b a b c b a b a b a a b
+1  b b b a c a b b b
+1  a c a
+1  a b b a b c b a b b a
+1  a a a b b c b b a a a
+1  a a a b a b a c a b a b a a a
+1  b a b b c b b a b
+1  a b a a c a a b a
+1  b c b
+1  b a b b a c a b b a b
+1  b b b a b c b a b b b
+1  a b b b b a c a b b b b a
+1  b a b a a b b b a c a b b b a a b a b
+1  b b a c a b b
+1  b a a b a a a c a a a b a a b
+1  a b c b a
+1  a b a b c b a b a
+1  a b a b c b a b a
+1  b b a a a a b a b b c b b a b a a a a b b
+1  b a a b a c a b a a b
+1  b a b b c b b a b
+1  a b c b a
+1  a b a b b a a a a a a b b b c b b b a a a a a a b b a b a
+1  b a b b a b a b c b a b a b b a b
+1  b a a b c b a a b
+1  a a a b b c b b a a a
+1  b b a c a b b
+1  b a b a a a a b a b a b b b a a b a a b b b c b b b a a b a a b b b a b a b a a a a b a b
+1  a c a
+1  a a c a a
+1  a b a a c a a b a
+1  a b a a a a b c b a a a a b a
+1  a a b a b a c a b a b a a
+1  b b b b c b b b b
+1  a b b a c a b b a
+1  a b c b a
+1  a b a b a b a a a c a a a b a b a b a
+1  b a b c b a b
+1  a a c a a
+1  b b a b a b a b c b a b a b a b b
+1  b c b
+1  a b a b c b a b a
+1  b a c a b
+1  b a b b b c b b b a b
+1  b b a b c b a b b
+1  b a b c b a b
+1  b c b
+1  a b b a b a b b a b a a c a a b a b b a b a b b a
+1  a b c b a
+1  b a a c a a b
+1  b b a a a b b c b b a a a b b
+1  b a b a b b b b b a b b a b c b a b b a b b b b b a b a b
+1  b a b b a c a b b a b
+1  b b c b b
+1  a c a
+1  a b a b c b a b a
+1  b c b
+1  a b a b b a c a b b a b a
+1  b c b
+1  a b a c a b a
+1  b b c b b
+1  b b a b c b a b b
+1  a a a a a c a a a a a
+1  a c a
+1  a c a
+1  a b a a b a b b b c b b b a b a a b a
+1  b a c a b
+1  b b b b c b b b b
+1  a c a
+1  a a c a a
+1  b a a b c b a a b
+1  b c b
+1  a b b b a b c b a b b b a
+1  b b a b a a a a a b c b a a a a a b a b b
+1  a b c b a
+1  a a a c a a a
+1  a c a
+1  b a a b a b b c b b a b a a b
+1  a b a c a b a
+1  a b b a c a b b a
+1  a a b c b a a
+1  a b a a a c a a a b a
+1  a c a
+1  a a a c a a a
+1  b c b
+1  b a a b c b a a b
+1  b b a a a b a a a b b b c b b b a a a b a a a b b
+1  b b a a c a a b b
+1  b c b
+1  b b b a b c b a b b b
+1  a b a b a c a b a b a
+1  b b b a b a b a b a b b b c b b b a b a b a b a b b b
+1  a b b b a a b a a a b a b c b a b a a a b a a b b b a
+1  b c b
+1  a c a
+1  b a a a a b b c b b a a a a b
+1  a a b c b a a
+1  b a a b a a c a a b a a b
+1  a c a
+1  a a a b a a a c a a a b a a a
+1  b a b b c b b a b
+1  b c b
+1  a b a b b b b c b b b b a b a
+1  b b a c a b b
+1  b a b a a a c a a a b a b
+1  a c a
+1  a c a
+1  b c b
+1  a b b a a a a a c a a a a a b b a
+1  b b b b b b c b b b b b b
+1  b b b c b b b
+1  b c b
+1  b b b a a c a a b b b
+1  a a b a a c a a b a a
+1  a c a
+1  b a a b c b a a b
+1  b a c a b
+1  b a b c b a b
+1  a c a
+1  a c a
+1  a a a a a a a c a a a a a a a
+1  a b c b a
+1  b a b a a a a b b b a b a b c b a b a b b b a a a a b a b
+1  b c b
+1  a c a
+1  a b a b a b c b a b a b a
+1  a a a c a a a
+1  b c b
+1  b a b c b a b
+1  b b a a b b b b b b a a a c a a a b b b b b b a a b b
+1  a b a b c b a b a
+1  a a a b a c a b a a a
+1  a b c b a
+1  a b b c b b a
+1  b b a c a b b
+1  a a c a a
+1  b b a b a b b a b b a b c b a b b a b b a b a b b
+1  a b b a b b a c a b b a b b a
+1  b a a a a c a a a a b
+1  a c a
+1  a a c a a
+1  a c a
+1  a b a a a c a a a b a
+1  a b a a a c a a a b a
+1  b a a b a c a b a a b
+1  b b b b b c b b b b b
+1  b c b
+1  b c b
+1  a c a
+1  b c b
+1  b c b
+1  a c a
+1  a b b b b b c b b b b b a
+1  b b a a a a b a c a b a a a a b b
+1  a c a
+1  a a a c a a a
+1  b a b b b b b c b b b b b a b
+1  b b b b b a c a b b b b b
+1  b b b b a b b b a c a b b b a b b b b
+1  a c a
+1  a a c a a
+1  b c b
+1  b b a a b b a c a b b a a b b
+1  b b c b b
+1  b b b b c b b b b
+1  a b a c a b a
+1  b b a a c a a b b
+1  b c b
+1  a a b b a c a b b a a
+1  b a a b a a a b b c b b a a a b a a b
+1  a a c a a
+1  a a b c b a a
+1  a b a a b b b a b b a a b a a a c a a a b a a b b a b b b a a b a
+1  a b c b a
+1  a a a a c a a a a
+1  a c a
+1  a c a
+1  b a c a b
+1  a b c b a
+1  a a b a b b a b b b b b c b b b b b a b b a b a a
+1  b a b b a b b a a a a b a b b a b b c b b a b b a b a a a a b b a b b a b
+1  a b a b b c b b a b a
+1  b b b a b b c b b a b b b
+1  b b b a a a c a a a b b b
+1  b c b
+1  b c b
+1  b a b c b a b
+1  a a c a a
+1  b a b c b a b
+1  b b c b b
+1  b b b c b b b
+1  b b b b a a a b b a a c a a b b a a a b b b b
+1  a b c b a
+1  a a a a c a a a a
+1  b a c a b
+1  a c a
+1  b c b
+1  b b a b b a a b a a b c b a a b a a b b a b b
+1  b a a c a a b
+1  a a a a a b a c a b a a a a a
+1  b c b
+1  b b a b a a b c b a a b a b b
+1  a b b a b a c a b a b b a
+1  a b a a b c b a a b a
+1  b b c b b
+1  b b a a a a a b a b b c b b a b a a a a a b b
+1  b a a b c b a a b
+1  b c b
+1  b b b c b b b
+1  a a a b c b a a a
+1  a b b b c b b b a
+1  a a c a a
+1  b a c a b
+1  b a b b a a b a b c b a b a a b b a b
+1  a c a
+1  b b a a a a b a a b a a a a b c b a a a a b a a b a a a a b b
+1  b c b
+1  b b b a b a c a b a b b b
+1  a a a b b b b b b a a c a a b b b b b b a a a
+1  a b a c a b a
+1  b a a a b a c a b a a a b
+1  b a a a c a a a b
+1  a a b b a b c b a b b a a
+1  a b b b c b b b a
+1  a a b a a a c a a a b a a
+1  b a c a b
+1  b a c a b
+1  b b b a a b c b a a b b b
+1  b b a b b c b b a b b
+1  b c b
+1  b c b
+1  a c a
+1  b c b
+1  b b b b b b b a c a b b b b b b b
+1  a a b a b b a b b a b b b a b c b a b b b a b b a b b a b a a
+1  a b a a a c a a a b a
+1  b b c b b
+1  b c b
+1  b a c a b
+1  a c a
+1  a c a
+1  b b c b b
+1  b c b
+1  b a a a a a a a c a a a a a a a b
+1  b a b b b a a a a b b a b a c a b a b b a a a a b b b a b
+1  b a c a b
+1  a a b b a a a c a a a b b a a
+1  a a a a b a b b a b a b b a b c b a b b a b a b b a b a a a a
+1  b a b c b a b
+1  a a c a a
+1  a b c b a
+1  a a b a b b b c b b b a b a a
+1  b c b
+1  b c b
+1  b b c b b
+1  b a c a b
+1  a b a a c a a b a
+1  b b a a a c a a a b b
+1  a c a
+1  b a a b b b a c a b b b a a b
+1  b a b b a a b b b c b b b a a b b a b
+1  b b b b b b a b a b b c b b a b a b b b b b b
+1  a a a c a a a
+1  b a b a b b b c b b b a b a b
+1  b a c a b
+1  b b a a c a a b b
+1  b b b a c a b b b
+1  b a b b c b b a b
+1  b a a a b a a b c b a a b a a a b
+1  b c b
+1  b b b b b b a a a a b a a b a b c b a b a a b a a a a b b b b b b
+1  b a c a b
+1  a b c b a
+1  b a c a b
+1  a a b b b b a b a b b b c b b b a b a b b b b a a
+1  b c b
+1  a a c a a
+1  a b b a c a b b a
+1  a a b a b a a b b b b a a b a a c a a b a a b b b b a a b a b a a
+1  a c a
+1  a b a a b a c a b a a b a
+1  b a a a c a a a b
+1  a a b b a b a b b b b b c b b b b b a b a b b a a
+1  b a b b a a a c a a a b b a b
+1  b c b
+1  a c a
+1  b b a b a b a a b b a a a b b b a c a b b b a a a b b a a b a b a b b
+1  a b a c a b a
+1  a b a b b a b a c a b a b b a b a
+1  a b a c a b a
+1  b c b
+1  a a b c b a a
+1  a a a a b c b a a a a
+1  b c b
+1  a b a b b a b a a b c b a a b a b b a b a
+1  b c b
+1  a c a
+1  a a b a c a b a a
+1  b c b
+1  b c b
+1  b a a c a a b
+1  a a b b b b a a b b b b b a c a b b b b b a a b b b b a a
+1  b a b b b a b a a a b a b a b b b b c b b b b a b a b a a a b a b b b a b
+1  b c b
+1  b b a b b a c a b b a b b
+1  b c b
+1  a b b a a b a a c a a b a a b b a
+1  a a a c a a a
+1  a b c b a
+1  a c a
+1  a a a c a a a
+1  b a a b b b a a b a a b b b a b a a b c b a a b a b b b a a b a a b b b a a b
+1  a a c a a
+1  a a a b b c b b a a a
+1  b b b a a c a a b b b
+1  b a b a a c a a b a b
+1  a b b b c b b b a
+1  a b b b b a a c a a b b b b a
+1  a a b b a c a b b a a
+1  a a b b b b b a a c a a b b b b b a a
+1  a b b c b b a
+1  a a a a a a c a a a a a a
+1  b b a b a b a b a b a b c b a b a b a b a b a b b
+1  a b b a a b a b c b a b a a b b a
+1  b a a a a b a b c b a b a a a a b
+1  b c b
+1  b c b
+1  a b b b a c a b b b a
+1  a c a
+1  a b c b a
+1  b a a a c a a a b
+1  b c b
+1  b c b
+1  b c b
+1  a a c a a
+1  b a b b a a c a a b b a b
+1  b a b a c a b a b
+1  b b b a c a b b b
+1  b a a a b a a b b b c b b b a a b a a a b
+1  b c b
+1  b a b b c b b a b
+1  a a a a a b a b c b a b a a a a a
+1  b b a a c a a b b
+1  a b c b a
+1  a b a b a a a b b c b b a a a b a b a
+1  a b a b c b a b a
+1  b b a a a a b a a a a b c b a a a a b a a a a b b
+1  b b c b b
+1  a a b b b a b c b a b b b a a
+1  a a a c a a a
+1  b a a a c a a a b
+1  b c b
+1  b b b b b a b c b a b b b b b
+1  b b b a a a a a c a a a a a b b b
+1  a a b a b a c a b a b a a
+1  a b c b a
+1  a b b b a a a b c b a a a b b b a
+1  a a a a a a b a b a b b a b a b b b a a b a a b b b a b b a c a b b a b b b a a b a a b b b a b a b b a b a b a a a a a a
+1  b a c a b
+1  a a a b b a c a b b a a a
+1  a b a b b c b b a b a
+1  a c a
+1  b b b b b b c b b b b b b
+1  b c b
+1  a b b b b b a c a b b b b b a
+1  a a c a a
+1  b b b b c b b b b
+1  b a b a a c a a b a b
+1  b c b
+1  a b b b b a b b b b c b b b b a b b b b a
+1  a a a c a a a
+1  b b b a b b c b b a b b b
+1  b b b a c a b b b
+1  a b c b a
+1  a a a a b a a b b c b b a a b a a a a
+1  a b a a a a a b c b a a a a a b a
+1  a a a a a a b b b b b c b b b b b a a a a a a
+1  b b a c a b b
+1  a b b c b b a
+1  a b a b b b b a b a c a b a b b b b a b a
+1  a b b c b b a
+1  a a a a c a a a a
+1  b c b
+1  a b a c a b a
+1  b b a b c b a b b
+1  a b c b a
+1  b b c b b
+1  b c b
+1  a a b a b b a a a a a a a b c b a a a a a a a b b a b a a
+1  a a b c b a a
+1  a b a b a a a b b b a a b a a c a a b a a b b b a a a b a b a
+1  a a a a c a a a a
+1  a c a
+1  b c b
+1  a b b c b b a
+1  b b a a a a b b b a a a b a a c a a b a a a b b b a a a a b b
+1  a a b a b b c b b a b a a
+1  a a a a b b c b b a a a a
+1  b a a a b c b a a a b
+1  a b b b c b b b a
+1  b c b
+1  b a c a b
+1  a c a
+1  b a c a b
+1  a a c a a
+1  a b b c b b a
+1  b b b b a b c b a b b b b
+1  a b a c a b a
+1  a c a
+1  b c b
+1  a a a a b a b a a a a a a a a a a a b a a b c b a a b a a a a a a a a a a a b a b a a a a
+1  a c a
+1  a b b b a c a b b b a
+1  b a b a a a b b a b c b a b b a a a b a b
+1  a b a c a b a
+1  b b c b b
+1  b b a c a b b
+1  a a a a a a a a b c b a a a a a a a a
+1  b a c a b
+1  a b b a c a b b a
+1  a b a b b a a b c b a a b b a b a
+1  a a b b c b b a a
+1  a b a a a b a a a a b b a b b b b a a b c b a a b b b b a b b a a a a b a a a b a
+1  a b b b a a b a b b a a a a c a a a a b b a b a a b b b a
+1  a a b a c a b a a
+1  a a a a a b b c b b a a a a a
+1  b b a b c b a b b
+1  b a c a b
+1  b b a b c b a b b
+1  b a b b b a b b b c b b b a b b b a b
+1  b a b c b a b
+1  a c a
+1  a a a c a a a
+1  a a a b b a c a b b a a a
+1  a c a
+1  b a a a a b b a a a a b b b b c b b b b a a a a b b a a a a b
+1  b a b c b a b
+1  b b a c a b b
+1  b b b a b a a b b b c b b b a a b a b b b
+1  a a c a a
+1  a a a a b a a c a a b a a a a
+1  a b c b a
+1  a a c a a
+1  b b b c b b b
+1  a b c b a
+1  a a a b c b a a a
+1  b b c b b
+1  b b a b a b a a a b c b a a a b a b a b b
+1  b b b a c a b b b
+1  a a b c b a a
+1  b b c b b
+1  b a c a b
+1  a a a b b b c b b b a a a
+1  a b c b a
+1  a a b b b c b b b a a
+1  b b c b b
+1  b b a c a b b
+1  b a a b b b b b a b b c b b a b b b b b a a b
+1  b c b
+1  b c b
+1  b b c b b
+1  b a a a b b b a c a b b b a a a b
+1  a b b b c b b b a
+1  b a a a b a a a a b b c b b a a a a b a a a b
+1  a b c b a
+1  a c a
+1  b a b c b a b
+1  b c b
+1  a a a b a a a c a a a b a a a
+1  b b a a b b c b b a a b b
+1  b a b a a a a a c a a a a a b a b
+1  b a a b a a c a a b a a b
+1  b c b
+1  a b a c a b a
+1  a b c b a
+1  b b b b b a c a b b b b b
+1  a b b b b c b b b b a
+1  a b a b c b a b a
+1  a b c b a
+1  a c a
+1  a a a a a b b b c b b b a a a a a
+1  a a b c b a a
+1  b a a a c a a a b
+1  a b c b a
+1  b a c a b
+1  a b a b b b a a c a a b b b a b a
+1  b b a b b b b a b a b a a b a b b c b b a b a a b a b a b b b b a b b
+1  b a b a a b b a a b b c b b a a b b a a b a b
+1  a c a
+1  a c a
+1  a a b c b a a
+1  b b a b b b a a a c a a a b b b a b b
+1  a b b a a b c b a a b b a
+1  b c b
+1  a c a
+1  a a b a b a a b b b a a a c a a a b b b a a b a b a a
+1  b b a b c b a b b
+1  a b b b b b a a a b b a b a c a b a b b a a a b b b b b a
+1  a b a b a b c b a b a b a
+1  b a b b b c b b b a b
+1  a a b b c b b a a
+1  b a b b a b b a b c b a b b a b b a b
+1  b a a a c a a a b
+1  b b a b b c b b a b b
+1  a c a
+1  b a c a b
+1  a c a
+1  a a a b b a a c a a b b a a a
+1  b b a c a b b
+1  a a a b a a a a b c b a a a a b a a a
+1  b b b c b b b
+1  a b a a a c a a a b a
+1  a b a b b b b a b b b b b c b b b b b a b b b b a b a
+1  b a a c a a b
+1  b b b c b b b
+1  a a b a a b b a b b a b a a b a b b b b a b a a a a a a c a a a a a a b a b b b b a b a a b a b b a b b a a b a a
+1  b b b a c a b b b
+1  b a a c a a b
+1  a a b b b b a a c a a b b b b a a
+1  b a a a c a a a b
+1  b b c b b
+1  a a c a a
+1  a b a c a b a
+1  a a b b c b b a a
+1  a b b b b a b a b a a b a c a b a a b a b a b b b b a
+1  a b a c a b a
+1  b c b
+1  b b a a a a b a a a b a a a b a c a b a a a b a a a b a a a a b b
+1  a b a b b b b a a b a c a b a a b b b b a b a
+1  b b c b b
+1  a a b c b a a
+1  b a b a b c b a b a b
+1  b c b
+1  a b c b a
+1  a b c b a
+1  a c a
+1  a b a b a b a c a b a b a b a
+1  a a b a b b c b b a b a a
+1  b b a c a b b
+1  b b b c b b b
+1  b b c b b
+1  b a c a b
+1  b c b
+1  b a b c b a b
+1  a a b b b b c b b b b a a
+1  b a a b b a c a b b a a b
+1  b a a b a a c a a b a a b
+1  b a a b a c a b a a b
+1  b a c a b
+1  a b a c a b a
+1  b b a b a c a b a b b
+1  a a b b a b a b a b c b a b a b a b b a a
+1  b b c b b
+1  a b b a b a a b c b a a b a b b a
+1  b c b
+1  a c a
+1  b a a b c b a a b
+1  b b b a a b a c a b a a b b b
+1  a c a
+1  a a b a c a b a a
+1  b c b
+1  b b b a a c a a b b b
+1  a b a c a b a
+1  a c a
+1  b c b
+1  b b b c b b b
+1  b c b
+1  a b b b b b b a c a b b b b b b a
+1  b a a a a a c a a a a a b
+1  a a b b a b a b b b b b a b a a b b a b a a c a a b a b b a a b a b b b b b a b a b b a a
+1  b c b
+1  a c a
+1  a c a
+1  b c b
+1  a c a
+1  a c a
+1  a a a b b b b b b c b b b b b b a a a
+1  b a a c a a b
+1  b b a b c b a b b
+1  a b c b a
+1  a b c b a
+1  b c b
+1  b b c b b
+1  b a b b a a b b a a a c a a a b b a a b b a b
+1  a b c b a
+1  a a a c a a a
+1  b a a a c a a a b
+1  a b b a c a b b a
+1  a a c a a
+1  a b a a a c a a a b a
+1  b b b b b c b b b b b
+1  b a b c b a b
+1  b b a c a b b
+1  b a a a a b a b b b a a b c b a a b b b a b a a a a b
+1  b a b a c a b a b
+1  b b b c b b b
+1  a a b c b a a
+1  a b c b a
+1  a b a b b a b a a b b b a c a b b b a a b a b b a b a
+1  b a a c a a b
+1  b a c a b
+1  a a a b b a a a b c b a a a b b a a a
+1  a c a
+1  b c b
+1  b a c a b
+1  a a b b a a b a b b c b b a b a a b b a a
+1  a b a b b a a b b b b b a b b b b a a a a b b c b b a a a a b b b b a b b b b b a a b b a b a
+1  b a a b a a b a a a c a a a b a a b a a b
+1  b c b
+1  a c a
+1  b b a b b c b b a b b
+1  b b a a a b b c b b a a a b b
+1  b a c a b
+1  a b c b a
+1  b a c a b
+1  a b b b a b c b a b b b a
+1  b c b
+1  a c a
+1  b b b a b b a b a a c a a b a b b a b b b
+1  b b b b c b b b b
+1  a b a c a b a
+1  a a a a b a a b b c b b a a b a a a a
+1  b c b
+1  a a a a a a a a c a a a a a a a a
+1  b a a b c b a a b
+1  b c b
+1  a a b b b b a b a b a b c b a b a b a b b b b a a
+1  b a c a b
+1  a c a
+1  a a b a b b a b b b c b b b a b b a b a a
+1  b b c b b
+1  b a b b b b c b b b b a b
+1  b c b
+1  b a c a b
+1  a b b b b b a a a b b b a c a b b b a a a b b b b b a
+1  a a c a a
+1  a a a a a b b a a c a a b b a a a a a
+1  a c a
+1  a b b a a b a a b b b c b b b a a b a a b b a
+1  b a b a a b a a a a b a a a c a a a b a a a a b a a b a b
+1  b a a a c a a a b
+1  a c a
+1  a b c b a
+1  a b b b b c b b b b a
+1  a a c a a
+1  b a a c a a b
+1  a a b c b a a
+1  b a b c b a b
+1  a c a
+1  b b b a b a a b c b a a b a b b b
+1  b b b b a b a b b b b a c a b b b b a b a b b b b
+1  a b b c b b a
+1  a a a b b a c a b b a a a
+1  a a c a a
+1  a a a a b a a b a a b a a b a b b b b a c a b b b b a b a a b a a b a a b a a a a
+1  b a c a b
+1  b a a a b a c a b a a a b
+1  a a b b c b b a a
+1  a c a
+1  a b b c b b a
+1  a c a
+1  a a b c b a a
+1  a b a b c b a b a
+1  a b b b a b a a a a b b c b b a a a a b a b b b a
+1  a a a a b c b a a a a
+1  b b c b b
+1  b b a c a b b
+1  a b a b b b b c b b b b a b a
+1  b a b b a a a a b a c a b a a a a b b a b
+1  a a b a c a b a a
+1  a a c a a
+1  a b a a c a a b a
+1  b a a c a a b
+1  a a b b a c a b b a a

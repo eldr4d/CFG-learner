@@ -13,30 +13,38 @@ class Corpus {
 public:
 	static const int keyAdjust = 10000;
 	typedef std::vector<int> singleWord;
-	typedef std::vector<singleWord > words;
-	typedef struct{
-		std::map<int, int> biwordsCount;
-		std::map<int, double> biwordsProb;
-		std::map<int, bool> biwordsConflict;
-	}allChunks;
+	typedef std::vector<singleWord> words;
 private:
 	int numOfSymbols;
 	std::map<char,int> symbols;
+	std::map<int,char> intToSymbols;
 	words allWords;
 	words uniqueWords;
 	std::vector<double> wordCount;
-	
-	std::vector<double> wordCountBackup;
-	
+	std::vector<char> positive; //Check if the word is actually in the language
+public:
+	int totalStartWords;	
 //Getters
 public:
+	int getTotalStartWords(){
+		return totalStartWords;
+	}
 	words getUniqueWords(){
 		return uniqueWords;
+	}
+	std::vector<double> getWordCount(){
+		return wordCount;
+	}
+	std::vector<char> getPositiveStatus(){
+		return positive;
 	}
 	int numberOfSymbolsInCorpus(){
 		return numOfSymbols;
 	}
-	int numberOfUniqueWords(){
+	std::map<int,char> symbolsToChars(){
+		return intToSymbols;
+	}
+	unsigned int numberOfUniqueWords(){
 		return uniqueWords.size();
 	}
 	singleWord countOfSymbols(){
@@ -48,18 +56,29 @@ public:
 		}
 		return symCount;
 	}
+	void clearForInsideOutside(){
+		allWords.clear();
+		uniqueWords.clear();
+		wordCount.clear();
+		positive.clear();
+	}
 private:
 	void reduceToUniqueWords();
 	void recalculateUniqueWords();
 public:
 	void loadCorpusFromFile(std::string filename);
-	allChunks calculateBiwordsCount();
+	void dumbCorpusToFile(std::string filename, bool withCharSymbols);
 	void printCorpus();
 	void initReduceForPCFG(PCFG *pcfg);
-	int reduceCorpusForRule(Rule rule);
-	int recursivelyReduce(PCFG *pcfg);
-	void expandCorpusForRule(Rule rule);
-	void replaceRules(int newRuleID, int oldRuleID);
+	void resample(int howManySamples);
+	void normalizeCorpus();
+	void unnormalizeCorpus();
+
+public:
+	void addUniqueWord(singleWord wordToAdd, double count){
+		uniqueWords.push_back(wordToAdd);
+		wordCount.push_back(count);
+	};
 };
 
 

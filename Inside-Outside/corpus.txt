@@ -1,0 +1,2336 @@
+c
+n
+pro aux adj
+wh aux pro
+adj
+wh
+adj n
+pro aux det n
+prop
+det n
+pro aux vi
+wh aux pro vi
+pro aux
+pro aux det adj n
+pro v
+pro aux vi pro
+pro v pro
+wh aux pro part
+pro aux adj n
+aux pro vi pro
+det adj n
+pro aux n
+wh aux det n
+pro aux vi det n
+pro v det n
+vi
+aux pro vi det n
+prep det n
+pro aux part
+pro aux pro
+vi pro
+wh aux pro vi pro
+aux pro det n
+aux pro adj
+wh v
+wh n aux pro
+vi pro prep
+aux vi pro
+pro aux vi adj n
+pro v adj n
+wh n
+aux pro vi
+vi det n
+pro v pro prep
+prep adj n
+aux pro
+wh n prep n
+prep
+pro v prep det n
+vi prep
+pro
+wh pro
+wh n prep n aux pro
+pro v n
+wh aux adj n
+prep pro
+wh aux det adj n
+aux pro vi adj n
+pro aux part det n
+wh aux pro vi prep
+adj adj n
+pro aux vi n
+aux pro vi n
+vi prep det n
+pro aux prop
+pro aux prep det n
+pro v det adj n
+pro aux part to vi pro
+wh aux det n vi
+pro aux vi prep
+pro aux part pro
+pro aux vi adj
+pro v prep
+wh n aux pro vi
+vi adj n
+vi prep pro
+pro aux part prep det n
+pro v adj
+pro aux vi pro prep
+vi pro prep det n
+wh aux pro vi prep det n
+aux pro det adj n
+pro aux vi prep det n
+pro v to vi pro
+pro aux det adj adj n
+wh aux pro vi det n
+wh aux pro part prep
+prep det adj n
+aux pro vi pro prep
+aux vi
+prep n
+aux vi pro prep
+prep prop
+part
+pro aux vi prep pro
+aux vi det n
+vi adj
+wh aux pro vi prep adj n
+wh aux adj
+pro v prep det adj n
+pro aux vi det adj n
+wh aux pro part to vi
+pro v prep pro
+wh aux pro vi adj n
+aux vi prep pro
+pro v to vi
+prop v pro
+vi det n prep
+wh aux prop
+vi n
+aux pro adj n
+wh prep det n
+pro aux adj adj n
+aux vi prep det n
+wh v prep det n
+wh aux pro vi to vi
+pro v pro prep pro
+aux vi prep adj n
+pro aux part prep
+v pro
+det n aux adj
+aux pro vi prep det n
+aux vi adj n
+pro aux part prep pro
+aux pro vi to vi det n
+wh adj n
+pro aux part n
+pro aux vi pro prep det n
+wh aux prep
+vi prep adj n
+wh aux adj adj n
+pro v prop
+pro aux part to vi
+pro aux prep
+aux pro prop
+det n prep det n
+pro aux n prep det n
+aux vi pro prep adj n
+pro aux vi to vi det n
+n prep det n
+aux pro vi det adj n
+aux pro vi prop
+pro v pro prep det n
+vi adj n prep
+wh aux prop vi
+pro aux det n prep det n
+wh aux pro vi prep pro
+pro aux vi pro prep pro
+wh aux pro vi n
+pro aux vi to vi pro
+pro v prep adj n
+aux pro part
+pro aux part adj
+aux vi pro prep pro
+pro aux det n prep n
+pro aux part det adj n
+pro aux vi to vi
+pro v adj adj n
+part pro
+wh aux det n part
+pro v det n prep
+aux vi pro prep det n
+vi pro prep pro
+wh adj n aux pro vi
+aux pro n
+pro aux part adj n
+pro aux n prep pro
+pro v n prep pro
+aux pro vi pro prep pro
+n v
+wh aux pro vi pro prep
+adj n v
+wh aux pro vi det n prep
+pro aux vi prep n
+pro v to vi det n
+wh aux part
+pro aux prep pro
+wh adj aux pro vi
+wh aux pro part pro
+pro aux adj prep pro
+pro aux vi n prep pro
+prop aux det n
+pro aux part to vi det n
+part n
+pro aux prep n
+wh aux n
+pro aux vi det n prep
+det n v prep
+pro aux part pro prep
+wh aux pro vi to vi pro
+aux pro vi to vi pro
+vi det adj n
+pro aux vi prop
+part det n
+det n v
+wh aux det adj n vi
+aux pro vi det n prep det n
+vi det n prep det n
+prop v
+n prep pro
+pro aux vi pro det n
+prop aux n
+wh v pro
+det n aux vi
+pro aux n prep adj n
+aux vi adj
+aux pro part det n
+wh aux pro part to vi pro
+pro v adj n prep
+prop aux adj
+aux pro vi prep pro
+pro v det n prep det n
+aux pro vi prep
+adj n aux adj
+wh aux pro vi prep n
+adj prep pro
+pro aux prep prop
+wh prep pro
+wh aux pro part prep det n
+wh v prep pro
+pro aux vi adj adj n
+aux pro vi pro adj
+n prep adj n
+pro aux prep adj n
+wh v prep adj n
+pro v det n prep pro
+wh aux pro prep
+aux pro vi to vi
+pro v to vi prep det n
+pro aux part to vi pro prep
+pro aux adj to vi
+vi pro prep prep det n
+pro v prep prop
+wh n prep n aux pro vi
+wh n aux det n
+det n aux part
+n prep
+pro aux part prep adj n
+n prep n
+aux pro vi det n prep pro
+wh aux det n prep det n
+pro v prep n
+adj prep det n
+prop aux
+pro aux part prep n
+pro aux vi adj n prep
+pro v pro adj n
+n part
+pro aux vi prep adj n
+pro v pro det n
+n aux prep n
+vi pro prep prop
+wh aux adj n vi
+vi pro det n
+aux pro prep det n
+pro v adj n prep pro
+prop aux part
+pro aux vi det n prep det n
+vi prep det adj n
+aux pro vi adj adj n
+wh aux pro vi prep det adj n
+vi pro adj n
+pro v det n prep n
+wh aux pro adj
+wh aux pro part to vi prep pro
+pro aux vi pro prep adj n
+wh aux n vi
+pro aux adj n prep
+pro v pro prep adj n
+aux vi prep
+wh n aux pro vi prep
+aux pro vi pro to vi pro
+wh aux det n prep pro
+pro v to vi pro prep
+aux pro prep
+aux pro vi pro prep det n
+aux pro pro
+pro aux pro prep pro
+adj n prep n
+v det n
+wh prep n
+pro v pro adj
+aux pro vi prep n
+part prep det n
+pro v prep prep adj n
+pro v to vi n
+pro aux vi det n prep pro
+wh prep adj n
+det adj adj n
+aux pro vi prep adj n
+pro aux part prop
+pro aux pro prep adj n
+aux pro vi det n prep
+det n prep pro
+pro aux vi to
+prep prep det n
+part prep pro
+pro aux vi adj n prep det n
+det n aux
+pro aux vi det n prep n
+wh aux pro part pro prep
+aux vi adj n prep pro
+vi prep prop
+prop aux prep
+aux pro vi pro prep adj n
+wh aux pro part to vi prep det n
+pro v prep prep det n
+pro aux vi det adj n prep
+pro aux vi pro adj
+wh aux prop part
+adj n aux n
+wh v prep n
+pro aux adj prep det n
+n v det n
+pro aux adj n prep det n
+aux det n vi
+wh adj
+aux pro vi det n prep n
+pro v det n prep adj n
+wh v prep
+pro v adj n prep det n
+pro aux part prep prop
+wh n aux adj
+wh aux pro vi prep prop
+wh aux pro vi det adj n
+aux pro part prep det n
+pro aux vi pro adj n
+wh aux pro pro aux part
+prop v det n
+aux pro vi adj
+vi prop
+vi n prep
+wh aux pro vi adj n prep
+vi det n prep prep det n
+wh prep det adj n
+aux pro vi pro adj n
+pro aux part prep det adj n
+pro aux adj to vi prep
+det n aux prep
+det n prep n
+n aux adj
+pro v n prep adj n
+wh v prep prop
+pro aux part to vi n
+det n aux prep det n
+aux det n adj
+wh aux prep adj n
+wh aux pro vi pro prep det n
+pro aux vi prep prop
+pro v pro n
+n aux n
+aux
+pro aux vi to vi prep det n
+pro aux part det n prep
+adj n prep pro
+wh aux pro vi adj
+pro aux vi adj n prep n
+pro aux pro prep det n
+wh aux adj prep pro
+wh aux
+prop aux adj n
+prop aux vi pro
+v
+wh aux pro vi pro to vi
+wh v n
+pro aux det n pro v
+prop aux prep adj n
+det adj n prep det n
+n v pro
+aux pro vi to vi adj n
+aux pro vi n prep det n
+det n aux det n
+aux pro vi pro prep prop
+vi prep prep det n
+prop aux vi
+pro aux det n prep pro
+aux pro vi adj n prep det n
+pro aux prep det adj n
+pro aux vi pro to vi pro
+wh aux pro part prep pro
+pro aux n prep
+aux vi det n prep det n
+det n v n
+vi adj n prep det n
+v prep det n
+pro aux vi det adj adj n
+pro aux adj prep
+wh aux pro vi pro det n
+pro aux vi det n prep adj n
+pro v to vi det n prep
+det n aux vi pro
+aux pro vi pro det n
+aux pro det n pro v
+wh n aux pro part
+det n aux vi prep
+prop aux det adj n
+aux pro n prep det n
+adj n aux prop
+wh aux det adj adj n
+pro aux part to vi prep det n
+pro v pro prep prep pro
+wh aux prep det n
+pro v to vi adj n
+part prep n
+part prep prop
+pro prep n
+wh n aux pro vi to vi
+wh aux pro part det n
+wh prep prop
+vi prep det n prep det n
+pro v to vi adj
+pro aux part to vi prep pro
+v adj n
+n aux prep
+vi pro prep n
+aux pro adj adj n
+vi det n prep prep adj n
+pro aux part n prep pro
+n aux vi
+prop aux pro
+aux pro vi to vi prep det n
+aux vi det n prep
+aux vi prop
+wh det adj n
+aux n vi
+vi pro det adj n
+pro v to vi prep
+adj n aux part
+pro aux part to vi adj
+wh prep
+v prep n
+pro aux det n pro v prep
+aux pro part pro
+wh aux pro det n
+pro v pro prep det adj n
+vi det n prep pro
+pro v pro to vi
+pro v n prep n
+aux pro vi to vi prep pro
+v prep pro
+prep adj adj n
+det n v pro
+aux pro vi prep n det n
+vi pro prep prep
+det n prep adj n
+vi n prep det n
+pro aux part to vi prop
+vi pro prep adj n
+wh adj aux pro
+aux pro part n
+wh aux pro part prep adj n
+pro aux vi n prep adj n
+wh v adj n
+pro v n prep
+wh aux det n vi prep
+aux pro vi to vi pro prep
+pro aux vi to vi pro prep
+pro v pro prep prep det n
+pro aux vi n prep det n
+adj n aux vi n
+wh aux pro prep det n
+det n prep
+pro v to vi prop
+prop aux vi n
+to vi det n
+pro aux vi n prep
+aux pro part to vi
+pro aux det adj n prep det n
+aux vi adj n prep
+aux vi adj n prep det n
+wh aux pro vi prop
+pro aux vi to vi n
+wh aux pro vi det n prep pro
+v prep
+aux pro vi n prep pro
+aux pro part prep pro
+pro v to vi pro prep det n
+aux pro vi pro prep n
+pro v to vi prep pro
+det n aux vi adj n
+pro aux det adj n prep
+pro aux adj to vi det n
+v to vi pro
+wh aux pro vi n prep
+aux vi adj n prep prep det n
+pro v to vi det adj n
+det n v prep det n
+aux det n vi det n
+aux pro det n prep pro
+vi pro prep det adj n
+vi pro adj
+aux pro vi prep det adj n
+aux pro vi pro to vi
+adj n aux vi
+prop aux vi det n
+det adj n aux adj
+wh aux det n prep adj n
+det n aux n
+aux pro part prep
+aux pro vi pro prep prep pro
+aux pro part to vi adj n
+pro aux vi adj n prep pro
+pro v n prep det n
+pro aux adj n prep pro
+adj n v prep det n
+pro aux n prep det adj n
+adj n v pro
+aux prop vi pro
+pro aux det adj n prep adj n
+aux pro vi det n prep prop
+aux pro vi n prep
+pro v to vi pro adj
+wh aux pro vi to vi prep
+v pro det n
+pro aux adj prep n
+v adj
+det n v det n
+adj adj adj n
+pro v to vi pro prep pro
+aux pro vi pro pro
+pro aux vi prep prep det n
+aux pro vi pro det adj n
+pro v pro to vi det n
+pro v to vi pro adj n
+pro aux det n prep prop
+pro aux part prep prep adj n
+aux det n
+pro aux pro prep
+pro aux part pro prep det n
+pro aux det adj n prep n
+aux pro adj prep pro
+aux pro part to vi det n
+aux pro vi pro n
+prep prep adj n
+pro v det adj adj n
+pro aux vi to vi adj
+vi n prep pro
+pro aux adj prep adj n
+vi prep prep
+pro aux det adj n pro v
+pro prep det n
+wh aux n vi prep
+pro aux det n prep det adj n
+wh aux pro vi pro prep pro
+prop aux part prep det n
+pro aux vi prep det adj n
+det n v adj
+wh aux vi
+pro aux adj prep det adj n
+wh v det n
+wh aux pro vi to vi adj n
+pro aux n prep n
+wh aux vi pro
+aux pro vi adj n prep
+n v n
+wh n prep det n
+wh aux pro part prep n
+wh n aux prep pro
+pro v to vi pro prep adj n
+wh n prep det n aux pro
+prep n prep pro
+wh aux pro det n prep
+aux pro vi n prep prop
+vi adj adj n
+pro v prop det n
+n prep det adj n
+det adj n prep n
+pro aux part to vi det adj n
+wh aux pro vi n prep pro
+wh aux pro vi pro prep det adj n
+wh v det adj n
+aux vi pro adj
+wh aux det n vi prep det n
+wh aux pro det adj n
+det n prep det n v prep
+n aux part
+pro aux adj to vi pro
+pro v to vi prep n
+prep part n
+pro aux vi pro prep prep
+aux pro adj prep
+aux pro vi pro det n prep n
+wh aux pro vi pro prep adj n
+wh aux pro vi det adj n prep
+pro aux vi det n prep det adj n
+prop v prep det n
+adj adj n prep n
+aux adj n vi prep
+pro aux vi pro prep prep adj n
+prop aux prep det n
+prep det n prep det n
+vi prep n
+adj n aux
+wh n aux pro vi prep det n
+pro aux part to vi pro prep prop
+vi pro n
+pro v prep det n prep det n
+pro v pro to vi prep
+wh n prep n aux pro part to vi
+aux pro adj to vi prep n
+adj n aux det n
+aux pro part to vi adj
+aux pro vi to vi det n prep
+wh aux pro part to vi prep n
+wh aux pro adj to vi
+wh aux pro vi prep adj n det n
+part adj n
+wh aux part prep
+pro v det adj n prep
+aux pro vi to vi prep det adj n
+prep prep prop
+part prep adj n
+wh aux det n adj
+wh prop
+pro v prep prep pro
+aux pro det n prep det n
+aux pro part to vi pro prep
+wh aux pro vi to
+aux pro part pro prep
+aux pro vi prep prep det n
+wh aux pro part to vi prep
+adj prep prop
+adj n prep det n
+vi det adj n prep
+pro aux part to vi det n prep
+wh aux pro vi pro n
+pro v det n prep prop
+to vi pro
+prop aux vi adj n
+pro v adj n adj n
+aux pro vi det n prep adj n
+aux pro vi prop adj n
+to vi prep
+pro aux adj prep prop
+vi pro pro
+pro aux vi to vi prep prop
+v det adj n
+pro v adj prep det n
+adj prep adj n
+aux vi n
+pro v adj n prep adj n
+pro aux part to vi det n prep pro
+pro aux vi pro pro
+prop v adj n
+aux pro vi to vi prep adj n
+pro v n prep prop
+pro aux part pro det n
+pro part prop
+pro aux vi to vi pro adj n
+pro aux n pro v
+pro aux vi det n det n
+pro v pro prep n
+aux pro vi det adj n prep
+adj n aux prep
+wh aux det adj n part
+pro aux part to vi adj n
+wh prep adj adj n
+vi prep prep adj n
+aux pro vi prop adj adj n
+aux pro part det adj n
+pro v pro to vi prep pro
+aux pro vi prop pro
+aux adj n adj
+aux pro pro prep det n
+vi pro prep prep prop
+wh v prep det adj n
+pro v to
+wh aux pro part prep prop
+wh aux pro part to vi prep adj n
+wh n prep adj n aux pro
+prep part
+pro aux det n pro aux vi
+aux pro det n prep
+pro aux part adj adj n
+wh n prep n aux pro vi prep
+wh aux pro prep prop
+pro aux adj adj adj n
+pro v prep prep det adj n
+aux pro part to vi pro
+adj n aux prep n
+aux pro vi prop prep adj n
+aux pro vi prep n prep n
+adj n aux part to vi
+prep det n prep n
+det n aux part prep det n
+wh aux prop vi prep det n
+pro aux part to vi pro prep pro
+det n aux vi prep det n
+wh aux part prep det adj n
+aux pro vi to vi adj n prep pro
+wh n prep n aux pro part
+aux pro vi pro to vi pro prep
+pro aux adj to vi det n prep det n
+pro aux vi adj n part
+pro aux part pro prep adj n
+pro to vi
+pro aux part to vi pro det n
+pro aux det n prep det n comp v det n prep
+v prep det adj n
+adj n prep adj n
+pro v to vi pro n prep det n
+wh aux adj prep det adj n
+wh aux pro n
+pro aux vi pro prep n
+det n comp v
+prep adj adj adj n
+to vi det n prep
+det n aux part adj n
+wh aux pro comp pro v
+pro aux part prep prep
+pro v adj n prep n
+pro aux vi to vi adj adj n
+pro aux part to vi pro prep n
+pro aux vi to vi det n det adj n
+prop prep prop
+pro aux part pro prep det n comp pro v
+pro v adj n adj
+wh aux vi adj n prep
+wh aux part det n
+pro aux part adj n prep det n
+pro v det n prep det adj n
+pro aux adj prep prep det n
+wh aux prop vi pro
+aux vi prep prop
+to vi
+wh n aux pro vi pro
+prop aux vi prep pro
+wh aux pro vi pro prep prep
+n prep prop
+pro aux part prep n prep det n
+aux pro part adj n
+pro v prep prep
+comp pro aux part
+pro aux vi pro prep prop
+pro aux vi adj prep
+pro v to vi pro prep prep det n
+pro aux part to vi adj adj n
+vi adj n prep prep det n
+part det adj n
+aux vi prop prep det n
+pro aux vi pro part
+v to vi det n
+aux pro vi adj n to vi prep
+v to vi n
+pro aux vi prep pro prep pro
+pro aux part pro prep pro
+aux pro part adj
+wh n aux part adj
+pro aux vi prep prep n
+prop prep det n
+vi pro prep prep adj n
+adj prep det adj n
+pro aux vi pro prep det adj n
+pro aux part pro n
+wh aux adj n part
+n prep adj n v
+pro aux vi to vi det adj n
+pro v prep det adj adj n
+aux pro vi pro prep prep det n
+aux det n part
+vi adj n prep pro
+pro aux det n part det n
+aux pro vi adj n comp pro v
+n comp v det n
+det n v adj n
+pro aux n prep pro to vi prep
+aux vi det n prep det n prep pro
+prop v det n prep det n
+aux pro vi adj n prep prop
+aux pro prep pro
+pro v adj adj
+v to vi
+pro aux part to vi prep adj n
+pro aux n prep n prep prop
+vi det n prep pro prep
+det adj n aux det n
+wh n aux pro vi pro prep
+wh n v
+v pro prep
+pro aux vi adj adj n prep
+pro aux part to vi prep prop
+v prop
+aux vi prep pro prep pro
+pro aux part to vi pro n
+pro aux adj n prep n
+part to vi
+prop aux part to vi pro det n
+aux pro vi pro prop
+aux pro adj prep adj n
+prep det n prep
+det adj n aux prep det n
+n comp v prep
+pro aux vi n det n prep
+wh aux pro vi det n prep det n
+aux pro vi to vi pro prep adj n
+det n aux prep adj n
+det n aux vi n
+wh aux det n prep
+pro aux part n prep det n
+prop aux part to vi
+pro v det adj n prep n
+pro v prep prep n
+pro aux vi pro prep adj
+wh aux det n vi prep pro
+aux pro vi det adj adj n
+pro aux vi to vi prep pro
+wh aux pro part n prep
+pro aux n pro aux vi
+wh aux det n vi det n
+aux pro vi pro adj adj n
+aux vi to vi pro
+wh adj n prep n aux pro vi
+pro aux part to vi pro prep prep det n
+vi det n prep prop
+aux vi pro det n
+aux pro vi n prep pro prep
+adj n pro v
+aux pro adj n prep
+aux pro vi pro to vi adj n
+pro aux part to vi pro adj
+pro v to vi adj n prep
+aux pro vi prop det n
+det n prep adj adj n
+part det n prep pro
+pro v n prep pro pro v
+aux pro vi prop prep det n
+pro aux part to vi prep prep adj n
+aux pro vi pro prep pro prep adj n
+pro aux part prop prep det adj n
+vi prop adj n
+aux pro vi adj n adj
+pro aux part to vi pro prep det n
+aux pro vi det n prep det n prep n
+pro aux det n part prep det n
+adj adj n prep
+prep det n prep pro
+vi adj adj
+pro aux vi det n prep det n prep prep adj n
+aux pro vi adj n comp aux adj
+wh aux prop vi adj
+pro v adj prep prop
+pro v pro det adj n pro v n
+wh n prep n aux pro vi prep pro
+wh aux pro part to vi adj n
+pro aux det n part
+wh aux pro vi to vi det n
+wh aux pro prep adj n
+pro prep pro
+aux pro vi to vi prep
+aux pro adj prep det n
+pro aux vi adj prep pro
+pro aux part to vi adj n prep
+wh aux det adj n pro v
+pro v prep det adj n prep det n
+aux pro part to vi pro prep det n
+wh aux pro vi to vi pro prep
+wh aux pro part prep det adj n
+pro aux det n comp v det n
+adj adj n v
+aux pro vi det n prep adj adj n
+aux vi det n adj
+aux vi det n prep prop
+prop aux prop
+pro aux vi adj to vi
+wh aux pro adj n
+det n prep prop
+wh adj n prep n
+pro v to vi adj prep pro
+pro aux adj to vi prep det n
+aux vi prep prep adj n prep det n
+wh aux pro part to vi prep prop
+aux pro det adj adj n
+pro v prep adj
+pro aux vi prep prep
+vi prep det adj n prep det n
+aux pro det n pro aux part
+adj n v prep n
+vi pro prep prep pro
+aux pro vi det n part
+wh aux adj adj adj n
+pro aux det n pro v pro
+comp pro v prep
+part to vi pro
+prop v det adj n
+vi det n prep prep
+det n part
+pro aux vi to vi prep n
+pro aux part prep adj adj n
+prop aux part prep pro
+aux pro vi to vi prop
+pro v to vi prep prop
+prop aux vi to vi pro
+vi prep prep pro
+wh v det n prep
+wh aux pro vi pro prep adj adj n
+pro aux det n part prop
+aux pro part prep det adj n
+aux pro vi det adj n prep pro
+pro aux det adj adj adj n
+wh aux pro prop
+pro aux part to vi pro pro
+adj n aux vi pro
+v prep prop
+pro aux vi to vi adj n
+pro aux det n prep adj n
+aux prop vi det n
+det n aux prep pro
+pro aux vi pro pro prep pro
+wh v pro prep
+part prep det adj n
+pro aux pro prep det adj n
+pro v prep n prep n
+n aux
+wh n aux adj n
+pro aux n prep prep det n
+aux vi to vi det n prep
+pro v det n to vi n
+det n aux pro
+pro v pro prep adj n prep det n
+pro aux det n comp aux part
+pro aux vi det n pro v
+pro v pro prep prep det adj n
+pro aux pro to vi prep
+pro aux det n prep part n
+aux pro part prop
+aux pro prep n
+adj n v det n
+pro aux vi adj adj adj n
+wh aux pro part to vi det n prep
+wh n aux prop
+pro aux pro prep prop
+aux vi adj prep det n
+vi det n prep n
+aux det n prep det n
+pro v to vi pro prep prep prop
+wh n v det n
+v prep adj n
+pro v pro prep prep prop
+aux vi prep prep det n
+det n v prep n
+det n aux part prep prep det n
+vi adj prep det n
+pro aux vi to vi pro prep det n
+pro v adj adj n prep adj n
+pro aux vi pro n
+pro aux vi n prep n
+wh aux pro pro v
+aux prop det n
+det n aux vi prep pro
+det n aux part det n
+pro v pro pro
+wh aux pro prep pro
+pro aux part to vi det adj adj n
+to vi prep det n
+wh aux pro vi prop adj adj n
+v pro n
+adj n aux prep det adj n
+vi pro adj prep pro
+wh aux pro vi pro det adj n
+wh aux pro vi pro pro
+wh aux pro part prep pro n
+prop v prep
+adj adj n pro aux vi to vi
+wh aux adj n vi adj
+prop v prep n
+aux pro vi pro det n prep det n
+vi pro prep adj adj n
+aux vi adj adj n
+adj n aux vi prep
+aux pro vi det adj n prep n
+aux pro vi n prep adj n
+pro aux part prep det n prep det n
+wh n aux det n prep adj n
+pro v det adj n prep adj n
+aux vi det adj n
+vi det n prep pro prep det n
+wh aux pro vi prep prep pro
+pro v det n adj
+wh aux det adj n part to vi prep det n
+pro aux det n pro v det n prep
+aux pro vi pro prep det adj n comp pro v
+wh aux adj n prop
+pro v prep n comp pro v prep n
+wh aux part to vi prep det n
+pro v det adj n comp v to vi pro
+pro aux det n prep det n prep det n prep det n
+prop v adj n prep n
+wh aux part adj n
+wh aux pro vi adj adj adj n
+aux vi pro adj prep adj n
+aux pro vi to vi adj n prep det n
+part det n prep
+pro v pro to vi pro prep
+pro v pro comp v prep det n
+pro aux adj to vi n prep pro prep pro
+prop aux part n prep
+pro aux vi prep prep pro
+prop aux det adj n comp v prep prop
+aux pro part det n prep det n prep
+to vi adj prep det n
+pro aux vi pro prep n pro v det adj n
+pro aux vi n prep adj adj n
+pro aux det n prop v prep prep det adj n
+aux pro prep det n comp prop v
+pro aux vi pro to vi det n
+pro aux adj to
+aux pro vi pro comp v prep pro
+aux pro det adj n pro v
+pro aux adj n comp pro v prep det n
+prep prep prep adj n
+det adj n part
+det n comp pro v pro prep
+pro v det adj n to vi pro prep prep det n
+wh adj aux pro vi pro prep part pro
+n to vi prep n
+det n comp pro v prep
+aux pro vi n comp v adj
+pro aux vi det adj n prep adj n
+aux pro vi det n prep prep
+adj n v adj prep pro
+wh aux det adj n prep adj n
+aux det n vi adj n prep prep pro
+prop v to vi
+vi det adj adj n prep prep det n
+pro v adj det n prep
+aux pro vi pro comp aux vi prep det adj n
+wh prop v
+wh prep det n prep adj n
+aux det n part pro n
+pro aux vi det adj n prep det n
+wh aux pro det adj n prep det n
+prep prop to vi
+pro v prep pro det n
+adj prep adj adj adj n
+pro aux vi pro to vi adj n
+prop aux prep pro
+wh v det adj n prep
+pro v to vi adj prep n pro
+aux pro vi prop to vi det n prep pro
+pro aux part to vi prep prep prop
+pro v prep pro pro v adj
+pro aux vi to vi pro n prep prep pro
+wh adj n aux prep
+adj n aux part prep adj n
+pro v pro det adj n
+pro aux vi adj n to vi
+pro aux adj n prep pro to vi
+adj n aux prep det n
+pro aux det adj n part det n prep n
+pro aux prop prep prop
+wh aux prop vi prep n
+det n aux vi to vi pro
+pro comp aux adj
+aux pro vi det n comp v prep
+pro v adj prep n
+pro aux adj prep pro to vi pro det n
+aux pro det n pro v prep n
+prep part adj n
+adj n v pro prep prep det n
+wh aux adj n prep
+pro aux to vi pro prep
+aux pro det n prep n comp det n aux vi
+v det n prep
+pro v pro adj prep prep det n
+aux pro vi prep prop to vi det n
+pro v pro prep pro det n
+wh aux pro n prep
+pro v adj n prep pro adj adj n
+wh aux pro part to vi adj n prep det n
+n aux det n
+pro aux vi det adj n prep n
+pro aux adj n prep det adj n
+wh n aux det n vi
+wh aux pro vi n prep det adj n comp prop v pro
+n v prep n prep pro
+vi prep det n prep adj n
+pro v pro to vi adj n
+pro v to vi n to vi pro prep
+prop aux det n prep
+prop v adj adj n
+pro v to vi pro det n
+wh aux pro comp v prep pro
+det n v det n prep
+det n pro v adj n
+adj n comp pro aux vi prep
+pro aux part prep prep det n
+wh prep det n prep det n prep pro
+pro part prep det n
+pro aux part n part
+wh aux pro vi to vi adj n prep
+pro aux vi n prep prep det n
+pro v pro to vi prep adj n
+prop aux part to vi prep det n
+wh aux pro vi to vi adj prep pro
+vi adj n prep det adj n
+pro v adj n to vi
+pro v pro to vi adj adj n
+prop aux vi prop
+pro aux vi pro to
+adj to vi prep det n
+pro aux vi to vi prep prop prep pro
+vi to vi adj n adj prep
+wh aux part pro
+det n aux det adj n prep det adj n
+wh prep part to vi det n pro aux
+pro aux vi det n to vi adj n
+wh aux pro vi pro adj n prep det n prep det n
+comp prop v pro
+aux pro vi to vi prop prep adj n
+aux pro vi det n comp aux adj prep det n
+prep pro prep adj n
+prop prep adj n
+v to vi pro prep
+det n aux det adj n
+pro aux prep det n to vi prep
+prop aux vi to vi adj adj n
+det adj n v n prep adj n
+n prep pro aux n prep n
+adj n aux adj to vi prep
+pro aux part prep pro to vi det adj adj n prep
+pro v adj n prep part det n
+wh prep det n comp v prep
+wh aux det n part prep det adj n
+aux pro adj to vi pro
+wh det adj adj n
+prop v n prep
+wh aux pro vi to vi prep prop
+prop aux part to vi adj adj
+prep det n prep adj n
+pro aux part pro det adj n
+pro aux part adj prep det n
+aux vi pro prep det n prep pro
+wh aux pro part to vi to vi det n
+aux det adj n det n
+v det n prep det n
+wh aux vi prep pro
+adj n v pro prep pro
+det adj n prep det n aux part det n
+det n aux adj prep
+wh aux pro part to vi pro prep
+aux pro vi pro adj prep det n
+aux pro vi det n to vi pro
+pro aux vi adj to vi pro prep
+wh aux adj n prep pro
+pro v pro to vi pro prep pro
+n v det n prep
+det n prep prep det n
+pro aux part adj n prep prep pro
+wh aux pro vi prep det n det n
+pro v to vi adj to vi adj n
+pro aux prep prep det adj n
+pro aux part to vi prep pro prep det n
+aux pro vi to vi n
+pro aux det n pro aux vi prep
+pro aux vi det n prep prep det n
+adj n aux vi prep pro
+n aux vi det n
+pro aux adj adj n prep
+prop aux det n comp pro v prop
+det n comp aux det adj n
+wh aux pro vi n prep adj n
+aux pro det n prep pro prep adj n
+vi adj n prep prep
+det n prep prep adj n
+wh aux pro part to vi det adj n
+pro aux det adj n pro v adj adj n prep
+pro aux vi det adj n to vi prep n
+pro aux det adj n prep n pro v prep n comp v
+wh n prep n v prep
+wh aux pro vi prep n prep n
+pro v prop to vi prep det n
+pro v to vi n prep pro
+aux det n to vi prep prep det n
+wh aux n part
+det n pro aux part
+aux pro prep det n prep adj n
+prep det n prep n prep pro
+wh aux pro vi det adj n to vi adj n prep
+aux det n pro
+pro v n adj
+wh aux det adj n part prep
+prop aux part adj n prep adj n prep det n
+wh v n prep pro
+wh det n
+wh aux prop vi prep pro to vi adj n prep
+wh aux det n pro aux part
+wh n prep n aux part
+det n comp pro v
+prop v pro prep det n
+part prop n
+n aux vi n
+n v prep prep det n
+wh aux pro part to vi prep det n prep pro
+wh adj adj n aux vi adj
+adj n part pro
+det n v prep det adj n
+prop part
+adj prep pro prep part det n prep
+comp pro v prep det n
+pro aux part to vi pro pro prep det n
+prop v n prep pro
+pro aux det adj n pro aux part
+wh aux pro vi det n prep det adj n
+wh aux det adj n comp prop v
+aux vi prop prep adj n
+pro aux part to vi n prep
+pro aux adj prep prop to vi
+pro aux det n comp pro v prep n prep pro
+n prep det n prep adj n
+prep prep pro
+aux pro prep adj n
+part prep n prep det n
+pro aux part det n prep pro
+pro aux part prop det n
+n prep adj n prep pro
+adj n aux vi to vi n prep pro
+pro v adj adj n det n
+vi prep adj adj n
+pro aux vi pro prep adj n prep adj n
+vi to vi pro prep det adj n
+pro aux part to vi prep
+wh aux pro vi pro prep prep det n
+pro aux part prep prep det adj n
+pro aux adj prep n prep det n
+aux pro vi det adj n prep det n
+pro aux adj to vi prep prep adj n
+pro aux vi pro prep prep prep det n
+prop v n
+wh adj n aux pro vi to vi
+prop aux vi pro prep adj n
+wh aux pro vi prep prep pro prep det n
+v pro prep prop to vi
+aux pro adj to vi n
+pro aux pro pro v
+pro aux det adj n comp aux adj
+aux pro part to vi pro det n
+aux pro det n part prep n
+adj n v pro prep pro prep adj n
+vi prep det n prep det n prep det n
+pro v det n adj n
+vi pro prep n prep pro
+wh aux part prep prop
+aux pro vi det n prep prep n
+wh aux part prop
+pro aux det adj n prep prop
+pro aux det n to vi det n prep det n
+det n prep det n comp v det n v pro
+wh v n prep
+aux pro vi pro pro prep det n
+pro aux prep det n prep prep det n
+wh aux pro part to vi det n
+det n aux det adj n prep
+pro aux pro pro aux vi prep
+part pro det n
+prop aux part det n
+pro v det n prep prep pro
+pro aux vi to vi pro adj adj
+pro v to vi det n det n
+wh n aux det n pro v prop
+prop v prop
+aux det adj n vi pro
+prep det n to vi prep
+wh aux prop part to vi prep det n
+n v prep adj n
+wh det n aux part
+aux pro part to vi pro prep prop
+wh v adj n prep
+pro v pro prep pro prep det n
+aux pro vi prep pro to vi prep adj n
+aux pro vi adj n prep prep pro
+pro aux adj n to vi det n prep det n
+pro aux part to vi prep prep n
+prop aux vi prep pro to vi pro prep
+wh aux det adj n part to vi prep n prep det n
+aux pro n prep pro to vi prep
+pro aux vi pro prep prep n prep pro
+pro aux part prep det n prep n
+aux pro vi pro to vi pro prep pro
+pro aux vi to vi adj adj adj n prep adj n
+aux det n vi n
+pro v pro comp pro v
+aux pro pro prep det adj n
+wh n aux prep
+det n aux prep det adj n
+wh aux prep prep det n
+aux pro vi prop prep prop
+part n prep
+n v prep
+pro v to vi prep prep n prep det n
+wh aux pro pro aux part prep
+n aux det n prep
+aux pro vi to vi det n comp aux prep det adj n
+wh n v n
+wh n aux pro vi pro to vi prep
+wh aux pro vi prop to vi
+wh aux n vi to vi
+prop aux vi pro prep pro
+pro aux part prep n prep adj n
+aux pro det n part prop
+pro aux part to vi n prep pro
+pro v prep det n prep adj n
+det n v prep pro
+pro aux part det n comp v pro
+adj n prep
+wh aux vi prep det n
+pro v n to vi to vi
+n aux prop
+wh aux pro adj to vi pro det n
+det n part prep det n
+aux pro vi to vi n prep det n pro v
+pro v n prep prep det n
+wh aux det adj n prep n
+wh v det n prep pro
+wh aux pro vi pro adj
+pro part pro
+pro aux vi to vi pro prep n prep prop
+pro aux n prep pro prep
+prop v prep det adj n
+vi prep adj
+pro aux vi pro adj n prep pro
+pro aux det adj n comp aux part
+pro aux det adj n part prop
+wh aux pro vi adj n prep pro
+det n aux vi adj
+pro v det n prep pro to vi pro
+prop aux vi pro det n
+pro aux prop part det n prep det n
+aux pro part to vi det n prep
+pro aux vi pro prep adj adj n
+pro aux part to vi n prep adj n
+aux pro vi to vi pro prep pro
+pro v pro prep prep adj n
+wh aux pro prop prep det n
+wh aux pro vi det adj n prep det n prep det n
+vi prop n
+vi prep n prep det n
+pro aux n prep det n prep det n
+pro aux vi det adj n to vi prop
+det adj adj n aux part adj n prep
+pro aux part to vi det adj n prep det n prep det n
+pro aux det adj adj n prep pro to vi
+aux pro vi det adj n prep prop
+pro aux vi n to vi prep prop
+vi prop prep det n pro v
+adj to vi prop
+pro aux pro prep to vi prep
+pro aux det n comp aux part prep prep n
+vi adj n prep prep prep det n
+wh adj adj n aux pro vi
+wh prep det adj n prep det n
+pro aux part to vi det n det n
+wh aux pro part pro prep n
+aux det adj n prep n
+wh aux det n pro v
+aux pro part n prep pro
+pro v n to vi pro
+vi adj n det adj n
+pro aux vi det n comp det n v
+det n comp v det n
+wh n v pro
+wh aux pro vi pro adj n
+pro aux det n comp v prep det n
+adj adj n aux vi prep adj
+prop v prep prop
+pro v pro pro prep pro
+aux pro det n prop v
+pro aux vi to vi prep prep det n prep det n
+wh aux pro part det n prep
+pro aux vi pro to vi adj prep pro
+aux pro vi pro to vi pro det n
+det n aux part prep pro to vi
+pro aux part adj adj n det n
+wh adj n aux pro
+pro aux vi n det adj n
+prep part pro prep
+pro aux part adj adj n prep
+aux pro det n part adj n
+wh aux pro vi to vi prop prep
+wh aux pro vi prep n prep
+aux vi adj prep
+aux pro part to vi det adj n
+det n aux part prep
+pro aux det adj n prep det adj n
+det n pro aux part prep aux part
+pro aux adj to vi n prep pro prep n
+pro v to vi pro prep pro adj
+pro aux part adj n prep
+wh pro aux pro vi
+v n
+aux adj n vi
+adj n prep adj adj n
+det n prep n prep det n
+pro aux prep det adj n comp pro v det n prep prop
+pro aux adj prep pro pro v prep prep prop
+n aux vi prep prep n
+wh v det adj n prep n
+n v n prep det n
+wh aux prop vi adj n
+vi prep det n pro v
+v pro to vi pro
+pro aux det n det n v prep
+pro aux vi det n prep prep adj n
+det n pro v det n prep
+pro v to vi det n prep det adj n
+pro v to vi prep prep det n
+pro aux part to vi adj adj adj n
+pro aux adj to vi pro prep det n
+pro v prep adj n prep det n
+det adj n aux prep adj n
+vi prep det n part prep
+v pro prep pro
+pro v to vi det n prep pro
+pro aux part to vi det n prep det n
+pro aux part prep det n pro v prep part prep det n
+aux pro vi n prep pro prep n
+aux pro vi prep pro comp aux det adj n prep n
+comp n v
+pro aux pro pro v adj
+det n comp aux part v det n
+pro v adj adj n prep
+prop v pro to vi pro prep
+wh aux pro vi prop to vi prep pro
+adj n aux part prep det n
+aux pro vi to vi prop adj adj n
+wh n v prep prep det adj n
+pro v n prep adj n prep n
+pro v to vi pro n prep det adj n
+pro aux pro prep adj adj n
+pro v to vi n to vi pro
+pro aux vi prep adj n prep det n prep det n
+pro aux part adj prep det adj n
+wh n prep n aux pro comp pro aux vi pro prep det adj n
+pro v to vi det n det n prep
+pro aux vi n prep pro adj to vi
+pro aux part n adj
+prop v n prep det n
+pro aux vi adj prep det n
+aux pro det n pro v det n
+aux pro vi adj adj n prep n
+pro to vi pro
+wh aux prop vi prep
+aux pro vi prep prep n prep det n
+adj n aux det adj n
+pro aux part adj prep
+pro aux det n prep n prep pro to vi prep
+aux pro vi det n comp pro v prep n
+wh aux adj adj n vi
+pro v adj to vi
+wh n prep n v
+wh aux det n prep det adj n
+wh aux pro vi n prep det n prep
+pro aux vi adj n comp aux vi prep det n
+wh aux pro vi prop det n
+wh aux pro vi prep pro n
+aux pro vi to vi prep adj
+pro v adj prep adj adj n
+comp pro aux adj
+aux pro vi prep pro adj
+pro v prep n prep pro
+det adj n aux prep det adj n
+wh adj n aux prep pro
+pro aux vi prep pro comp aux part prep prep det n
+adj n aux part prep
+wh aux pro part det n prep pro
+det n v prop
+pro v to vi pro det n prep
+det adj n v det n
+aux pro pro pro v
+aux vi n det n
+wh aux pro part prep prop n
+aux pro part to vi n prep pro
+part pro prep
+adj adj n aux prep
+prop v det n prep det adj n
+aux pro vi pro to vi prep
+vi to vi prep pro
+pro v det n prep det adj n prep prop
+pro aux part det n prep det n
+wh aux pro vi to vi prep n
+wh v adj prep det n
+pro aux vi adj to vi prep prep det n
+wh pro aux
+pro aux vi prop to vi adj
+n aux vi prep
+prop v to vi pro
+prop aux part to vi n
+part to vi pro prep prep
+n v to vi n
+n prep det n aux adj
+pro aux vi det n prep adj
+pro v det n prep prep det n
+det n prep part n adj
+wh aux pro part prep prep
+det adj n v prop prep adj n
+det n aux vi prep prep
+wh aux det n prep adj n vi
+det n aux part pro
+wh aux det n vi prep adj n
+prop aux part to vi det n
+prop aux vi pro n
+det adj n v det n prep
+pro v prep pro prep n
+pro prep pro to vi adj n prep
+det adj n aux part to vi prep
+det n pro aux part prep
+pro aux vi prep pro prep det n
+pro v to vi det n prep n
+pro aux det adj n to vi prep
+wh aux pro vi det n prep prep n
+pro aux vi adj to vi pro part prep pro
+det n aux vi pro prep
+wh n prep n aux det n
+aux pro vi prop n
+aux pro adj adj n comp v prep
+aux vi prep det n prep pro
+prop aux part prep
+prep adj adj n prep det n
+wh aux pro vi pro adj prep prop
+aux pro vi to vi det n comp prop v det adj n
+vi prep adj n prep det n
+aux pro vi det n prep pro prep n
+wh aux prop adj
+pro v det n part det n prep
+det n part prep
+wh aux pro part to vi prep det adj n
+aux pro vi to vi det n prep adj n
+pro aux part det n comp v prep pro
+n aux to vi prep n
+aux pro vi prop adj n part prep adj n
+pro v prop prep det n
+det n aux adj prep adj n
+adj adj adj n aux part n prep det n
+pro aux part to vi prep n
+vi prep det n prep pro
+pro v prop prep pro
+pro aux det n pro aux part
+pro aux vi n prep prep det adj n
+wh aux det n vi prep n
+pro aux prep prep n
+pro aux vi det n prep prop n prep adj n
+pro v to vi det n prep prop
+wh aux det adj n part prep det n
+v to vi adj
+aux adj n vi n
+wh n aux pro vi prep n
+wh aux det n pro aux part comp pro v n
+pro aux pro prep prep adj n
+wh n prep det n aux pro vi prep
+adj adj n prep prop
+aux vi prep pro to vi prep
+n aux prep adj n prep n
+aux pro adj prep adj adj n
+wh prep part det adj n
+pro aux det n pro v to vi adj n
+pro aux det n pro v to vi
+wh aux pro vi to vi det n prep det n
+pro aux vi adj to vi adj n
+prop aux part to vi det n prep adj n
+pro v adj n prep prop
+adj n v to vi prep pro
+wh aux pro part to vi to vi adj n prep pro
+aux vi prep prep
+wh aux pro vi prep prop to vi det n
+wh aux pro vi to vi prop
+to vi pro adj
+pro aux vi n prep pro to vi
+pro aux part adj to vi
+pro v prop to vi pro prep pro
+aux pro vi prep prep
+wh n prep det n v prep pro
+pro v det n det n
+pro aux prep det n pro v
+pro aux vi pro to vi prep adj n
+aux pro adj n comp aux adj
+wh prep adj adj n prep prep det n
+n aux vi det n prep
+aux prop part to vi det n
+pro aux vi to vi pro adj
+aux pro vi adj n prop
+pro v det n prep prep n
+pro v to vi pro pro
+wh aux pro vi n adj n
+det adj n aux vi prep det adj n
+aux pro vi pro prep comp aux det adj n prep pro
+det n aux n part
+aux pro vi pro adj adj n prep n
+aux pro part to vi det n prep pro
+vi prep det n prep prop
+pro v prep prop prep det n
+aux pro part pro prep pro
+aux det n vi det adj adj n
+pro v pro prep n det n
+wh prep part
+wh aux pro vi prop pro
+to vi det n prep pro
+adj n aux prep adj n
+aux pro prep prop
+aux pro part to vi n
+aux adj n vi det n prep pro
+pro aux adj n part prop
+wh n prep n aux prop vi
+wh aux prop vi prep n prep prep det n
+wh aux adj n vi adj prep
+aux pro vi det n comp pro v prep
+v det n part prep prep det n
+v to vi pro prep prop
+pro v prep n prep adj n
+adj n aux part prep prop
+det n comp v prep prep det n
+pro v to vi pro prep n to vi pro
+prep pro prep det adj n
+wh aux pro vi pro to vi pro
+aux det n pro aux part prep prep det n prep det adj n
+det adj n aux vi det adj n
+pro v to vi pro to vi det n prep
+det n prep det n comp pro v det n v det n prep
+n aux pro
+wh aux det n vi adj n
+pro aux pro comp v prep det n
+pro v to vi prep prep prop
+aux pro vi prop to vi prep
+pro aux adj to vi prep pro
+pro v adj n to vi prep prep det n
+pro aux vi det n det adj n
+det adj adj n aux n
+pro v det n to vi
+aux pro part pro pro
+n aux part prep pro
+pro aux vi pro prep pro to vi prep det n
+pro aux part pro pro
+pro v to vi n pro v
+det adj n aux vi adj prep pro
+wh aux pro vi det n prep n
+aux pro vi prop prep
+pro v n det n det adj n
+aux pro vi prep pro pro aux part prep
+wh aux pro part to vi n
+pro v to vi adj n det n
+wh aux pro vi prop adj n
+wh aux pro part adj n prep det n
+pro aux part to vi pro det n prep
+det n v adj adj n
+pro aux part det n prep det adj n det adj n
+det adj n aux prop
+det n v det n prep pro
+det n v det adj n
+vi adj adj adj n
+wh aux n vi pro
+det n aux prep prop
+wh aux pro vi prop prep pro
+pro aux det adj n comp v prep
+pro aux part pro pro pro pro v
+prep part prep
+det n aux part n
+wh aux pro part to vi pro prep prep pro
+prep prep prop prep n
+det n aux vi det n
+wh aux n adj
+vi prep det adj n prep det n part
+prop v to vi n
+wh aux det n prep n part
+wh aux pro vi adj prep adj n
+pro aux part prep prep n
+pro v n pro
+prep det n prep prop
+pro v prep adj adj n
+n aux vi adj
+wh aux adj n vi prep
+pro aux vi pro to vi prep det n
+det n part pro
+aux pro vi det n comp v det n
+n det n v
+prop aux adj adj n
+pro part det n
+pro v to vi pro prep det adj n
+pro aux part to vi pro prep adj n
+pro v adj n comp pro v prep adj n
+pro aux vi pro to vi prep
+prop v prep pro
+pro v n comp pro v pro
+det n aux vi det n prep pro
+vi adj adj n prep
+aux pro vi n to vi pro prep
+prep det n comp aux part to vi det n
+wh prep det n comp v prep n
+det n v prep prep pro
+aux adj n vi pro prep pro
+wh prep part adj adj n
+wh aux pro vi det n prep prop
+aux adj n vi det n
+wh aux pro comp pro aux part prep
+n prep part det n
+pro aux part adj n prep det adj n
+aux n
+n prep part n
+pro aux part adj prep pro
+pro v det adj adj adj n
+n aux vi prep det n
+vi adj n part adj adj n
+wh aux part prep prep det n
+pro v prep det n prep prop
+aux pro vi to vi adj n prep det adj n
+wh aux det n prep prop
+wh aux pro vi adj n adj
+part n det n prep
+pro aux vi to vi prep det adj n
+part det n prep prep det n
+aux n adj
+pro v adj n prep prep
+det adj n aux vi prep adj n
+vi prep det n pro aux vi
+pro aux part prep pro to vi pro prep adj n
+adj n aux vi to vi det adj n
+aux pro vi adj n prep det adj n
+aux pro det n prep prep det n
+pro aux part adj n prep prop
+comp pro v
+pro aux adj n part det n prep
+aux pro vi prep pro to vi pro prep prep prep adj n
+prop aux part to vi pro det n prop
+pro v to vi prop prep pro
+aux pro vi to vi det n prep pro
+prop v to vi det n
+det adj n aux adj prep adj n
+prop aux det n prep pro
+aux pro vi det n part prep
+pro v prep det n prep
+pro v prep n comp v pro adj
+wh n v prep pro
+pro v to vi adj n prep prep det n
+wh aux adj n part prep
+pro aux vi to vi prep
+aux pro vi pro comp aux vi pro
+wh aux part to vi det n
+det n v pro prep adj n
+prep det adj adj n
+pro v prep pro to vi prep pro
+aux pro vi to vi prop prep det n
+vi to vi pro prep
+aux det n vi pro prep n
+n prep det adj n comp aux n aux adj
+v pro pro
+pro aux vi prep n pro
+pro aux vi to vi det n prep n prep
+pro v pro to vi pro prep det n
+wh aux pro vi pro prep prop
+wh n aux prep det n
+wh aux pro vi det n prep prep det n
+aux pro vi adj n prep n prep det adj n
+pro aux part prep pro prep n
+pro aux vi adj prep prep prep pro
+pro v to vi det n to vi
+part adj n prep pro
+pro v adj n prep det adj n prep adj n
+wh aux pro vi adj adj n
+aux adj n vi prep adj
+pro aux adj n comp pro v
+adj n v n
+aux pro pro pro aux vi prep pro
+pro v pro to vi n prep n prep
+det n aux vi to vi prep
+pro aux prep det adj adj n
+aux pro vi prep prep det n prep det n
+pro v det n n
+aux pro vi to vi n prep pro prep
+pro aux vi pro prep det n prep n
+wh aux det n prep prop part
+n v adj n
+pro aux det adj n comp aux part prep prop
+pro aux vi pro prep prep prep n
+comp pro aux pro
+aux pro vi pro prep det n comp v prep n
+pro aux to vi adj n
+pro aux adj n comp pro v to vi pro adj
+aux pro vi adj n prep pro
+det adj n aux prep n
+prop aux part n
+pro aux vi det adj adj n prep pro
+pro v adj n part prep
+vi to vi det n prep prep det n
+pro v det n prep det n adj n
+pro aux part to vi prop det n prep n
+pro aux vi det n prep det adj adj n
+prop aux vi det n prep det n
+wh aux pro part det adj n
+wh aux adj n adj
+pro aux vi n prep prep pro
+pro aux vi pro prop
+wh adj n aux pro vi prep pro
+pro aux vi adj n prep adj n
+pro v prop prep det n prep
+pro aux part n prep prop
+pro aux vi pro comp aux adj
+n aux prep adj n
+aux pro vi pro to vi prep det n
+aux vi pro prep prep det n
+wh aux prep det adj n
+adj n part prep prep det n
+pro v to vi det n prep adj n
+prep det n part prep pro
+wh aux pro adj to vi prep
+det adj n comp pro v prep
+part pro prep adj n
+wh prep det n prep det n
+to vi n
+adj n part prep det n
+wh aux vi to vi n
+pro aux adj prep pro to vi pro prep
+part to vi pro prep prop
+pro aux vi adj to vi prep
+pro v det n to vi pro
+pro aux det adj n to vi prep det adj n
+det n prep adj n aux vi prep
+aux pro vi to vi adj n prep prop
+wh adj adj n prep
+aux pro n prep adj n
+v prep det n prep det n
+pro aux vi det n adj
+det adj n aux part
+n aux vi prep pro
+prep n comp v prep det n prep adj n
+aux det adj n vi det n
+det n v prep adj n
+aux prop vi n
+wh aux pro vi prop to vi prep det n
+v det n prep det n prep det n
+n aux part pro
+wh det adj n prep n pro aux vi
+prep adj n prep n
+pro aux part n prep n
+pro v det n comp aux adj to vi
+pro aux part adj n part prep pro
+n aux vi n prep det n
+pro aux det n prep n pro v prep
+wh aux pro vi to vi n
+wh aux pro pro v prep adj n
+pro aux vi prep det n prep det n
+aux pro part to vi prep det n
+pro v pro comp pro aux vi to vi
+n part prep pro
+pro v to vi pro prep prep pro
+v adj n to vi pro
+aux pro det n comp aux adj
+det n v prep adj adj n
+v prep prep pro
+v to vi prep
+aux pro part to vi adj n prep det n
+aux pro vi det n prep det adj n
+n v adj
+pro aux part to vi pro prep prep
+pro aux vi pro to vi det n prep pro
+pro aux det n det n v to vi
+adj n aux part to vi prep pro
+n to vi prop
+wh aux det n vi n
+aux pro part det n prep
+aux pro det n prep n
+n aux part to vi prep pro
+part to vi det n prep det n
+aux adj n vi pro prep
+wh prep prop part n
+pro aux part to vi pro prep det adj n
+pro aux det n comp aux det n
+pro aux prop comp v n
+to vi prep prep
+pro v n prep prep part prop
+pro v n prep adj n prep pro
+pro v to vi det n prep prep adj n
+adj n v prep prep prep pro
+prep part prep n
+pro aux vi to vi pro pro
+wh aux n prep pro
+aux pro adj adj n prep
+prep part prep det n
+pro aux vi pro to vi det adj n
+pro aux vi to vi pro prep prop
+pro aux part prep prop n det n
+prop part n
+wh aux adj n vi prep det n
+adj adj n aux pro
+pro aux vi det adj n prep n prep adj n
+wh aux det adj adj n vi
+aux n vi n
+aux pro part pro adj n
+det n pro aux part prep det n
+adj n v pro prep
+prop aux part prep prop
+pro aux vi pro to vi
+pro aux det n prep part to vi prep n
+det n aux vi det n prep
+wh adj aux pro vi prep
+n prep prep prop
+adj n part
+wh aux pro vi to vi pro prep adj n
+pro aux part det n prep prep adj n
+pro aux det n comp v prep
+pro aux n pro v to vi
+vi prep n prep det adj n
+pro aux det n prep n prep n
+det n aux vi prep prop
+wh aux prop vi det adj n
+det n v prep prop
+pro v to vi det n to vi prep
+det adj n aux det adj n
+pro aux adj to vi n prep det n
+aux pro det adj n prep
+prep n prep pro prep det n
+wh aux det adj n prep pro
+wh aux pro vi prop det adj n comp v prep det n
+aux adj
+vi det n pro v
+wh aux pro part prop
+pro aux vi to vi prop pro
+aux pro vi to vi prep prep pro
+pro aux vi adj n to vi pro
+pro aux vi prep pro to vi prep
+det n aux part to vi det n prep adj n
+vi adj n prep n prep pro
+det n prep n aux det adj n
+pro aux det n comp v det adj n
+pro aux part to vi to vi det n
+pro v adj n prep prep pro prep n
+pro aux adj to vi n
+wh prep n prep det n
+n aux prep det adj n prep det adj n
+aux pro vi to vi adj adj n
+adj n prep prop
+vi det n adj n
+vi det adj n prep n
+pro aux det n prep det n prep prop prep det n
+pro aux part det n prep n prep pro
+wh aux prop part to vi
+det n v n prep adj n
+aux vi pro prep prep
+vi adj prep pro
+pro aux prep prep det n
+det n aux to vi prep
+pro aux det adj n prep pro
+v to vi prep prop
+vi pro prep det n comp prop v prop
+vi det n comp aux adj
+pro v to vi n prep adj n
+pro aux vi prep n part
+pro v n prep adj n prep det n
+vi prep det n comp pro v adj n
+pro v prep pro prep adj n
+pro v prop to vi pro
+wh n prep det n aux pro vi
+det adj n v prep pro
+v pro to vi pro prep pro
+wh aux pro vi to vi pro pro
+pro aux vi prop prep pro
+pro aux vi pro pro v
+aux n prep
+pro aux vi prep adj
+pro aux vi prep pro det n
+pro v pro prep pro adj n
+aux pro vi pro pro prep adj n
+wh aux pro vi det n comp aux prep det n
+pro v prop prep
+prop aux vi pro prep det n
+pro aux part det n pro
+wh aux pro part adj prep n
+aux pro det n pro v pro
+pro v pro to vi prep n prep
+pro aux n prep n prep det n
+det n part prop aux part prep pro
+pro aux part n prep adj n
+pro aux det adj adj n prep adj n
+n aux vi pro prep prep det n
+aux adj n vi pro
+pro aux pro to vi
+pro v n prep pro prep adj n
+pro v det n prep prep
+pro v to vi prep det adj n
+pro v to vi det n prep adj
+prep prep n
+det adj n v
+pro v pro to vi adj
+wh aux pro vi pro to vi prep
+wh aux pro vi pro det adj adj n
+v pro to vi prep pro
+aux pro part prep pro to vi
+pro aux vi to vi prep det n prep det n
+wh prep det n pro aux part prep
+det n aux vi adj prep det n
+wh n prep n aux n
+pro v pro prep prop
+aux prop pro prep n
+aux pro part pro prep det n prep adj n
+pro aux vi pro part prep
+wh aux det adj n part det adj n
+aux prop
+adj n aux vi prep pro adj n
+pro v pro prep det n prep pro
+wh aux pro vi det n prep prep pro
+det adj n aux n
+adj n aux vi n prep pro
+wh n aux pro vi prep pro
+aux pro pro pro aux part prep n
+wh aux pro vi prep n prep det n prep det n
+n part prep
+aux pro vi prep pro to vi pro adj
+pro aux part adj n prep adj n
+pro aux det n to vi det n
+pro aux det n comp pro v prep
+pro v pro to vi pro
+wh aux prop vi prep adj n
+aux pro vi n prep adj n prep det n
+part prop
+aux pro det n comp aux part prep det n
+pro aux det n comp pro v
+aux det n part to vi pro
+vi to vi det n prep
+pro aux det adj n to vi n prep
+pro aux pro pro aux part
+pro aux vi adj adj adj n prep n
+det n v pro prep det n
+pro v pro prep det n to vi
+wh aux pro adj prep
+pro aux part prep pro to vi n
+pro aux vi prep n prep n
+wh v pro prep pro
+aux pro prep adj adj n
+wh n aux pro prep pro
+adj adj adj n aux prep
+aux pro adj to vi prep pro
+pro v prep prep prop
+prep prep
+aux det n vi pro
+vi det n prep adj adj n
+pro aux vi det n prep n prep
+pro aux det n comp n v pro
+det adj n part prep
+wh v prep det adj n prep pro
+pro aux det n comp aux det n prep pro
+pro aux vi pro prep prep pro
+det n comp v prep n
+vi n prep adj n
+pro v pro comp pro aux part
+wh adj n aux pro vi pro
+pro v to vi n prep to vi pro prep
+part prep
+adj n v n prep
+wh aux pro vi adj adj n prep
+det adj n prep
+pro aux prep part n
+adj n aux vi prep det n
+wh aux prop prep
+pro v det n part prop
+vi prop prep prep adj n
+pro aux n prep det n comp adj n v
+pro aux to vi pro
+pro aux n prep det n comp pro v prep
+pro aux det adj n prep n prep adj n
+aux pro vi pro prep pro prep n
+aux n aux pro prep det n
+pro aux part pro prep n
+pro v pro to vi det n prep
+wh prep part prop det n
+wh aux pro vi adj n prep det n
+det n comp v n
+prop v adj n adj
+pro aux part prep n prep n
+pro v pro n prep pro
+pro aux part det adj adj n
+prop v pro prep prop to vi prep
+adj prep adj adj n
+pro aux det n comp prop v prep
+aux prop vi pro prep prop
+aux pro vi to vi det adj n
+aux pro adj adj adj n
+pro v det adj adj n prep det n
+wh aux pro vi pro prep det n prep
+pro aux vi pro pro pro v
+wh n aux det adj n
+wh aux pro vi prep pro pro
+pro aux to vi
+prop aux part prop
+pro aux det adj n comp v
+pro aux det n comp pro v prep det n
+pro aux vi det adj n part det n
+wh aux adj to vi prep pro
+pro aux part det adj n prep n
+wh aux pro vi to vi prep det n
+det n v prep prep adj n
+comp pro aux vi pro prep pro to vi
+wh v pro prep prep
+det n aux adj prep prep det n
+n aux vi to vi
+pro v pro pro prep
+adj n aux vi prep prop
+part prep pro to vi
+adj adj n v prep
+pro aux n comp pro v prep det n
+pro aux n prep adj n prep
+part det n prep prop
+det n pro v comp det n v
+pro aux vi det adj n prep prep
+det n v prep prep
+pro v to vi adj n part
+n aux adj n prep n
+aux vi adj n prep det adj n
+pro v prep det n prep pro
+prep part pro
+prop aux adj prep pro
+wh aux pro vi n det n prep n
+pro aux part pro adj
+pro aux part prep prop adj
+wh aux pro vi to vi det n prep adj n
+vi pro to vi
+det adj n aux part prep
+wh aux pro vi det n part prop
+aux pro vi prep n adj n
+wh n aux pro part prep
+aux pro vi prep pro pro aux vi to vi
+pro comp det n v prep adj n
+aux pro vi pro prep n prep n
+pro aux vi pro prep prep det n
+pro v to vi pro adj adj adj n to vi prep
+wh prep prep det n
+pro aux vi prep prep prep det adj n
+det n part prop v pro
+pro v pro pro v prep prep det adj n
+pro aux vi prep n adj n
+pro v pro prep part prep det adj n
+part adj
+wh aux det n comp v n
+vi pro to vi pro
+prop v det adj n prep det n
+aux part pro
+pro aux vi to vi det n prep to vi det adj n
+adj n v prep
+pro aux vi n prep det n prep det n
+adj n aux adj prep n
+wh aux pro vi prep pro adj
+prop aux vi adj n prep pro
+n v prep prep pro
+wh aux adj adj n part prep
+pro aux det n prep adj n prep
+pro aux prep det adj n prep det n
+aux pro vi pro prep n prep det n
+pro v to vi prep adj n
+aux vi adj n prop
+wh v det n prep det n prep n
+pro v pro part pro prep pro
+pro aux part to vi n prep n
+n comp aux adj aux vi
+det n aux adj prep det n
+det n prep det n aux det n
+det n aux vi n prep adj n
+wh aux det n comp v prep
+pro aux part to vi prep det adj n
+prop v prep det n prep pro
+pro v n prep prep n
+pro v adj n comp v prep pro
+aux pro vi pro to vi adj n prep
+wh n aux prop vi
+det n comp aux det n
+aux pro part n prep
+wh aux pro part adj n
+det n part adj n
+det n prep n aux vi
+aux pro part pro part adj n
+det n aux prep det n to vi prep
+aux pro vi pro prep adj n prep det n
+aux pro vi adj n prep adj n
+pro aux det n prep
+pro v to vi pro n det adj adj n
+n aux prep n prep adj n
+det n v pro prep
+pro v adj n comp v det n
+adj n part prep adj n
+pro aux part prep pro prep pro
+pro aux vi adj n pro n
+pro aux adj prep det n to vi adj
+det n aux vi to vi
+prop aux det adj adj n
+pro aux adj n to vi pro
+pro v adj n to vi prep
+pro aux vi adj n prep n prep pro
+pro v prep det n prep n prep pro
+vi pro pro comp aux adj
+n prep det n prep part det n aux to vi det adj n
+pro v prop det adj n
+vi det adj n prep det n
+pro aux vi adj to vi adj
+pro aux n prep prop
+det adj n v adj n
+pro aux adj to vi pro part det n prep
+n part prep n
+pro aux adj prep prop to vi prep det n
+pro aux vi pro to vi adj
+prop part det n prep det n
+vi prep n det adj n
+wh aux adj n vi det n
+prep prep det adj n
+pro aux vi prep adj n prep det n
+pro v pro prep to vi det n
+n v prep det n
+pro aux det n pro v prep adj n
+aux prop prep det adj n
+aux pro vi pro adj to vi
+pro aux vi pro to vi n
+pro aux det n pro v prep det n
+v n prep det n
+pro aux vi to vi adj n to vi
+pro aux vi adj to vi n
+aux pro vi to vi det n comp prop v
+aux pro part adj prep pro
+adj n aux prop prep prop
+pro aux vi adj to vi pro
+part prep prop prep det n
+wh n aux vi prep det n prep det n prep pro
+adj to vi
+pro aux part det n prep adj n
+wh aux pro vi prep adj n prep n
+pro aux part to vi det n det n prep adj n
+aux prep det n
+pro v n det n comp aux prep
+pro aux part adj prep adj
+wh aux pro vi det adj n prep det n
+wh aux pro vi det n adj n
+pro aux det n comp pro aux vi
+aux det n vi prep det n
+pro aux vi adj n pro
+wh aux pro part prep det n prep
+pro aux part pro prep prop
+pro v adj n prep prep adj n
+prop v n prep adj n
+adj to vi prep n
+pro v det n prep det n prep
+aux pro vi to vi prep det adj n prep n to vi prep
+pro aux vi prep adj adj n prep prop
+pro aux pro prep to vi
+adj prep
+aux pro vi pro comp aux adj
+aux vi prep n
+det adj n aux vi det n prep det n
+pro v n prep det n prep det n
+v to
+vi det n pro v prep det n prep
+prep part det n
+pro aux vi n pro aux
+pro aux det n prep det adj n prep pro
+pro aux det n to vi
+wh n aux pro vi to vi prep
+wh aux part prep pro
+pro aux adj prep prep
+det n prep det adj n aux vi prep
+aux pro vi pro prep adj n prep det adj n
+v n prep
+wh aux pro vi n prep pro prep adj n prep det adj n
+det n det n v
+pro aux vi det adj n prep prep det adj n
+v to vi prep pro
+det n aux part prop
+aux pro prep det adj n
+adj adj n aux adj
+aux det n prep n vi
+wh aux pro vi adj adj n prep det adj n
+det adj n comp pro v
+wh aux pro vi prop to vi prep
+pro v det adj n prep pro
+aux pro pro part
+pro aux part prep prep det n to vi adj n
+pro v pro pro prep prop
+wh aux det n pro aux part prep
+pro v prep pro prep
+wh adj aux prop
+pro aux vi prep det n prep
+pro v adj n prep det n pro v
+pro aux det n prep part
+prop aux det n comp v det n
+aux pro vi det n prep prep prop
+wh aux pro prep prep det n prep det n
+aux pro adj n prep det n
+wh adj n aux pro vi prep adj n
+wh aux pro vi to vi to vi
+pro aux vi prep det n prep adj n
+pro aux n prep det n prep pro
+wh aux pro vi prep n prep adj n
+pro aux adj n prep prop
+pro aux vi prep pro to vi pro
+wh aux pro pro v prep det n
+pro aux det adj n pro aux vi det n
+det adj n part prop
+aux det n prep n
+wh aux det n vi adj
+pro aux vi adj n prep prep n
+pro aux vi pro prep part pro
+pro aux det n prep det adj n comp v prep det n
+pro v prep pro prep det n
+wh n aux pro vi pro to vi
+aux adj n part
+wh aux pro vi prep n adj n
+aux pro prop prep det n
+pro aux vi prep n prep det n
+det adj n pro v pro prep
+wh aux det n vi prep n det n
+det n aux vi to vi det n prep det n
+prep adj n prep det n
+wh prep prep
+prop part det n
+pro aux vi adj adj n prep pro
+pro v adj prep pro
+prop v pro prep
+aux pro vi to vi pro prep det adj n
+pro aux vi pro prep pro prep adj n
+pro aux part pro prep det adj n
+wh aux pro prep det n prep det n
+aux pro vi to vi pro prep prop
+prop aux vi to vi det n
+aux pro vi to
+pro v adj n n
+pro aux pro comp aux part
+pro aux part adj det adj n
+wh v pro adj
+pro aux det n adj n v pro
+wh aux pro vi pro prep prep pro
+v det n prep prop
+pro v det n prep det adj n comp v n prep adj n
+vi prep prep n
+prop v to vi det n prep det n
+pro aux det n comp v to vi
+pro v prop prep adj n
+pro v prep prep det n prep adj n
+pro aux prep prep adj n
+det n aux det n prep det n comp pro v prep
+wh aux adj n prep n
+wh n v prep det n
+pro aux vi pro adj prep pro
+wh aux pro vi adj prep det n
+n v prep det n prep pro
+pro aux adj n comp pro aux part
+vi pro adj n part

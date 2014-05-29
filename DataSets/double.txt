@@ -1,0 +1,18 @@
+1 a b c d
+1 a b c d
+1 a b c d
+1 a b c d
+1 a b c d
+1 a b c d
+1 a b c d
+1 a b c d
+1 a b c d
+1 a b c d
+1 a b a b c d c d
+1 a b a b c d c d
+1 a b a b c d c d
+1 a b a b c d c d
+1 a b a b c d c d
+1 a b a b a b c d c d c d
+1 a b a b a b c d c d c d
+1 a b a b a b a b c d c d c d c d
