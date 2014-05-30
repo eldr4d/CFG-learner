@@ -11,7 +11,7 @@
 #include "../Corpus/Corpus.hpp"
 #include "../CYK/CYKparser.hpp"
 
-#define L 0.01//50.0/10000.0
+//#define L 0.01//50.0/10000.0
 #define L2 1.0
 
 typedef struct{
@@ -33,7 +33,6 @@ public:
  			return sN1.currGain < sN2.currGain;
 	}
 };
-
 PCFG searchForBestPCFG(Corpus corpus);
 PCFG searchIncrementallyForBestPCFG(Corpus corpus);
 searchNode doBeamSearch(searchNode root, int width, int depth);

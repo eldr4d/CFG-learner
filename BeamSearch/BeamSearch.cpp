@@ -4,11 +4,13 @@
 #include <sys/wait.h>
 #include <limits>
 
+double L;
 using namespace std;
 PCFG searchForBestPCFG(Corpus corpus){
 	//Initialize PCFG
 	searchNode parent;
 	//corpus.resample(200);
+ 	L = 1.0/((double)corpus.getTotalStartWords());
 	parent.pcfg.initFirstNT(corpus.numberOfSymbolsInCorpus());
 	corpus.initReduceForPCFG(&parent.pcfg);
 	parent.pcfg.createStartRule(corpus.getUniqueWords(), corpus.getWordCount());
@@ -31,8 +33,9 @@ PCFG searchIncrementallyForBestPCFG(Corpus corpus){
 	PCFG pcfgForCYK;
 	//Initialize PCFG
 	searchNode parent;
-	unsigned int batch = 100;
+	unsigned int batch = 10;
  
+ 	L = 0.1;//50.0/((double)corpus.getTotalStartWords());
 	parent.pcfg.intToCharTerminalValue = corpus.symbolsToChars();
 	parent.pcfg.initFirstNT(corpus.numberOfSymbolsInCorpus());
 	parent.currGain = 0.0;
@@ -54,7 +57,8 @@ PCFG searchIncrementallyForBestPCFG(Corpus corpus){
 				parent.pcfg.allRules[startRuleLoc].addProduction(allWords[i], wordCount[i], false);
 		}
 		parent.expanded = false;
-		parent = doBeamSearch(parent,4,15);
+		parent = doBeamSearch(parent,8,18);
+
 		recalculateProbabilities(&onlyParsedCorpus, &allInitWords, &allWords, &wordCount, &parent.pcfg);
 
 	}while(i == batch && allWords.size() > 0);
@@ -268,7 +272,11 @@ void recalculateProbabilities(Corpus *corpus, Corpus::words *allInitWords, Corpu
     	for(int j=0; j<pcfg->allRules[i].totalNumberOfProductions(); j++){
        		double prob;
     		newGrammarFile >> prob;
-			pcfg->allRules[i].updateProbability(j,prob);
+    		if(pcfg->allRules[i].getProduction(j).terminal){
+				pcfg->allRules[i].updateProbability(j,1.0);
+    		}else{
+				pcfg->allRules[i].updateProbability(j,prob);
+			}
 			newGrammarFile.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     	}
     }
