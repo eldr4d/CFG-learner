@@ -66,7 +66,7 @@ const char usage[] =
 static grammar g_global = NULL;
 static si_t    si_global;
 
-static FLOAT minruleprob = 1e-20;     /* prune rules with less than this weight */
+static FLOAT minruleprob = -1;//1e-20;     /* prune rules with less than this weight */
 
 static void
 write_grammar_(int interrupt)

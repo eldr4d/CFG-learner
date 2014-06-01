@@ -35,7 +35,7 @@ PCFG searchIncrementallyForBestPCFG(Corpus corpus){
 	searchNode parent;
 	unsigned int batch = 10;
  
- 	L = 0.1;//50.0/((double)corpus.getTotalStartWords());
+ 	L = 1.0;//50.0/((double)corpus.getTotalStartWords());
 	parent.pcfg.intToCharTerminalValue = corpus.symbolsToChars();
 	parent.pcfg.initFirstNT(corpus.numberOfSymbolsInCorpus());
 	parent.currGain = 0.0;
@@ -82,7 +82,7 @@ searchNode doBeamSearch(searchNode root, int width, int depth){
 	pqForBeam[cPq].push(root);
 
 	while(pqForBeam[cPq].top().currGain >= 0.0 && somethingChanged == true && globalIter < 50000){
-		cout << "---------- " << pqForBeam[cPq].size() << " " <<  pqForBeam[cPq].top().currGain << " -----------------" << endl;
+		cout << "---------- " << pqForBeam[cPq].size() << " " <<  pqForBeam[cPq].top().currGain << " " <<  pqForBeam[cPq].top().currLikelihood << " -----------------" << endl;
 		int invcPq = cPq == 0 ? 1 : 0;
 		somethingChanged = false;
 		
