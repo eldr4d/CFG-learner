@@ -8,7 +8,7 @@
 #include "../PCFG/PCFG.hpp"
 
 
-
+/* Each word has the following format: positive s1 s2 s3 s4 */
 class Corpus {
 public:
 	static const int keyAdjust = 10000;
@@ -21,7 +21,7 @@ private:
 	words allWords;
 	words uniqueWords;
 	std::vector<double> wordCount;
-	std::vector<char> positive; //Check if the word is actually in the language
+	bool positiveDropped;
 public:
 	int totalStartWords;	
 //Getters
@@ -35,20 +35,20 @@ public:
 	std::vector<double> getWordCount(){
 		return wordCount;
 	}
-	std::vector<char> getPositiveStatus(){
-		return positive;
-	}
 	int numberOfSymbolsInCorpus(){
 		return numOfSymbols;
 	}
 	std::map<int,char> symbolsToChars(){
 		return intToSymbols;
 	}
+	std::map<char,int> charsToSymbols(){
+		return symbols;
+	}
 	unsigned int numberOfUniqueWords(){
 		return uniqueWords.size();
 	}
-	singleWord countOfSymbols(){
-		singleWord symCount(numOfSymbols);
+	std::vector<int> countOfSymbols(){
+		std::vector<int> symCount(numOfSymbols);
 		for(unsigned int i=0; i<uniqueWords.size(); i++){
 			for(unsigned int j=0; j<uniqueWords[i].size(); j++){
 				symCount[uniqueWords[i][j]] += wordCount[i];
@@ -60,13 +60,25 @@ public:
 		allWords.clear();
 		uniqueWords.clear();
 		wordCount.clear();
-		positive.clear();
+		positiveDropped = true;
 	}
 private:
 	void reduceToUniqueWords();
 	void recalculateUniqueWords();
+	void sortUniqueWords();
 public:
-	void loadCorpusFromFile(std::string filename);
+	void loadCorpusFromFile(std::string filename, bool omphalos){
+		loadCorpusFromFile(filename, std::map<char,int>(), omphalos);
+	}
+	void dropPositive(){
+		if(positiveDropped)
+			return;
+		for(unsigned int i=0; i<uniqueWords.size();i++){
+			uniqueWords[i].erase(uniqueWords[i].begin());
+		}
+		positiveDropped = true;
+	}
+	void loadCorpusFromFile(std::string filename, std::map<char,int> inSymbols, bool omphalos);
 	void dumbCorpusToFile(std::string filename, bool withCharSymbols);
 	void printCorpus();
 	void initReduceForPCFG(PCFG *pcfg);

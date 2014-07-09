@@ -5,9 +5,9 @@ set -- junk $list
 shift
 rm commands.txt
 for word; do
-	echo "./CFG-learner $word normal" >> commands.txt
-	echo "./CFG-learner $word standard" >> commands.txt
-	echo "./CFG-learner $word uniform" >> commands.txt
+	echo "./CFG-learner $word normal 0.05" >> commands.txt
+	echo "./CFG-learner $word standard 0.05" >> commands.txt
+	echo "./CFG-learner $word uniform 0.05" >> commands.txt
 done
 echo ${dir[@]}
 xargs --arg-file=commands.txt --max-procs=$cores --replace --verbose /bin/sh -c "{}"

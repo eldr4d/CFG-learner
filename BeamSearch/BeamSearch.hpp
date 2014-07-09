@@ -14,6 +14,11 @@
 //#define L 0.01//50.0/10000.0
 #define L2 1.0
 
+#define _beamDepth_ 16
+#define _beamWidth_ 5
+#define _chunkLength_ 16
+#define _batch_ 10
+
 typedef struct{
 	PCFG pcfg;
 	double currGain;
@@ -33,12 +38,11 @@ public:
  			return sN1.currGain < sN2.currGain;
 	}
 };
-PCFG searchForBestPCFG(Corpus corpus);
-PCFG searchIncrementallyForBestPCFG(Corpus corpus);
+PCFG searchIncrementallyForBestPCFG(Corpus corpus, double lValue, std::string fileIO);
 searchNode doBeamSearch(searchNode root, int width, int depth);
 std::vector<searchNode> findAllPossibleMoves(searchNode parent);
 void doChunk(std::vector<searchNode> *listOfNodes, searchNode parent);
 void doMerge(std::vector<searchNode> *listOfNodes, searchNode parent);
 
-void recalculateProbabilities(Corpus *corpus, Corpus::words *allInitWords, Corpus::words *allWords, std::vector<double> *wordCount, PCFG *pcfg);
+void recalculateProbabilities(Corpus *corpus, Corpus::words *allInitWords, Corpus::words *allWords, std::vector<double> *wordCount, PCFG *pcfg, std::string fileIO);
 #endif //BEAM_HPP

@@ -6,36 +6,17 @@
 
 double L;
 using namespace std;
-PCFG searchForBestPCFG(Corpus corpus){
-	//Initialize PCFG
-	searchNode parent;
-	//corpus.resample(200);
- 	L = 1.0/((double)corpus.getTotalStartWords());
-	parent.pcfg.initFirstNT(corpus.numberOfSymbolsInCorpus());
-	corpus.initReduceForPCFG(&parent.pcfg);
-	parent.pcfg.createStartRule(corpus.getUniqueWords(), corpus.getWordCount());
-	parent.currGain = 0.0;
-	parent.currPriori = 0.0;
-	parent.currLikelihood = 0.0;
-	parent.expanded = false;
-	
-	PCFG learned = doBeamSearch(parent,5,30).pcfg;
-	//PCFG learned = doBestFirstSearch(parent,corpus).pcfg;
-	learned.normalizeGrammar();
-	return learned;
-	
-}
 
-PCFG searchIncrementallyForBestPCFG(Corpus corpus){
+PCFG searchIncrementallyForBestPCFG(Corpus corpus, double lValue, string fileIO){
 	//Words for parser
 	Corpus::words allInitWords = corpus.getUniqueWords();
 
 	PCFG pcfgForCYK;
+
 	//Initialize PCFG
 	searchNode parent;
-	unsigned int batch = 10;
  
- 	L = 1.0;//50.0/((double)corpus.getTotalStartWords());
+ 	L = lValue;//0.001;
 	parent.pcfg.intToCharTerminalValue = corpus.symbolsToChars();
 	parent.pcfg.initFirstNT(corpus.numberOfSymbolsInCorpus());
 	parent.currGain = 0.0;
@@ -53,15 +34,15 @@ PCFG searchIncrementallyForBestPCFG(Corpus corpus){
 	onlyParsedCorpus.clearForInsideOutside();
 	unsigned int i; 
 	do{
-		for(i=0; (i < batch && i<allWords.size()); i++){
+		for(i=0; (i < _batch_ && i<allWords.size()); i++){
 				parent.pcfg.allRules[startRuleLoc].addProduction(allWords[i], wordCount[i], false);
 		}
 		parent.expanded = false;
-		parent = doBeamSearch(parent,8,18);
+		parent = doBeamSearch(parent,_beamWidth_,_beamDepth_);
 
-		recalculateProbabilities(&onlyParsedCorpus, &allInitWords, &allWords, &wordCount, &parent.pcfg);
-
-	}while(i == batch && allWords.size() > 0);
+		recalculateProbabilities(&onlyParsedCorpus, &allInitWords, &allWords, &wordCount, &parent.pcfg, fileIO);
+		parent.pcfg.pruneProductions(0.0001);
+	}while(i == _batch_ && allWords.size() > 0);
 	
 	parent.pcfg.normalizeGrammar();
 	return parent.pcfg;	
@@ -149,7 +130,7 @@ vector<searchNode> findAllPossibleMoves(searchNode parent){
 }
 
 void doChunk(vector<searchNode> *listOfNodes, searchNode parent){
-	PCFG::allChunks chunks = parent.pcfg.calculateAllChunks(16);
+	PCFG::allChunks chunks = parent.pcfg.calculateAllChunks(_chunkLength_);
 	
 	for(map<std::vector<int>, int>::iterator iter = chunks.timesFound.begin(); iter!=chunks.timesFound.end(); iter++){
 		
@@ -168,7 +149,7 @@ void doChunk(vector<searchNode> *listOfNodes, searchNode parent){
 		//Extra cost to create if there is a conflict
 		int extraCost = (chunks.conflict[iter->first] == true && chunks.atLeastOneRuleWithoutConflict == true) ? 1 : 1;
 		
-		int costToCreateRule = extraCost*(1+iter->first.size());
+		int costToCreateRule = extraCost*(1+1+iter->first.size());
 		
 		//symbols removed - symbol added - new rule
 		double pG = L*((iter->first.size()*pairFoundProb.first)*log10(2) - pairFoundProb.first*log10(2) - costToCreateRule*log10(2) - log10(extraCost));
@@ -229,7 +210,7 @@ void doMerge(vector<searchNode> *listOfNodes, searchNode parent){
 }
 
 
-void recalculateProbabilities(Corpus *corpus, Corpus::words *allInitWords, Corpus::words *allWords, std::vector<double> *wordCount, PCFG *pcfg){
+void recalculateProbabilities(Corpus *corpus, Corpus::words *allInitWords, Corpus::words *allWords, std::vector<double> *wordCount, PCFG *pcfg, string fileIO){
 	CYKparser parser;
 	PCFG cnfPCFG = *pcfg;
 	cnfPCFG.normalizeGrammar();
@@ -250,13 +231,16 @@ void recalculateProbabilities(Corpus *corpus, Corpus::words *allInitWords, Corpu
 			wordCount->erase(wordCount->begin()+i);
 		}
 	}
-	corpus->dumbCorpusToFile("Inside-Outside/cache.txt",true);
-	pcfg->writeForInsideOutside("Inside-Outside/cache.grammar");
+	string corpusFile = string("../") + fileIO + ".txt";
+	corpus->dumbCorpusToFile(fileIO + ".txt",true);
+	//corpus->printCorpus();
+	string pcfgFile = string("../") + fileIO + ".grammar";
+	pcfg->writeForInsideOutside(fileIO + ".grammar");
 
 	int pid = fork();
 	if(pid == 0){
 		int r = chdir("Inside-Outside");
-    	execl("./io", "./io", "-d", "1000", "-g", "cache.grammar","cache.txt", (char *) 0);
+    	execl("./io", "./io", "-d", "1000", "-s", "0.0001", "-g", pcfgFile.c_str(), corpusFile.c_str(), (char *) 0);
     	std::cerr << "Apetixa" << std::endl;
     	exit(-5);
 	}else{ // This is the parent process
@@ -265,7 +249,7 @@ void recalculateProbabilities(Corpus *corpus, Corpus::words *allInitWords, Corpu
         std::cout << "Process returned " << status << ".\n";
     }
 
-    ifstream newGrammarFile("Inside-Outside/cache.grammarNew");
+    ifstream newGrammarFile(string(fileIO + ".grammarNew").c_str());
     //Eat the start rule;
 	newGrammarFile.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     for( unsigned int i=0; i<pcfg->allRules.size(); i++){
@@ -282,4 +266,8 @@ void recalculateProbabilities(Corpus *corpus, Corpus::words *allInitWords, Corpu
     }
     pcfg->prettyPrint();
     newGrammarFile.close();
+
+    remove(string(fileIO + ".grammar").c_str());
+    remove(string(fileIO + ".txt").c_str());
+    remove(string(fileIO + ".grammarNew").c_str());
 }

@@ -5,6 +5,7 @@
 CFG-learner.xcodeproj
 CFG-learner
 DataSets/Noptilus
+DataSets/results*
 Corpus/Corpus.d
 Corpus/Corpus.o
 BeamSearch/BeamSearch.d

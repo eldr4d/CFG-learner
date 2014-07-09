@@ -63,7 +63,7 @@ MY_CFLAGS =
 MY_LIBS   =
 
 # The pre-processor options used by the cpp (man cpp for more).
-CPPFLAGS  = -Wall
+CPPFLAGS  = -Wall -Wno-sign-compare
 
 # The options used in linking as well as in any direct use of ld.
 LDFLAGS   =
@@ -88,8 +88,8 @@ HDREXTS = .h .H .hh .hpp .HPP .h++ .hxx .hp
 
 # The pre-processor and compiler options.
 # Users can override those variables from the command line.
-CFLAGS  = -g -O3
-CXXFLAGS= -g -O3
+CFLAGS  = -O3 
+CXXFLAGS= -O3 
 
 # The C program compiler.
 #CC     = gcc
@@ -236,7 +236,7 @@ endif
 endif
 
 clean:
-	$(RM) $(OBJS) $(PROGRAM) $(PROGRAM).exe *.d Corpus/Corpus.d
+	$(RM) $(OBJS) $(PROGRAM) $(PROGRAM).exe *.d Corpus/Corpus.d BeamSearch/BeamSearch.d
 
 distclean: clean
 	$(RM) $(DEPS) TAGS

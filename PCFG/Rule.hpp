@@ -47,6 +47,13 @@ public:
 	void updateProbability(int index, float probability){
 		allProductions[index].probability = probability;
 	}
+
+	/*
+	** Get probability of a rule
+	*/
+	float getProbability(int index){
+		return allProductions[index].probability;
+	}
 	
 	/*
 	 ** Get left NT of given production

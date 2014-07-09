@@ -15,10 +15,10 @@ const bool compareIntMap(const std::map<int, int>::value_type &i1, const std::ma
 	return i1.second<i2.second;
 }
 
-void Corpus::loadCorpusFromFile(string filename){
+void Corpus::loadCorpusFromFile(string filename, std::map<char,int> inSymbols, bool omphalos){
 	numOfSymbols =0;
-
-	symbols.clear();
+	positiveDropped = false;
+	symbols = inSymbols;
 	intToSymbols.clear();
 	allWords.clear();
 
@@ -29,14 +29,25 @@ void Corpus::loadCorpusFromFile(string filename){
 	vector<int> currentWord;
 	map<char,int>::iterator itSymbols;
 	cout << "Loading Corpus from file: " << filename << endl;
+	bool first = true;
 	while(getline(symbolFile, line)){
-
+		if(omphalos && first){
+			first = false;
+			continue;
+		}
 		currentWord.clear();
 		string::iterator it = line.begin();
 		if(*it == '1'){
-			positive.push_back(1);
+			currentWord.push_back(1);
 		}else{
-			positive.push_back(0);
+			currentWord.push_back(0);
+		}
+
+		if(omphalos){
+			it+=2;
+			while(*it != ' '){
+				it++;
+			}
 		}
 		it++;
 		for(; it != line.end(); it++){
@@ -58,17 +69,16 @@ void Corpus::loadCorpusFromFile(string filename){
 		allWords.push_back(currentWord);
 	}
 	symbolFile.close();
-	
 	std::sort(allWords.begin(), allWords.end(), compareVectorSize);
 	reduceToUniqueWords();
 	totalStartWords = allWords.size();
 	allWords.clear();
+
 }
 
 void Corpus::reduceToUniqueWords(){
 	uniqueWords.clear();
 	wordCount.clear();
-	std::vector<char> newPositive; 
 	
 	for(unsigned int iter = 0; iter < allWords.size(); iter++){
 		bool found = false;
@@ -85,19 +95,16 @@ void Corpus::reduceToUniqueWords(){
 			}	
 			if(found==true){
 				wordCount[iter2]++;
-				if((bool)newPositive[iter2] == false && (bool)positive[iter] == true){
-					newPositive[iter2] = (char)false;
-				}
+				
 				break;
 			}
 		}
 		if(found == false){
 			wordCount.push_back(1);
-			newPositive.push_back(positive[iter]);
 			uniqueWords.push_back(allWords[iter]);
 		}
 	}
-	positive = newPositive;
+	sortUniqueWords();
 }
 
 void Corpus::normalizeCorpus(){
@@ -115,7 +122,6 @@ void Corpus::unnormalizeCorpus(){
 void Corpus::resample(int howManySamples){	
 	words newUniqueWords;
 	std::vector<double> newWordCount; 
-	std::vector<char> newPositive; 
 	vector<bool> toDelete(uniqueWords.size(),false);
 	
 	double step = (double)totalStartWords/(double)howManySamples;
@@ -133,8 +139,7 @@ void Corpus::resample(int howManySamples){
 
 			newUniqueWords.push_back(uniqueWords[j]);
 			newWordCount.push_back(1);
-			newPositive.push_back(positive[j]);
-			
+		
 		}else{
 			newWordCount.back()++;
 		}
@@ -147,6 +152,9 @@ void Corpus::resample(int howManySamples){
 void Corpus::initReduceForPCFG(PCFG *pcfg){
 	for(unsigned int i=0; i<uniqueWords.size(); i++){
 		for(unsigned int j=0; j<uniqueWords[i].size(); j++){
+			if(!positiveDropped && j==0){
+				continue;
+			}
 			uniqueWords[i][j] = pcfg->rulesForTermSymbol[uniqueWords[i][j]];
 		}
 	}
@@ -166,12 +174,16 @@ void Corpus::printCorpus(){
 	cout << endl;
 	cout << "-----Unique Words in Corpus-----" << endl;
 	for(vector<vector<int> >::iterator it1 = uniqueWords.begin(); it1 != uniqueWords.end(); it1++){
+		if(!positiveDropped && it1 == uniqueWords.begin())
+			continue;
+
 		cout << count << ") ";
 		for(vector<int>::iterator it2 = it1->begin(); it2 != it1->end(); it2++){
-			cout << *it2 << " ";
+			cout << intToSymbols[*it2] << " ";
 		}
 		cout << " count = " << wordCount[count-1];
-		cout << " positive = " << (bool)positive[count-1];
+		if(!positiveDropped)
+			cout << " positive = " << (bool)wordCount[0];
 		cout << endl;
 		count++;
 	}
@@ -186,7 +198,7 @@ void Corpus::dumbCorpusToFile(std::string filename, bool withCharSymbols){
 	ofstream symbolFile;
 	symbolFile.open(filename.c_str());
 	for(unsigned int i=0; i<uniqueWords.size(); i++){
-		if(wordCount[i] < 1){
+		if(wordCount[i] < 0.9999){
 			std::cerr << "Corpus is at normalized form and cannot be dumbed" << std::endl;
 			symbolFile.close();
 			return;
@@ -203,4 +215,26 @@ void Corpus::dumbCorpusToFile(std::string filename, bool withCharSymbols){
 		}
 	}
 	symbolFile.close();
+}
+
+
+void Corpus::sortUniqueWords(){
+	words uniqueWords2;
+	std::vector<double> wordCount2;
+	while(wordCount.size() > 0){
+		int indice = 0;
+		double best = 0.0;
+		for(unsigned int i=0; i<wordCount.size(); i++){
+			if(wordCount[i] > best){
+				best = wordCount[i];
+				indice = i;
+			}
+		}
+		wordCount2.push_back(best);
+		uniqueWords2.push_back(uniqueWords[indice]);
+		wordCount.erase(wordCount.begin() + indice);
+		uniqueWords.erase(uniqueWords.begin() + indice);
+	}
+	uniqueWords = uniqueWords2;
+	wordCount = wordCount2;
 }

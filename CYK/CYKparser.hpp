@@ -44,7 +44,7 @@ public:
 					for(unsigned iter = 0; iter < pcfg->allRules.size(); iter++){
 						for(unsigned int iter2 = 0; iter2<pcfg->allRules[iter].totalNumberOfProductions(); iter2++){
 							Rule::productions prod = pcfg->allRules[iter].getProduction(iter2);
-							if(prod.terminal == true){
+							if(prod.terminal == true || prod.probability == 0.0f){
 								continue;
 							}else if(prod.rightRules.size() != 2){
 								//Not in Chomsky Normal Form
@@ -68,7 +68,7 @@ public:
 			}
 		}
 		
-		double finalValue = 0.0;
+		double finalValue = -4;
 		for(std::map<int, double>::iterator iter = productionTable[0][word.size()-1].begin(); iter != productionTable[0][word.size()-1].end(); iter++){
 			for(std::vector<int>::iterator found = pcfg->startRules.begin(); found != pcfg->startRules.end(); found++){
 				if(*found == iter->first){

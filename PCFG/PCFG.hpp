@@ -329,14 +329,17 @@ public:
 	//Create a^n c b^n where n > 0
 	void createTestPCFG(){
 		cleanUp();
-		Rule S(0);
-		Rule A(1);
-		Rule B(2);
-		Rule C(3);
-		Rule T(4);
+		Rule A(3);
+		Rule B(4);
+		Rule C(5);
+		Rule T(6);
+		Rule S(7);
 		rulesForTermSymbol[0] = A.id;
 		rulesForTermSymbol[1] = C.id;
 		rulesForTermSymbol[2] = B.id;
+		intToCharTerminalValue[0] = 'a';
+		intToCharTerminalValue[1] = 'c';
+		intToCharTerminalValue[2] = 'b';
 		
 		std::vector<int> tmp;
 		tmp.push_back(T.id);
@@ -351,23 +354,207 @@ public:
 		tmp.push_back(S.id);
 		T.addProduction(tmp,0.9,false);
 		tmp.clear();
-		tmp.push_back('a');
+		tmp.push_back(0);
 		A.addProduction(tmp,1.0,true);
 		tmp.clear();
-		tmp.push_back('b');
-		C.addProduction(tmp,1.0,true);
-		tmp.clear();
-		tmp.push_back('c');
+		tmp.push_back(2);
 		B.addProduction(tmp,1.0,true);
+		tmp.clear();
+		tmp.push_back(1);
+		C.addProduction(tmp,1.0,true);
 		allRules.push_back(S);
 		startRules.push_back(S.id);
 		allRules.push_back(A);
 		allRules.push_back(B);
 		allRules.push_back(C);
 		allRules.push_back(T);
-		currFreeId = 5;
+		currFreeId = 8;
 	}
 	
+	void createTestPCFG2(){
+		cleanUp();
+		Rule A(3);
+		Rule B(4);
+		Rule C(5);
+		Rule T1(6);
+		Rule T2(7);
+		Rule T3(8);
+		Rule S(9);
+		rulesForTermSymbol[0] = A.id;
+		rulesForTermSymbol[1] = B.id;
+		rulesForTermSymbol[2] = C.id;
+		intToCharTerminalValue[0] = 'a';
+		intToCharTerminalValue[1] = 'b';
+		intToCharTerminalValue[2] = 'c';
+		
+		std::vector<int> tmp;
+		tmp.push_back(A.id);
+		tmp.push_back(T1.id);
+		S.addProduction(tmp,1.0,false);
+		//T1
+		tmp.clear();
+		tmp.push_back(A.id);
+		tmp.push_back(T1.id);
+		T1.addProduction(tmp,0.5,false);
+		tmp.clear();
+		tmp.push_back(B.id);
+		tmp.push_back(T2.id);
+		T1.addProduction(tmp,0.3,false);
+		tmp.clear();
+		tmp.push_back(B.id);
+		tmp.push_back(C.id);
+		T1.addProduction(tmp,0.2,false);
+
+		//T2
+		tmp.clear();
+		tmp.push_back(B.id);
+		tmp.push_back(T2.id);
+		T2.addProduction(tmp,0.5,false);
+		tmp.clear();
+		tmp.push_back(C.id);
+		tmp.push_back(T3.id);
+		T2.addProduction(tmp,0.3,false);
+		tmp.clear();
+		tmp.push_back(B.id);
+		tmp.push_back(C.id);
+		T2.addProduction(tmp,0.2,false);
+
+		//T3
+		tmp.clear();
+		tmp.push_back(C.id);
+		tmp.push_back(T3.id);
+		T3.addProduction(tmp,0.3,false);
+		tmp.clear();
+		tmp.push_back(C.id);
+		tmp.push_back(C.id);
+		T3.addProduction(tmp,0.7,false);
+
+		tmp.clear();
+		tmp.push_back(0);
+		A.addProduction(tmp,1.0,true);
+		tmp.clear();
+		tmp.push_back(1);
+		B.addProduction(tmp,1.0,true);
+		tmp.clear();
+		tmp.push_back(2);
+		C.addProduction(tmp,1.0,true);
+
+		allRules.push_back(S);
+		startRules.push_back(S.id);
+		allRules.push_back(A);
+		allRules.push_back(B);
+		allRules.push_back(C);
+		allRules.push_back(T1);
+		allRules.push_back(T2);
+		allRules.push_back(T3);
+		currFreeId = 10;
+	}
+	void createTestPCFG3(){
+		cleanUp();
+		Rule A(7);
+		Rule B(4);
+		Rule C(5);
+		Rule D(6);
+		Rule T1(8);
+		Rule T2(9);
+		Rule T3(10);
+		Rule T4(11);
+		Rule S(12);
+		rulesForTermSymbol[3] = A.id;
+		rulesForTermSymbol[0] = B.id;
+		rulesForTermSymbol[1] = C.id;
+		rulesForTermSymbol[2] = D.id;
+		intToCharTerminalValue[3] = 'a';
+		intToCharTerminalValue[0] = 'b';
+		intToCharTerminalValue[1] = 'c';
+		intToCharTerminalValue[2] = 'd';
+		
+		std::vector<int> tmp;
+		tmp.push_back(A.id);
+		tmp.push_back(T1.id);
+		S.addProduction(tmp,0.4,false);
+		tmp.clear();
+		tmp.push_back(B.id);
+		tmp.push_back(T2.id);
+		S.addProduction(tmp,0.3,false);
+		tmp.clear();
+		tmp.push_back(C.id);
+		tmp.push_back(T3.id);
+		S.addProduction(tmp,0.2,false);
+		tmp.clear();
+		tmp.push_back(D.id);
+		tmp.push_back(T4.id);
+		S.addProduction(tmp,0.1,false);
+		//T1
+		tmp.clear();
+		tmp.push_back(A.id);
+		tmp.push_back(T1.id);
+		T1.addProduction(tmp,0.1,false);
+		tmp.clear();
+		tmp.push_back(A.id);
+		tmp.push_back(T2.id);
+		T1.addProduction(tmp,0.9,false);
+
+		//T2
+		tmp.clear();
+		tmp.push_back(B.id);
+		tmp.push_back(T2.id);
+		T2.addProduction(tmp,0.1,false);
+		tmp.clear();
+		tmp.push_back(B.id);
+		tmp.push_back(T3.id);
+		T2.addProduction(tmp,0.9,false);
+
+		//T3
+		tmp.clear();
+		tmp.push_back(C.id);
+		tmp.push_back(T3.id);
+		T3.addProduction(tmp,0.1,false);
+		tmp.clear();
+		tmp.push_back(C.id);
+		tmp.push_back(T4.id);
+		T3.addProduction(tmp,0.2,false);
+		tmp.clear();
+		tmp.push_back(C.id);
+		tmp.push_back(D.id);
+		T3.addProduction(tmp,0.7,false);
+
+		//T4
+		tmp.clear();
+		tmp.push_back(D.id);
+		tmp.push_back(T4.id);
+		T4.addProduction(tmp,0.1,false);
+		tmp.clear();
+		tmp.push_back(D.id);
+		tmp.push_back(D.id);
+		T4.addProduction(tmp,0.9,false);
+
+		tmp.clear();
+		tmp.push_back(3);
+		A.addProduction(tmp,1.0,true);
+		tmp.clear();
+		tmp.push_back(0);
+		B.addProduction(tmp,1.0,true);
+		tmp.clear();
+		tmp.push_back(1);
+		C.addProduction(tmp,1.0,true);
+		tmp.clear();
+		tmp.push_back(2);
+		D.addProduction(tmp,1.0,true);
+
+		allRules.push_back(S);
+		startRules.push_back(S.id);
+		allRules.push_back(A);
+		allRules.push_back(B);
+		allRules.push_back(C);
+		allRules.push_back(D);
+		allRules.push_back(T1);
+		allRules.push_back(T2);
+		allRules.push_back(T3);
+		allRules.push_back(T4);
+		currFreeId = 13;
+	}
+
 	/*
 	** Reinitialzie the PCFG
 	*/
@@ -379,30 +566,28 @@ public:
 	}
 	
 	/*
-	** Find and delete rules that are no longer accesible
+	** Prun all the productions which probability is below the threshold
 	*/
-	/*double deleteUselessRules(){
-		std::vector<bool> toDelete(allRules.size());
-		int totalDeletions = 0;
-		for(unsigned int i = 0; i<allRules.size(); i++){
-			int idToCheck = allRules[i].id;
-			toDelete[i] = true;
-			for(unsigned int j=0; j<allRules.size(); j++){
-				if(allRules[j].ruleInAnyProduction(idToCheck)){
-					toDelete[i] = false;
-					totalDeletions += 2 + allRules[i].numberOfNTProductions()*4 + allRules[i].numberOfTermProductions()*2;
-					break;
+	void pruneProductions(float threshold){
+		for(unsigned int i=0; i<allRules.size(); i++){
+			std::vector<bool> toDelete(allRules[i].totalNumberOfProductions(),false);
+			for(unsigned int j=0; j<allRules[i].totalNumberOfProductions(); j++){
+				if(allRules[i].getProbability(j) <= threshold){
+					toDelete[j] = true;
+				}
+			}
+			for(int k=toDelete.size()-1; k>=0; k--){
+				if(toDelete[k]){
+					allRules[i].removeProduction(k);
 				}
 			}
 		}
-		for(int i=toDelete.size()-1; i>=0; i--){
-			if(toDelete[i]){
-				allRules.erase(allRules.begin()+i);
-			}
-		}
-		return totalDeletions;
-	}*/
-	
+		normalizeGrammar();
+	}
+
+	/*
+	**	Return the total count of one rule
+	*/
 	double getTotalCount(int ruleID){
 		double result = 0.0;
 		int ruleLoc = locationOfRule(ruleID);
@@ -412,12 +597,15 @@ public:
 		return result;
 	}
 	
-	void generateWord(int numOfSymbols){
+	/*
+	** Generate a random word
+	*/
+	std::vector<int> generateWord(){
 		std::vector<int> randomWord;
 		randomWord.push_back(startRules[0]);
 		do{
 			unsigned int i=0;
-			while(i<randomWord.size() && randomWord[i] < numOfSymbols){
+			while(i<randomWord.size() && randomWord[i] < intToCharTerminalValue.size()){
 				i++;
 			}
 			if(i == randomWord.size()){
@@ -430,9 +618,11 @@ public:
 			randomWord.insert(randomWord.begin() + i, newV.begin(), newV.end());
 		}while(true);
 		for(unsigned int i=0; i<randomWord.size(); i++){
-			std::cout << intToCharTerminalValue[randomWord[i]] << " ";
+			//std::cout << intToCharTerminalValue[randomWord[i]] << " ";
+			std::cout << randomWord[i] << " ";
 		}
 		std::cout << std::endl;
+		return randomWord;
 	}
 	
 	void dumpPCFGtoFile(std::string filename){
@@ -531,7 +721,7 @@ private:
 			inCaseOfDelete += prod.probability*log10(prod.probability/totalCount);
 			if(prod.rightRules.size()==1 && prod.rightRules[0] == ruleID){
 				toDelete[i] = true;
-				totalGain += log10(2);
+				totalGain += (1+1)*log10(2);
 				somethingToDelete = true;
 			}
 		}
@@ -587,7 +777,7 @@ private:
 						toDelete[iter2] = true;
 						double newProbability = firstProd.probability + secProd.probability;
 						//gain from replacement of rule
-						totalGain += firstProd.rightRules.size()*log10(2);
+						totalGain += (firstProd.rightRules.size()+1)*log10(2);
 						//recalculate priori
 						*pOgivenG += newProbability*log10(newProbability/totalCount) -firstProd.probability*log10(firstProd.probability/totalCount) - secProd.probability*log10(secProd.probability/totalCount);
 						allRules[host].updateProbability(iter1, newProbability);
@@ -630,7 +820,7 @@ private:
 						double newProbability = hostProd.probability + targetProd.probability;
 						allRules[host].updateProbability(iter1, newProbability);
 						allRules[target].removeProduction(iter2);
-						totalGain += hostProd.rightRules.size()*log10(2);
+						totalGain += (hostProd.rightRules.size()+1)*log10(2);
 						break;
 					}
 				}
@@ -737,7 +927,7 @@ private:
 						out << "N" << tmp.rightRules[k] << " ";
 					}
 				}else{
-					out << tmp.rightRules[0] << " ";
+					out << intToCharTerminalValue[tmp.rightRules[0]] << " ";
 				}
 				out << "(" << tmp.probability << ")" << std::endl << "\t";
 			}

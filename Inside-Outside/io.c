@@ -62,6 +62,7 @@ const char usage[] =
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <string.h>
 
 static grammar g_global = NULL;
 static si_t    si_global;
@@ -94,6 +95,8 @@ main(int argc, char **argv)
   int debuglevel = 0, nruns = 1, irun = 0;
   FLOAT wordscale=1;
   int VariationalBayes=0;
+  int tmp;
+  char filename[100];
 
   {
     int chr;
@@ -104,6 +107,16 @@ main(int argc, char **argv)
 	rule_bias_default = atof(optarg);
 	break;
       case 'g': 
+  memcpy (filename, optarg, strlen (optarg));
+  tmp = strlen (optarg);
+  filename[tmp] = 'N';
+  tmp++;
+  filename[tmp] = 'e';
+  tmp++;
+  filename[tmp] = 'w';
+  tmp++;
+  filename[tmp] = '\0';
+  tmp++;
 	grammarfp = fopen(optarg, "r");
 	if (grammarfp == NULL) {
 	  fprintf(stderr, "Error: couldn't open grammarfile %s\n%s",
@@ -219,7 +232,7 @@ main(int argc, char **argv)
     if (debuglevel >= 1) {
       write_grammar(stdout, g, si, minruleprob);
 
-      FILE* grammarfp = fopen("cache.grammarNew", "w");
+      FILE* grammarfp = fopen(filename, "w");
       //write_grammar(stdout, g, si, minruleprob);
       write_grammar(grammarfp, g, si, minruleprob);
       fprintf(stdout, "\n");

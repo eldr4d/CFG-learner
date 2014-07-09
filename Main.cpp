@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <iostream>
 #include <fstream>
+#include <sstream>
 #include <vector>
 #include <utility>
 #include <math.h>
@@ -12,50 +13,69 @@
 #include "BeamSearch/BeamSearch.hpp"
 using namespace std;
 
+#define _omphalos_ false
+#define _runForLogs_ true
+#define _loadGrammar_ false
+#define _saveGrammar_ true
+#define _groundTruth_ false
+#define _generate_ false
+void checkGroundTruth(PCFG learned, Corpus corp, string dirpath, string filename, double L);
+void omphalosParse(PCFG omphPcfg, Corpus currCorp, string filename);
 
 int main( int argc, const char* argv[] )
 {
 	
-	if(argc != 3){
+	if(argc < 3){
 		cout << "Wrong arguments! Aborting!!" << endl;
 		return -1;
 	}
 	
 	//For linux
 	string filename;
-	string filepath = string(argv[1]) + "/";
+	string dirpath = string(argv[1]) + "/";
 	filename = string(argv[2]);
+
+
+	string grammarLoad = dirpath + filename + "Grammar.unreadable";
 	
 	//For mac
-	//string filepath = string(argv[1]) + "DataSets/";
+	//string dirpath = string(argv[1]) + "DataSets/";
 	//string filename = "plus.txt";
-	
  	
- 	
-	//Create corpus
+	string file1;
+	if(_runForLogs_){
+		file1 = dirpath + filename + ".learn";
+	}else{
+		file1 = dirpath + filename;
+	}
+
 	Corpus currCorp;
-	//string file1 = filepath + filename + ".learn";
-	string file1 = filepath + filename;
-	currCorp.loadCorpusFromFile(file1);
+	currCorp.loadCorpusFromFile(file1, _omphalos_);
+	currCorp.dropPositive();
 	currCorp.normalizeCorpus();
 	currCorp.printCorpus();
-	//return 0;
+
 	cout << "--------------------Begin---------------------- " << endl;
 	PCFG learnedPcfg;
 	
 	//Load
-	//string g1 = filepath + filename + "Grammar.unreadable";
-	//learnedPcfg.readPCFGfromFile(g1);
+	if(_loadGrammar_){
+		learnedPcfg.readPCFGfromFile(grammarLoad);
+	}else{
+		string filenameForIO = dirpath + filename; 
+		learnedPcfg = searchIncrementallyForBestPCFG(currCorp, atof(argv[3]), filenameForIO);
+		string g1 = dirpath + filename + "Grammar.readable";
+		string g2 = dirpath + filename + "Grammar.unreadable";
+		if(_saveGrammar_){
+			learnedPcfg.prettyPrint(g1);
+			learnedPcfg.dumpPCFGtoFile(g2);
+		}
+	}
 	
-	
-	//Learn
-	//learnedPcfg = searchForBestPCFG(currCorp);
-	learnedPcfg = searchIncrementallyForBestPCFG(currCorp);
-	//string g1 = filepath + filename + "Grammar.readable";
-	//string g2 = filepath + filename + "Grammar.unreadable";
-	//learnedPcfg.prettyPrint(g1);
-	//learnedPcfg.dumpPCFGtoFile(g2);
-	
+	if(_groundTruth_){
+		checkGroundTruth(learnedPcfg, currCorp, dirpath, filename, atof(argv[3]));
+	}
+
 	PCFG forPrintPCFG = learnedPcfg;
 	learnedPcfg.toCnf();
 	learnedPcfg.prettyPrint();
@@ -66,56 +86,48 @@ int main( int argc, const char* argv[] )
  	CYKparser cyk;
 		
 	Corpus::words allInitWords = currCorp.getUniqueWords();
-	vector<char> positive = currCorp.getPositiveStatus();
 	int oCorrectWordsLearn = 0;
 	int oWrongWordsLearn = 0;
 	int correntNotDetectedLearn = 0;
 	int wrongNotDetectedLearn = 0;
 	for(unsigned int w = 0; w<allInitWords.size(); w++){
 		double parseProb = cyk.parseWord(&learnedPcfg, allInitWords[w]);
-		if((bool)positive[w] == true){
-			correntNotDetectedLearn = parseProb > 0 ? correntNotDetectedLearn : correntNotDetectedLearn+1;
-			oCorrectWordsLearn++;
-		}else{
-			wrongNotDetectedLearn = parseProb == 0 ? wrongNotDetectedLearn : wrongNotDetectedLearn+1;
-			oWrongWordsLearn++;
-		}
+		correntNotDetectedLearn = parseProb > 0 ? correntNotDetectedLearn : correntNotDetectedLearn+1;
+		oCorrectWordsLearn++;
+	
 		cout << " Words: ";
 		for(unsigned int i=0; i<allInitWords[w].size(); i++){
 			cout << intToSymbol[allInitWords[w][i]] << " ";
 		}
-		cout << " | prob = " << parseProb << " p = " << (bool)positive[w] << endl;
+		cout << " | prob = " << parseProb << endl;
 		
 	}
-	
-	vector<int> table;
-	table.push_back(0);
-	table.push_back(0);
-	table.push_back(1);
-	table.push_back(1);
-	table.push_back(1);
-	double parseProb = cyk.parseWord(&learnedPcfg, table);
-	cout << " Words: ";
-	for(unsigned int i=0; i<table.size(); i++){
-		cout << intToSymbol[table[i]] << " ";
-	}
-	cout << " | prob = " << parseProb << endl;
 
-	cout << "Generating!!" << endl;
-	currCorp.initReduceForPCFG(&learnedPcfg);
-	for(int i=0; i<100; i++){
-		learnedPcfg.generateWord(currCorp.numberOfSymbolsInCorpus());
+	if(_omphalos_){
+		omphalosParse(learnedPcfg, currCorp, file1);
+		return 0;
 	}
-	forPrintPCFG.prettyPrint();
-	return 0;
-	
+
+	if(_generate_){
+		cout << "Generating!!" << endl;
+		currCorp.initReduceForPCFG(&learnedPcfg);
+		for(int i=0; i<100; i++){
+			learnedPcfg.generateWord();
+		}
+		forPrintPCFG.prettyPrint();
+	}
+
+	if(_runForLogs_ == false){
+		return 0;
+	}
+
 	cout << "Testing!!" << endl;
 	Corpus currCorpTest;
 
-	string file2 = filepath + filename + ".test";
-	currCorpTest.loadCorpusFromFile(file2);
+	string file2 = dirpath + filename + ".test";
+	currCorpTest.loadCorpusFromFile(file2,currCorp.charsToSymbols(), _omphalos_);
+	currCorpTest.dropPositive();
 	allInitWords = currCorpTest.getUniqueWords();
-	positive = currCorpTest.getPositiveStatus();
 
 	int oCorrectWordsTest = 0;
 	int oWrongWordsTest = 0;
@@ -123,34 +135,31 @@ int main( int argc, const char* argv[] )
 	int wrongNotDetectedTest = 0;
 	for(unsigned int w = 0; w<allInitWords.size(); w++){
 		double parseProb = cyk.parseWord(&learnedPcfg, allInitWords[w]);
-		if((bool)positive[w] == true){
-			correntNotDetectedTest = parseProb > 0 ? correntNotDetectedTest : correntNotDetectedTest+1;
-			oCorrectWordsTest++;
-		}else{
-			wrongNotDetectedTest = parseProb == 0 ? wrongNotDetectedTest : wrongNotDetectedTest+1;
-			oWrongWordsTest++;
-		}
+		correntNotDetectedTest = parseProb > 0 ? correntNotDetectedTest : correntNotDetectedTest+1;
+		oCorrectWordsTest++;
+		
 		cout << " Words: ";
 		for(unsigned int i=0; i<allInitWords[w].size(); i++){
 			cout << intToSymbol[allInitWords[w][i]] << " ";
 		}
-		cout << " | prob = " << parseProb << " p = " << (bool)positive[w] << endl;
+		cout << " | prob = " << parseProb << endl;
 	}
 	
 	cout << "Evaluating!!" << endl;
 	Corpus currCorpEval;
-	string file3 = filepath + filename + ".eval";
-	currCorpEval.loadCorpusFromFile(file3);
+	string file3 = dirpath + filename + ".eval";
+	currCorpEval.loadCorpusFromFile(file3,currCorp.charsToSymbols(), _omphalos_);
 	allInitWords = currCorpEval.getUniqueWords();
-	positive = currCorpEval.getPositiveStatus();
 	
 	int oCorrectWordsEval = 0;
 	int oWrongWordsEval = 0;
 	int correntNotDetectedEval = 0;
 	int wrongNotDetectedEval = 0;
 	for(unsigned int w = 0; w<allInitWords.size(); w++){
-		double parseProb = cyk.parseWord(&learnedPcfg, allInitWords[w]);
-		if((bool)positive[w] == true){
+		vector<int> wordTOCYK = allInitWords[w];
+		wordTOCYK.erase(wordTOCYK.begin());
+		double parseProb = cyk.parseWord(&learnedPcfg, wordTOCYK);
+		if(allInitWords[w][0] == 1){
 			correntNotDetectedEval = parseProb > 0 ? correntNotDetectedEval : correntNotDetectedEval+1;
 			oCorrectWordsEval++;
 		}else{
@@ -158,12 +167,12 @@ int main( int argc, const char* argv[] )
 			oWrongWordsEval++;
 		}
 		cout << " Words: ";
-		for(unsigned int i=0; i<allInitWords[w].size(); i++){
+		for(unsigned int i=1; i<allInitWords[w].size(); i++){
 			cout << intToSymbol[allInitWords[w][i]] << " ";
 		}
-		cout << " | prob = " << parseProb << " p = " << (bool)positive[w] << endl;
+		cout << " | prob = " << parseProb << " p = " << allInitWords[w][0] << endl;
 	}
-	string resultsFiles = filepath + filename + ".res";
+	string resultsFiles = dirpath + filename + ".res";
 	ofstream myfile(resultsFiles.c_str());
 	myfile << "-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-" << endl;
 	myfile << "Final Results: " << endl;
@@ -187,4 +196,92 @@ int main( int argc, const char* argv[] )
 }
 
 
+void checkGroundTruth(PCFG learned, Corpus corp, string dirpath, string filename, double L){
+
+	//learned.toCnf();
+	learned.prettyPrint();
+	map<int, char> intToSymbol =  corp.symbolsToChars();
+ 	CYKparser cyk;
+
+ 	PCFG correct;
+ 	correct.createTestPCFG2();
+ 	cout << "------------------ Learned ----------------" <<endl;
+ 	learned.prettyPrint();
+ 	//cout << learned.rulesForTermSymbol[0] << " " << learned.rulesForTermSymbol[1] << " " << learned.rulesForTermSymbol[2]  << endl;
+ 	cout << "------------------ Correct ----------------" <<endl;
+ 	correct.prettyPrint();
+ 	//cout << correct.rulesForTermSymbol[0] << " " << correct.rulesForTermSymbol[1] << " " << correct.rulesForTermSymbol[2]  << endl;
+ 	
+ 	correct.toCnf();
+
+	corp.initReduceForPCFG(&learned);
+	
+	learned.pruneProductions(0.0001);
+
+	//exit(0);
+	int total = 10000;
+	int wrong = 0;
+	int wrong2 = 0;
+	for(int i=0; i<total; i++){
+		vector<int> word = learned.generateWord();
+		double prob = cyk.parseWord(&correct, word);
+		if(prob <= 0){
+			cout << "Wrong word generated: " << prob << endl;
+			wrong++;
+		}
+	}
+	cout << "Change roles" << endl;
+	PCFG learned2 =learned;
+	learned2.toCnf();
+	for(int i=0; i<total; i++){
+		vector<int> word = correct.generateWord();
+		double prob = cyk.parseWord(&learned2,word);
+		if(prob <= 0){
+			cout << "Wrong word generated: " << prob << endl;
+			wrong2++;
+		}
+	}
+	ostringstream g1;
+	g1 << dirpath << "/results/" << "strange" << "Grammar" << L << ".readable";
+	ostringstream g2;
+	g2 << dirpath << "/results/"  << "strange" << "Grammar" << L << ".unreadable";
+	learned.prettyPrint(g1.str());
+	learned.dumpPCFGtoFile(g2.str());
+
+
+	ostringstream resultsFiles;
+	resultsFiles << dirpath  << "/results/"  << "strange.res";
+	ofstream myfile(resultsFiles.str().c_str(), std::ios_base::app);
+	myfile << L << " Learned genearated: " <<  wrong << " " << total  << " Original genearated: " <<  wrong2 << " " << total << endl;
+	myfile.close();
+
+ 	correct.prettyPrint();
+
+	exit(0);
+}
+
+void omphalosParse(PCFG omphPcfg, Corpus currCorp, string filename){
+	Corpus omphalosCorp;
+ 	CYKparser cyk;
+
+	omphPcfg.toCnf();
+	string omphTest = filename;
+	size_t start_pos = omphTest.find("learn");
+    omphTest.replace(start_pos, 5, "test");
+
+	omphalosCorp.loadCorpusFromFile(omphTest, currCorp.charsToSymbols(), _omphalos_);
+	omphalosCorp.dropPositive();
+
+	Corpus::words allInitWords = omphalosCorp.getUniqueWords();
+	cout << "Omphalos results: " << endl;
+	for(unsigned int w = 0; w<allInitWords.size(); w++){
+		double parseProb = cyk.parseWord(&omphPcfg, allInitWords[w]);
+		if(parseProb > 0.0){
+			cout << 1 << " ";
+		}else{
+			cout << 0 << " ";
+		}
+	}
+	cout << endl;
+}
 

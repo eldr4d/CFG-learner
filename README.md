@@ -1,6 +1,6 @@
 Authors: Nikolaos Kofinas
 
-## Unsupervised Learning of Probabilistic Context Free Gramamrs
+# Unsupervised Learn of Probabilistic Context Free Gramamrs
 
 ## Compile:
 
