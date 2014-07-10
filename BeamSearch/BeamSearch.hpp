@@ -44,5 +44,5 @@ std::vector<searchNode> findAllPossibleMoves(searchNode parent);
 void doChunk(std::vector<searchNode> *listOfNodes, searchNode parent);
 void doMerge(std::vector<searchNode> *listOfNodes, searchNode parent);
 
-void recalculateProbabilities(Corpus *corpus, Corpus::words *allInitWords, Corpus::words *allWords, std::vector<double> *wordCount, PCFG *pcfg, std::string fileIO);
+void recalculateProbabilities(Corpus *corpus, Corpus::words *allInitWords, Corpus::words *allWords, PCFG *pcfg, std::string fileIO);
 #endif //BEAM_HPP

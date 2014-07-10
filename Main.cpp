@@ -51,7 +51,6 @@ int main( int argc, const char* argv[] )
 
 	Corpus currCorp;
 	currCorp.loadCorpusFromFile(file1, _omphalos_);
-	currCorp.dropPositive();
 	currCorp.normalizeCorpus();
 	currCorp.printCorpus();
 
@@ -85,29 +84,31 @@ int main( int argc, const char* argv[] )
  	//Create parser
  	CYKparser cyk;
 		
-	Corpus::words allInitWords = currCorp.getUniqueWords();
+	Corpus::words allInitWords = currCorp.getInitUnsortedWords();
 	int oCorrectWordsLearn = 0;
 	int oWrongWordsLearn = 0;
 	int correntNotDetectedLearn = 0;
 	int wrongNotDetectedLearn = 0;
 	for(unsigned int w = 0; w<allInitWords.size(); w++){
-		double parseProb = cyk.parseWord(&learnedPcfg, allInitWords[w]);
+		double parseProb = cyk.parseWord(&learnedPcfg, allInitWords[w].word);
 		correntNotDetectedLearn = parseProb > 0 ? correntNotDetectedLearn : correntNotDetectedLearn+1;
 		oCorrectWordsLearn++;
 	
 		cout << " Words: ";
-		for(unsigned int i=0; i<allInitWords[w].size(); i++){
-			cout << intToSymbol[allInitWords[w][i]] << " ";
+		for(unsigned int i=0; i<allInitWords[w].word.size(); i++){
+			cout << intToSymbol[allInitWords[w].word[i]] << " ";
 		}
 		cout << " | prob = " << parseProb << endl;
 		
 	}
 
+	/**************** RUN LOGS FOR OMPHALOS **************************/
 	if(_omphalos_){
 		omphalosParse(learnedPcfg, currCorp, file1);
 		return 0;
 	}
 
+	/**************** GENERATE WORDS FROM THE LEARNED GRAMMAR **************************/
 	if(_generate_){
 		cout << "Generating!!" << endl;
 		currCorp.initReduceForPCFG(&learnedPcfg);
@@ -117,6 +118,7 @@ int main( int argc, const char* argv[] )
 		forPrintPCFG.prettyPrint();
 	}
 
+	/**************** CONTINUE FOR NOPTILUS LOGS **************************/
 	if(_runForLogs_ == false){
 		return 0;
 	}
@@ -125,53 +127,66 @@ int main( int argc, const char* argv[] )
 	Corpus currCorpTest;
 
 	string file2 = dirpath + filename + ".test";
-	currCorpTest.loadCorpusFromFile(file2,currCorp.charsToSymbols(), _omphalos_);
-	currCorpTest.dropPositive();
-	allInitWords = currCorpTest.getUniqueWords();
+	currCorpTest.loadCorpusFromFile(file2,currCorp.charsToSymbols(), false);
+	allInitWords = currCorpTest.getInitUnsortedWords();
 
 	int oCorrectWordsTest = 0;
 	int oWrongWordsTest = 0;
 	int correntNotDetectedTest = 0;
 	int wrongNotDetectedTest = 0;
+
+	string fileForMatlabTest = dirpath + filename + ".mtest";
+
+	ofstream matlabFileTest;
+	matlabFileTest.open(fileForMatlabTest.c_str());
 	for(unsigned int w = 0; w<allInitWords.size(); w++){
-		double parseProb = cyk.parseWord(&learnedPcfg, allInitWords[w]);
+		double parseProb = cyk.parseWord(&learnedPcfg, allInitWords[w].word);
 		correntNotDetectedTest = parseProb > 0 ? correntNotDetectedTest : correntNotDetectedTest+1;
 		oCorrectWordsTest++;
 		
 		cout << " Words: ";
-		for(unsigned int i=0; i<allInitWords[w].size(); i++){
-			cout << intToSymbol[allInitWords[w][i]] << " ";
+		for(unsigned int i=0; i<allInitWords[w].word.size(); i++){
+			cout << intToSymbol[allInitWords[w].word[i]] << " ";
 		}
 		cout << " | prob = " << parseProb << endl;
+		matlabFileTest << allInitWords[w].word.size() << " " << parseProb << " " << allInitWords[w].positive << endl;
 	}
-	
+	matlabFileTest.close();
 	cout << "Evaluating!!" << endl;
 	Corpus currCorpEval;
 	string file3 = dirpath + filename + ".eval";
-	currCorpEval.loadCorpusFromFile(file3,currCorp.charsToSymbols(), _omphalos_);
-	allInitWords = currCorpEval.getUniqueWords();
+	currCorpEval.loadCorpusFromFile(file3,currCorp.charsToSymbols(), false);
+	allInitWords = currCorpEval.getInitUnsortedWords();
 	
 	int oCorrectWordsEval = 0;
 	int oWrongWordsEval = 0;
 	int correntNotDetectedEval = 0;
 	int wrongNotDetectedEval = 0;
+
+
+	string fileForMatlabEval = dirpath + filename + ".meval";
+	ofstream matlabFileEval;
+	matlabFileEval.open(fileForMatlabEval.c_str());
 	for(unsigned int w = 0; w<allInitWords.size(); w++){
-		vector<int> wordTOCYK = allInitWords[w];
+		vector<int> wordTOCYK = allInitWords[w].word;
 		wordTOCYK.erase(wordTOCYK.begin());
 		double parseProb = cyk.parseWord(&learnedPcfg, wordTOCYK);
-		if(allInitWords[w][0] == 1){
+		if(allInitWords[w].positive){
 			correntNotDetectedEval = parseProb > 0 ? correntNotDetectedEval : correntNotDetectedEval+1;
 			oCorrectWordsEval++;
 		}else{
-			wrongNotDetectedEval = parseProb == 0 ? wrongNotDetectedEval : wrongNotDetectedEval+1;
+			wrongNotDetectedEval = parseProb <= 10e-12 ? wrongNotDetectedEval : wrongNotDetectedEval+1;
 			oWrongWordsEval++;
 		}
 		cout << " Words: ";
-		for(unsigned int i=1; i<allInitWords[w].size(); i++){
-			cout << intToSymbol[allInitWords[w][i]] << " ";
+		for(unsigned int i=1; i<allInitWords[w].word.size(); i++){
+			cout << intToSymbol[allInitWords[w].word[i]] << " ";
 		}
-		cout << " | prob = " << parseProb << " p = " << allInitWords[w][0] << endl;
+		cout << " | prob = " << parseProb << " p = " << allInitWords[w].positive << endl;
+		matlabFileEval << allInitWords[w].word.size() << " " << parseProb << " " << allInitWords[w].positive << endl;
 	}
+	matlabFileEval.close();
+
 	string resultsFiles = dirpath + filename + ".res";
 	ofstream myfile(resultsFiles.c_str());
 	myfile << "-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-" << endl;
@@ -270,12 +285,11 @@ void omphalosParse(PCFG omphPcfg, Corpus currCorp, string filename){
     omphTest.replace(start_pos, 5, "test");
 
 	omphalosCorp.loadCorpusFromFile(omphTest, currCorp.charsToSymbols(), _omphalos_);
-	omphalosCorp.dropPositive();
 
 	Corpus::words allInitWords = omphalosCorp.getUniqueWords();
 	cout << "Omphalos results: " << endl;
 	for(unsigned int w = 0; w<allInitWords.size(); w++){
-		double parseProb = cyk.parseWord(&omphPcfg, allInitWords[w]);
+		double parseProb = cyk.parseWord(&omphPcfg, allInitWords[w].word);
 		if(parseProb > 0.0){
 			cout << 1 << " ";
 		}else{

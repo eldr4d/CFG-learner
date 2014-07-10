@@ -25,7 +25,6 @@ PCFG searchIncrementallyForBestPCFG(Corpus corpus, double lValue, string fileIO)
 	parent.expanded = false;
 	corpus.initReduceForPCFG(&parent.pcfg);
 	Corpus::words allWords = corpus.getUniqueWords();
-	vector<double> wordCount = corpus.getWordCount();
 
 	int startId = parent.pcfg.createStartRule(vector<vector<int> >(), vector<double>());
 	int startRuleLoc = parent.pcfg.locationOfRule(startId);
@@ -35,12 +34,12 @@ PCFG searchIncrementallyForBestPCFG(Corpus corpus, double lValue, string fileIO)
 	unsigned int i; 
 	do{
 		for(i=0; (i < _batch_ && i<allWords.size()); i++){
-				parent.pcfg.allRules[startRuleLoc].addProduction(allWords[i], wordCount[i], false);
+				parent.pcfg.allRules[startRuleLoc].addProduction(allWords[i].word, allWords[i].count, false);
 		}
 		parent.expanded = false;
 		parent = doBeamSearch(parent,_beamWidth_,_beamDepth_);
 
-		recalculateProbabilities(&onlyParsedCorpus, &allInitWords, &allWords, &wordCount, &parent.pcfg, fileIO);
+		recalculateProbabilities(&onlyParsedCorpus, &allInitWords, &allWords, &parent.pcfg, fileIO);
 		parent.pcfg.pruneProductions(0.0001);
 	}while(i == _batch_ && allWords.size() > 0);
 	
@@ -210,7 +209,7 @@ void doMerge(vector<searchNode> *listOfNodes, searchNode parent){
 }
 
 
-void recalculateProbabilities(Corpus *corpus, Corpus::words *allInitWords, Corpus::words *allWords, std::vector<double> *wordCount, PCFG *pcfg, string fileIO){
+void recalculateProbabilities(Corpus *corpus, Corpus::words *allInitWords, Corpus::words *allWords, PCFG *pcfg, string fileIO){
 	CYKparser parser;
 	PCFG cnfPCFG = *pcfg;
 	cnfPCFG.normalizeGrammar();
@@ -218,9 +217,9 @@ void recalculateProbabilities(Corpus *corpus, Corpus::words *allInitWords, Corpu
 
 	vector<char> toDelete(allWords->size(), 0);
 	for(unsigned int i=0; i<allWords->size(); i++){
-		double parseProb = parser.parseWord(&cnfPCFG, allInitWords->at(i));
+		double parseProb = parser.parseWord(&cnfPCFG, allInitWords->at(i).word);
 		if(parseProb > 0){
-			corpus->addUniqueWord(allInitWords->at(i), wordCount->at(i)*corpus->totalStartWords);
+			corpus->addUniqueWord(allInitWords->at(i));
 			toDelete[i] = true;
 		}
 	}
@@ -228,7 +227,6 @@ void recalculateProbabilities(Corpus *corpus, Corpus::words *allInitWords, Corpu
 		if(toDelete[i] == true){
 			allWords->erase(allWords->begin()+i);
 			allInitWords->erase(allInitWords->begin()+i);
-			wordCount->erase(wordCount->begin()+i);
 		}
 	}
 	string corpusFile = string("../") + fileIO + ".txt";
