@@ -72,6 +72,16 @@ public:
 		return rule.id;
 	}
 	
+	int const totalSizeOfGrammar(){
+		int totalLength = 0;
+		for(unsigned int iter = 0; iter<allRules.size(); iter++){
+			if(allRules[iter].hasNTproduction == false)
+				continue;
+			totalLength += allRules[iter].totalLength;
+		}
+		return totalLength;
+	}
+
 	/*
 	** Merge two different NT given their ID. The first NT will remain in the grammar
 	** with the addition of the rules that the second NT has. If there is the same rule
@@ -569,6 +579,7 @@ public:
 	** Prun all the productions which probability is below the threshold
 	*/
 	void pruneProductions(float threshold){
+		std::vector<bool> toDeleteRules(allRules.size(),false);
 		for(unsigned int i=0; i<allRules.size(); i++){
 			std::vector<bool> toDelete(allRules[i].totalNumberOfProductions(),false);
 			for(unsigned int j=0; j<allRules[i].totalNumberOfProductions(); j++){
@@ -580,6 +591,14 @@ public:
 				if(toDelete[k]){
 					allRules[i].removeProduction(k);
 				}
+			}
+			if(allRules[i].hasNTproduction && allRules[i].totalLength == 1){
+				toDeleteRules[i] = true;
+			}
+		}
+		for(int k=toDeleteRules.size()-1; k>=0; k--){
+			if(toDeleteRules[k]){
+				allRules.erase(allRules.begin()+k);
 			}
 		}
 		normalizeGrammar();
@@ -618,8 +637,8 @@ public:
 			randomWord.insert(randomWord.begin() + i, newV.begin(), newV.end());
 		}while(true);
 		for(unsigned int i=0; i<randomWord.size(); i++){
-			//std::cout << intToCharTerminalValue[randomWord[i]] << " ";
-			std::cout << randomWord[i] << " ";
+			std::cout << intToCharTerminalValue[randomWord[i]] << " ";
+			//std::cout << randomWord[i] << " ";
 		}
 		std::cout << std::endl;
 		return randomWord;

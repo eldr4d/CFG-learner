@@ -15,10 +15,11 @@ typedef struct conections{
 public:
 	int id;
 	bool hasNTproduction;
+	int totalLength;
 private:
 	std::vector<productions> allProductions;
 public:
-	Rule(int id):id(id),hasNTproduction(false){}
+	Rule(int id):id(id),hasNTproduction(false),totalLength(1){}
 	
 	/*
 	** Add NT production to the rule
@@ -32,6 +33,7 @@ public:
 		if(!terminal){
 			hasNTproduction = true;
 		}
+		totalLength += 1 + rightPart.size();
 	}
 	
 	/*
@@ -39,6 +41,7 @@ public:
 	*/
 	void appendProduction(productions prod){
 		allProductions.push_back(prod);
+		totalLength += 1 + prod.rightRules.size();
 	}
 	
 	/*
@@ -66,7 +69,10 @@ public:
 	 ** Get left NT of given production
 	 */
 	void updateProductions(productions prod,int index){
+		totalLength -= allProductions[index].rightRules.size();
 		allProductions[index] = prod;
+		totalLength += allProductions[index].rightRules.size();
+
 	}
 	
 	/*
@@ -95,6 +101,8 @@ public:
 	** Remove production
 	*/
 	void removeProduction(int index){
+		totalLength -= allProductions[index].rightRules.size();
+		totalLength -= 1;
 		allProductions.erase(allProductions.begin()+index);
 	}
 	

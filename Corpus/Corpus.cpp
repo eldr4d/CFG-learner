@@ -8,7 +8,7 @@
 
 using namespace std;
 const bool compareSingleWords(const Corpus::singleWord &i, const Corpus::singleWord &j){
-	return i.count < j.count;
+	return i.count > j.count;
 }
 
 const bool compareIntMap(const std::map<int, int>::value_type &i1, const std::map<int, int>::value_type &i2){
@@ -141,6 +141,7 @@ void Corpus::printCorpus(){
 		}
 		cout << " count = " << it1->count;
 		cout << " positive = " << it1->positive;
+		cout << endl;
 		count++;
 	}
 	cout << endl;

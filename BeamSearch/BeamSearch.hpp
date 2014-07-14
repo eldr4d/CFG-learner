@@ -14,10 +14,11 @@
 //#define L 0.01//50.0/10000.0
 #define L2 1.0
 
-#define _beamDepth_ 16
+#define _beamDepth_ 17
 #define _beamWidth_ 5
-#define _chunkLength_ 16
+#define _chunkLength_ 30
 #define _batch_ 10
+#define _stopsize_ 150
 
 typedef struct{
 	PCFG pcfg;

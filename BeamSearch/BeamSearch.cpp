@@ -41,7 +41,7 @@ PCFG searchIncrementallyForBestPCFG(Corpus corpus, double lValue, string fileIO)
 
 		recalculateProbabilities(&onlyParsedCorpus, &allInitWords, &allWords, &parent.pcfg, fileIO);
 		parent.pcfg.pruneProductions(0.0001);
-	}while(i == _batch_ && allWords.size() > 0);
+	}while(i == _batch_ && allWords.size() > 0 && parent.pcfg.allRules.size()<_stopsize_);
 	
 	parent.pcfg.normalizeGrammar();
 	return parent.pcfg;	
@@ -62,11 +62,12 @@ searchNode doBeamSearch(searchNode root, int width, int depth){
 	pqForBeam[cPq].push(root);
 
 	while(pqForBeam[cPq].top().currGain >= 0.0 && somethingChanged == true && globalIter < 50000){
-		cout << "---------- " << pqForBeam[cPq].size() << " " <<  pqForBeam[cPq].top().currGain << " " <<  pqForBeam[cPq].top().currLikelihood << " -----------------" << endl;
+		cout << "---------- " << pqForBeam[cPq].size() << " " <<  pqForBeam[cPq].top().currGain << " "  <<  pqForBeam[cPq].top().currPriori << " " <<  pqForBeam[cPq].top().currLikelihood << " -----------------" << endl;
 		int invcPq = cPq == 0 ? 1 : 0;
 		somethingChanged = false;
 		
 		gBest = pqForBeam[cPq].top();
+		cout << gBest.pcfg.totalSizeOfGrammar() << endl;
 		gBest.pcfg.prettyPrint();
 
 		//empty the q
@@ -78,6 +79,9 @@ searchNode doBeamSearch(searchNode root, int width, int depth){
 		int totalUnexpanded = 0;
 		double prevGain = -1.0;
 		cout << pqForBeam[invcPq].size() << endl;
+		if(gBest.pcfg.allRules.size() > _stopsize_){
+			return gBest;
+		}
 		while(pqForBeam[cPq].size() != 0){
 	
 			searchNode node = pqForBeam[cPq].top();
@@ -130,6 +134,7 @@ vector<searchNode> findAllPossibleMoves(searchNode parent){
 
 void doChunk(vector<searchNode> *listOfNodes, searchNode parent){
 	PCFG::allChunks chunks = parent.pcfg.calculateAllChunks(_chunkLength_);
+	int previousLength = parent.pcfg.totalSizeOfGrammar();
 	
 	for(map<std::vector<int>, int>::iterator iter = chunks.timesFound.begin(); iter!=chunks.timesFound.end(); iter++){
 		
@@ -151,7 +156,8 @@ void doChunk(vector<searchNode> *listOfNodes, searchNode parent){
 		int costToCreateRule = extraCost*(1+1+iter->first.size());
 		
 		//symbols removed - symbol added - new rule
-		double pG = L*((iter->first.size()*pairFoundProb.first)*log10(2) - pairFoundProb.first*log10(2) - costToCreateRule*log10(2) - log10(extraCost));
+		double prev = 1;//((double)previousLength/2.0);// * log10(2);
+		double pG = L*((iter->first.size()*pairFoundProb.first)*log10(2) - pairFoundProb.first*log10(2) - costToCreateRule*log10(2) - log10(extraCost))/prev;
 		//cout << pG << endl;
 		newNode.conflict = chunks.conflict[iter->first];
 		newNode.currGain += pG;
@@ -163,6 +169,7 @@ void doChunk(vector<searchNode> *listOfNodes, searchNode parent){
 
 void doMerge(vector<searchNode> *listOfNodes, searchNode parent){
 	
+	int previousLength = parent.pcfg.totalSizeOfGrammar();
 	for(int i=0; i<(int)parent.pcfg.allRules.size()-1; i++){
 		//Calculate the total count for the first rule (sum all probabilities)
 		if(parent.pcfg.allRules[i].hasNTproduction == false){
@@ -197,8 +204,8 @@ void doMerge(vector<searchNode> *listOfNodes, searchNode parent){
 			}
 					
 			double extraGainFromMerge = newNode.pcfg.mergeTwoNT(parent.pcfg.allRules[i].id,parent.pcfg.allRules[j].id, &likelihood);
-
-			double pG = L*(log10(2) + extraGainFromMerge);
+			double prev = 1;//((double)previousLength/2.0);//*log10(2);
+			double pG = L*(log10(2) + extraGainFromMerge)/prev;
 			newNode.currGain += pG + (1.0/L2)*likelihood;
 			newNode.currLikelihood += (1.0/L2)*likelihood;
 			newNode.currPriori += pG;
