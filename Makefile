@@ -63,14 +63,14 @@ MY_CFLAGS =
 MY_LIBS   =
 
 # The pre-processor options used by the cpp (man cpp for more).
-CPPFLAGS  = -Wall -Wno-sign-compare
+CPPFLAGS  = -Wall -Wno-sign-compare -std=c++11
 
 # The options used in linking as well as in any direct use of ld.
 LDFLAGS   =
 
 # The directories in which source files reside.
 # If not specified, only the current directory will be serached.
-SRCDIRS   = . PCFG CYK Corpus BeamSearch
+SRCDIRS   = . PCFG CYK Corpus BeamSearch Quantizer
 
 # The executable file name.
 # If not specified, current directory name or `a.out' will be used.
@@ -88,8 +88,8 @@ HDREXTS = .h .H .hh .hpp .HPP .h++ .hxx .hp
 
 # The pre-processor and compiler options.
 # Users can override those variables from the command line.
-CFLAGS  = -O3 
-CXXFLAGS= -O3 
+CFLAGS  = -O3  -ffast-math 
+CXXFLAGS= -O3  -ffast-math 
 
 # The C program compiler.
 #CC     = gcc

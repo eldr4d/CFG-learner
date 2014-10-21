@@ -11,14 +11,15 @@
 #include "PCFG/PCFG.hpp"
 #include "CYK/CYKparser.hpp"
 #include "BeamSearch/BeamSearch.hpp"
+
 using namespace std;
 
 #define _omphalos_ false
-#define _runForLogs_ true
+#define _runForLogs_ false
 #define _loadGrammar_ false
-#define _saveGrammar_ true
+#define _saveGrammar_ false
 #define _groundTruth_ false
-#define _generate_ false
+#define _generate_ true
 void checkGroundTruth(PCFG learned, Corpus corp, string dirpath, string filename, double L);
 void omphalosParse(PCFG omphPcfg, Corpus currCorp, string filename);
 
@@ -37,7 +38,6 @@ int main( int argc, const char* argv[] )
 
 
 	string grammarLoad = dirpath + filename + "Grammar.unreadable";
-	
 	//For mac
 	//string dirpath = string(argv[1]) + "DataSets/";
 	//string filename = "plus.txt";
@@ -101,6 +101,7 @@ int main( int argc, const char* argv[] )
 		cout << " | prob = " << parseProb << endl;
 		
 	}
+	forPrintPCFG.prettyPrint();
 
 	/**************** RUN LOGS FOR OMPHALOS **************************/
 	if(_omphalos_){
@@ -152,6 +153,9 @@ int main( int argc, const char* argv[] )
 		matlabFileTest << allInitWords[w].word.size() << " " << parseProb << " " << allInitWords[w].positive << endl;
 	}
 	matlabFileTest.close();
+
+
+
 	cout << "Evaluating!!" << endl;
 	Corpus currCorpEval;
 	string file3 = dirpath + filename + ".eval";
@@ -169,7 +173,6 @@ int main( int argc, const char* argv[] )
 	matlabFileEval.open(fileForMatlabEval.c_str());
 	for(unsigned int w = 0; w<allInitWords.size(); w++){
 		vector<int> wordTOCYK = allInitWords[w].word;
-		wordTOCYK.erase(wordTOCYK.begin());
 		double parseProb = cyk.parseWord(&learnedPcfg, wordTOCYK);
 		if(allInitWords[w].positive){
 			correntNotDetectedEval = parseProb > 0 ? correntNotDetectedEval : correntNotDetectedEval+1;
@@ -179,7 +182,7 @@ int main( int argc, const char* argv[] )
 			oWrongWordsEval++;
 		}
 		cout << " Words: ";
-		for(unsigned int i=1; i<allInitWords[w].word.size(); i++){
+		for(unsigned int i=0; i<allInitWords[w].word.size(); i++){
 			cout << intToSymbol[allInitWords[w].word[i]] << " ";
 		}
 		cout << " | prob = " << parseProb << " p = " << allInitWords[w].positive << endl;
@@ -234,7 +237,7 @@ void checkGroundTruth(PCFG learned, Corpus corp, string dirpath, string filename
 	learned.pruneProductions(0.0001);
 
 	//exit(0);
-	int total = 10000;
+	int total = 100000;
 	int wrong = 0;
 	int wrong2 = 0;
 	for(int i=0; i<total; i++){
